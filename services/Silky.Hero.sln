@@ -97,39 +97,55 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.AccountHost", "Silky.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6D6CEDAD-D0A2-40CF-AF09-1E1CA7F599AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Hero.Common", "Common\Silky.Hero.Common\Silky.Hero.Common.csproj", "{68CBE153-6515-4D32-8055-24374FF9599B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Hero.Common", "Common\Silky.Hero.Common\Silky.Hero.Common.csproj", "{68CBE153-6515-4D32-8055-24374FF9599B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Position", "Position", "{95784761-E9BD-4718-94B3-C7D6AB6EB1CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.PositionHost", "Silky.Position\src\Silky.PositionHost\Silky.PositionHost.csproj", "{B01C62F1-E274-44D6-9670-6790105B0C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.PositionHost", "Silky.Position\src\Silky.PositionHost\Silky.PositionHost.csproj", "{B01C62F1-E274-44D6-9670-6790105B0C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Position.EntityFrameworkCore", "Silky.Position\src\Silky.Position.EntityFrameworkCore\Silky.Position.EntityFrameworkCore.csproj", "{E4309B23-6827-47B7-9F9F-1EF0F838E7D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Position.EntityFrameworkCore", "Silky.Position\src\Silky.Position.EntityFrameworkCore\Silky.Position.EntityFrameworkCore.csproj", "{E4309B23-6827-47B7-9F9F-1EF0F838E7D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Position.Application", "Silky.Position\src\Silky.Position.Application\Silky.Position.Application.csproj", "{238B6C85-8103-4204-A9A2-4BCB751ECC78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Position.Application", "Silky.Position\src\Silky.Position.Application\Silky.Position.Application.csproj", "{238B6C85-8103-4204-A9A2-4BCB751ECC78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Position.Application.Contracts", "Silky.Position\src\Silky.Position.Application.Contracts\Silky.Position.Application.Contracts.csproj", "{EE530C7E-56F2-45D4-87D0-E527F1D042A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Position.Application.Contracts", "Silky.Position\src\Silky.Position.Application.Contracts\Silky.Position.Application.Contracts.csproj", "{EE530C7E-56F2-45D4-87D0-E527F1D042A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Position.Database.Migrations", "Silky.Position\src\Silky.Position.Database.Migrations\Silky.Position.Database.Migrations.csproj", "{40168293-6A02-4B42-8098-1D05D499943A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Position.Database.Migrations", "Silky.Position\src\Silky.Position.Database.Migrations\Silky.Position.Database.Migrations.csproj", "{40168293-6A02-4B42-8098-1D05D499943A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Position.Domain.Shared", "Silky.Position\src\Silky.Position.Domain.Shared\Silky.Position.Domain.Shared.csproj", "{BE06E593-F694-41D5-9CA5-00F599A64CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Position.Domain.Shared", "Silky.Position\src\Silky.Position.Domain.Shared\Silky.Position.Domain.Shared.csproj", "{BE06E593-F694-41D5-9CA5-00F599A64CC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Position.Domain", "Silky.Position\src\Silky.Position.Domain\Silky.Position.Domain.csproj", "{1A03DE70-2D95-4743-8405-30D6F8F36916}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Position.Domain", "Silky.Position\src\Silky.Position.Domain\Silky.Position.Domain.csproj", "{1A03DE70-2D95-4743-8405-30D6F8F36916}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Permission", "Permission", "{3F0C7571-2325-491F-9CD1-28F89CFD1CD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Permission.Application.Contracts", "Silky.Permission\src\Silky.Permission.Application.Contracts\Silky.Permission.Application.Contracts.csproj", "{DE8272CE-7244-4A09-B0B0-1B7E6EDEF246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Permission.Application.Contracts", "Silky.Permission\src\Silky.Permission.Application.Contracts\Silky.Permission.Application.Contracts.csproj", "{DE8272CE-7244-4A09-B0B0-1B7E6EDEF246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Permission.Application", "Silky.Permission\src\Silky.Permission.Application\Silky.Permission.Application.csproj", "{E42E16E1-AF90-445D-AFDB-B7F7DFE02505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Permission.Application", "Silky.Permission\src\Silky.Permission.Application\Silky.Permission.Application.csproj", "{E42E16E1-AF90-445D-AFDB-B7F7DFE02505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Permission.Database.Migrations", "Silky.Permission\src\Silky.Permission.Database.Migrations\Silky.Permission.Database.Migrations.csproj", "{24BBAF3C-6B21-4809-BF68-D65F4AFC3271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Permission.Database.Migrations", "Silky.Permission\src\Silky.Permission.Database.Migrations\Silky.Permission.Database.Migrations.csproj", "{24BBAF3C-6B21-4809-BF68-D65F4AFC3271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Permission.Domain", "Silky.Permission\src\Silky.Permission.Domain\Silky.Permission.Domain.csproj", "{572B4738-EEE3-43E0-8ECA-B520DF9248A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Permission.Domain", "Silky.Permission\src\Silky.Permission.Domain\Silky.Permission.Domain.csproj", "{572B4738-EEE3-43E0-8ECA-B520DF9248A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Permission.Domain.Shared", "Silky.Permission\src\Silky.Permission.Domain.Shared\Silky.Permission.Domain.Shared.csproj", "{12883811-C1BD-41AB-800A-2CF25F4C3F5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Permission.Domain.Shared", "Silky.Permission\src\Silky.Permission.Domain.Shared\Silky.Permission.Domain.Shared.csproj", "{12883811-C1BD-41AB-800A-2CF25F4C3F5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.PermissionHost", "Silky.Permission\src\Silky.PermissionHost\Silky.PermissionHost.csproj", "{080F31E5-F8F1-4676-AC42-35C43877D90F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.PermissionHost", "Silky.Permission\src\Silky.PermissionHost\Silky.PermissionHost.csproj", "{080F31E5-F8F1-4676-AC42-35C43877D90F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.Permission.EntityFrameworkCore", "Silky.Permission\src\Silky.Permission.EntityFrameworkCore\Silky.Permission.EntityFrameworkCore.csproj", "{DC5E1A4C-4DE2-4BB9-BFDA-6B6F7D5421E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Silky.Permission.EntityFrameworkCore", "Silky.Permission\src\Silky.Permission.EntityFrameworkCore\Silky.Permission.EntityFrameworkCore.csproj", "{DC5E1A4C-4DE2-4BB9-BFDA-6B6F7D5421E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkFlow", "WorkFlow", "{97305298-FCB6-46A9-B9AC-40EC394381E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.WorkFlow.Application", "Silky.WorkFlow.Application\Silky.WorkFlow.Application.csproj", "{7B1EB81C-1D1B-44F9-B165-C2BDC21A940A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.WorkFlow.Application.Contracts", "Silky.WorkFlow.Application.Contracts\Silky.WorkFlow.Application.Contracts.csproj", "{C587E5F3-85D2-4C7C-A4B0-0A4F814A223D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.WorkFlow.Domain", "Silky.WorkFlow.Domain\Silky.WorkFlow.Domain.csproj", "{5457D4DD-EE90-411C-AF67-B0D395839EC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.WorkFlow.Domain.Shared", "Silky.WorkFlow.Domain.Shared\Silky.WorkFlow.Domain.Shared.csproj", "{EA7941FF-723C-4521-903B-7839665BBBE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.WorkFlow.EntityFrameworkCore", "Silky.WorkFlow.EntityFrameworkCore\Silky.WorkFlow.EntityFrameworkCore.csproj", "{73F203A3-8D72-42BA-A2F4-3AD8835C3B88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.WorkFlowHost", "Silky.WorkFlowHost\Silky.WorkFlowHost.csproj", "{661AE656-15B0-4C1D-94F2-0FAF65EF5F1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silky.WorkFlow.Database.Migrations", "Silky.WorkFlow\src\Silky.Identity.Database.Migrations\Silky.WorkFlow.Database.Migrations.csproj", "{70A0B3D6-399E-421A-95DC-F76A61E66C4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -353,6 +369,34 @@ Global
 		{DC5E1A4C-4DE2-4BB9-BFDA-6B6F7D5421E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC5E1A4C-4DE2-4BB9-BFDA-6B6F7D5421E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC5E1A4C-4DE2-4BB9-BFDA-6B6F7D5421E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1EB81C-1D1B-44F9-B165-C2BDC21A940A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1EB81C-1D1B-44F9-B165-C2BDC21A940A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1EB81C-1D1B-44F9-B165-C2BDC21A940A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1EB81C-1D1B-44F9-B165-C2BDC21A940A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C587E5F3-85D2-4C7C-A4B0-0A4F814A223D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C587E5F3-85D2-4C7C-A4B0-0A4F814A223D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C587E5F3-85D2-4C7C-A4B0-0A4F814A223D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C587E5F3-85D2-4C7C-A4B0-0A4F814A223D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5457D4DD-EE90-411C-AF67-B0D395839EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5457D4DD-EE90-411C-AF67-B0D395839EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5457D4DD-EE90-411C-AF67-B0D395839EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5457D4DD-EE90-411C-AF67-B0D395839EC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7941FF-723C-4521-903B-7839665BBBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7941FF-723C-4521-903B-7839665BBBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7941FF-723C-4521-903B-7839665BBBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7941FF-723C-4521-903B-7839665BBBE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F203A3-8D72-42BA-A2F4-3AD8835C3B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F203A3-8D72-42BA-A2F4-3AD8835C3B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F203A3-8D72-42BA-A2F4-3AD8835C3B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F203A3-8D72-42BA-A2F4-3AD8835C3B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{661AE656-15B0-4C1D-94F2-0FAF65EF5F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{661AE656-15B0-4C1D-94F2-0FAF65EF5F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{661AE656-15B0-4C1D-94F2-0FAF65EF5F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{661AE656-15B0-4C1D-94F2-0FAF65EF5F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70A0B3D6-399E-421A-95DC-F76A61E66C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A0B3D6-399E-421A-95DC-F76A61E66C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A0B3D6-399E-421A-95DC-F76A61E66C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A0B3D6-399E-421A-95DC-F76A61E66C4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -412,6 +456,13 @@ Global
 		{12883811-C1BD-41AB-800A-2CF25F4C3F5D} = {3F0C7571-2325-491F-9CD1-28F89CFD1CD9}
 		{080F31E5-F8F1-4676-AC42-35C43877D90F} = {3F0C7571-2325-491F-9CD1-28F89CFD1CD9}
 		{DC5E1A4C-4DE2-4BB9-BFDA-6B6F7D5421E0} = {3F0C7571-2325-491F-9CD1-28F89CFD1CD9}
+		{7B1EB81C-1D1B-44F9-B165-C2BDC21A940A} = {97305298-FCB6-46A9-B9AC-40EC394381E8}
+		{C587E5F3-85D2-4C7C-A4B0-0A4F814A223D} = {97305298-FCB6-46A9-B9AC-40EC394381E8}
+		{5457D4DD-EE90-411C-AF67-B0D395839EC0} = {97305298-FCB6-46A9-B9AC-40EC394381E8}
+		{EA7941FF-723C-4521-903B-7839665BBBE8} = {97305298-FCB6-46A9-B9AC-40EC394381E8}
+		{73F203A3-8D72-42BA-A2F4-3AD8835C3B88} = {97305298-FCB6-46A9-B9AC-40EC394381E8}
+		{661AE656-15B0-4C1D-94F2-0FAF65EF5F1F} = {97305298-FCB6-46A9-B9AC-40EC394381E8}
+		{70A0B3D6-399E-421A-95DC-F76A61E66C4A} = {97305298-FCB6-46A9-B9AC-40EC394381E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {330D8F6F-958F-4241-86FD-BD376EBC6B31}
