@@ -1,0 +1,13 @@
+nacosConfig:
+  listeners:
+    - optional: false
+      dataId: silky.hero.nacos.account
+      group: DEV_GROUP
+      appName: account
+  serverAddresses:
+    - http://127.0.0.1:8848/
+    - http://127.0.0.1:8849/
+    - http://127.0.0.1:8850/
+  userName: nacos
+  password: nacos
+  namespace: silky_config

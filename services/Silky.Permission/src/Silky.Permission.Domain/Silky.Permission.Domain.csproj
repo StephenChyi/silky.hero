@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\..\..\common.props" />
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Silky.ObjectMapper.Mapster" Version="$(SilkyVersion)" />
+        <PackageReference Include="Silky.Caching" Version="$(SilkyVersion)" />
+        <PackageReference Include="Silky.EntityFrameworkCore" Version="$(SilkyVersion)" />
+        <PackageReference Include="Silky.EntityFrameworkCore.Extras" Version="$(SilkyVersion)" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Common\Silky.Hero.Common\Silky.Hero.Common.csproj" />
+        <ProjectReference Include="..\..\..\Silky.BasicData\src\Silky.BasicData.Domain.Shared\Silky.BasicData.Domain.Shared.csproj" />
+        <ProjectReference Include="..\..\..\Silky.Identity\src\Silky.Identity.Application.Contracts\Silky.Identity.Application.Contracts.csproj" />
+        <ProjectReference Include="..\..\..\Silky.Identity\src\Silky.Identity.Domain.Shared\Silky.Identity.Domain.Shared.csproj" />
+        <ProjectReference Include="..\..\..\Silky.Log\src\Silky.Log.Domain.Shared\Silky.Log.Domain.Shared.csproj" />
+        <ProjectReference Include="..\..\..\Silky.Organization\src\Silky.Organization.Domain.Shared\Silky.Organization.Domain.Shared.csproj" />
+        <ProjectReference Include="..\..\..\Silky.Position\src\Silky.Position.Domain.Shared\Silky.Position.Domain.Shared.csproj" />
+        <ProjectReference Include="..\..\..\Silky.Saas\src\Silky.Saas.Application.Contracts\Silky.Saas.Application.Contracts.csproj" />
+        <ProjectReference Include="..\Silky.Permission.Application.Contracts\Silky.Permission.Application.Contracts.csproj" />
+        <ProjectReference Include="..\Silky.Permission.Domain.Shared\Silky.Permission.Domain.Shared.csproj" />
+    </ItemGroup>
+</Project>

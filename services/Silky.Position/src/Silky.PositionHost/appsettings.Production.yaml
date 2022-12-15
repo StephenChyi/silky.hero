@@ -1,0 +1,9 @@
+nacosConfig:
+  listeners:
+    - optional: false
+      dataId: silky.hero.nacos.position
+      group: PRO_GROUP
+      appName: position
+    - optional: false
+      dataId:  silky.hero.nacos.common.zookeeper
+      group: PRO_GROUP
