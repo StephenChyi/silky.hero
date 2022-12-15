@@ -1,9 +1,0 @@
-nacosConfig:
-  listeners:
-    - optional: false
-      dataId: silky.hero.nacos.basicdata
-      group: PRO_GROUP
-      appName: basicdata
-    - optional: false
-      dataId: silky.hero.nacos.common
-      group: PRO_GROUP

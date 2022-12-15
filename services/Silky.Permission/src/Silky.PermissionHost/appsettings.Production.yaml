@@ -1,9 +1,0 @@
-nacosConfig:
-  listeners:
-    - optional: false
-      dataId: silky.hero.nacos.permission
-      group: PRO_GROUP
-      appName: permission
-    - optional: false
-      dataId: silky.hero.nacos.common
-      group: PRO_GROUP

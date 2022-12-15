@@ -1,9 +1,0 @@
-nacosConfig:
-  listeners:
-    - optional: false
-      dataId: silky.hero.nacos.gateway
-      group: PRO_GROUP
-      appName: gateway
-    - optional: false
-      dataId: silky.hero.nacos.common
-      group: PRO_GROUP
