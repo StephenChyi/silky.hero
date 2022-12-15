@@ -13,7 +13,7 @@ namespace Silky.WorkFlow.EntityFrameworkCore
             if (context.HostEnvironment.IsDevelopment())
             {
                 using var scope = context.ServiceProvider.CreateScope();
-                await using var dbContext = scope.ServiceProvider.GetRequiredService<DefaultContext>();
+                await using var dbContext = scope.ServiceProvider.GetRequiredService<DefaultDbContext>();
                 await dbContext.Database.MigrateAsync();
             }
         }

@@ -12,6 +12,10 @@ namespace Silky.WorkFlowHost
             await CreateHostBuilder(args).Build().RunAsync();
         }
 
-        private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args).ConfigureSilkyGeneralHostDefaults().UseNacosConfig("NacosConfig", Nacos.YamlParser.YamlConfigurationStringParser.Instance);
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureSilkyGeneralHostDefaults()
+                .UseNacosConfig("NacosConfig", Nacos.YamlParser.YamlConfigurationStringParser.Instance)
+            ;
     }
 }
