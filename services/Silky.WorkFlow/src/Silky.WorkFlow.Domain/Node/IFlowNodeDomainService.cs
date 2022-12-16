@@ -3,8 +3,8 @@ using Silky.EntityFrameworkCore.Repositories;
 
 namespace Silky.WorkFlow.Domain
 {
-    public interface IWorkFlowDomainService : IScopedDependency
+    public interface IFlowNodeDomainService : IScopedDependency
     {
-        IRepository<WorkFlow> WorkFlowRepository { get; }
+        IRepository<FlowNode> FlowNodeRepository { get; }
     }
 }

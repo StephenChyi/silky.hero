@@ -6,9 +6,9 @@ namespace Silky.WorkFlow.Domain
     {
         public IRepository<WorkFlowNode> WorkFlowNodeRepository { get; }
 
-        public WorkFlowNodeDomainService(IRepository<WorkFlowNode> workFlowNodeRepository)
+        public WorkFlowNodeDomainService(IRepository<WorkFlowNode> workFlowRepository)
         {
-            WorkFlowNodeRepository = workFlowNodeRepository;
+            WorkFlowNodeRepository = workFlowRepository;
         }
     }
 }

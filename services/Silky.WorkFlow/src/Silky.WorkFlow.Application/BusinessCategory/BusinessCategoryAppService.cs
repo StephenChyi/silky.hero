@@ -1,19 +1,20 @@
 ﻿using Silky.WorkFlow.Application.Contracts.BusinessCategory;
+using Silky.WorkFlow.Domain;
 
 namespace Silky.WorkFlow.Application.BusinessCategory
 {
     public class BusinessCategoryAppService : IBusinessCategoryAppService
     {
-        private readonly IBusinessCategoryAppService _businessCategoryAppService;
+        private readonly IBusinessCategoryDomainService _businessCategoryDomainService;
 
-        public BusinessCategoryAppService(IBusinessCategoryAppService businessCategoryAppService)
+        public BusinessCategoryAppService(IBusinessCategoryDomainService businessCategoryDomainService)
         {
-            _businessCategoryAppService = businessCategoryAppService;
+            _businessCategoryDomainService = businessCategoryDomainService;
         }
 
-        public async Task<long> GetAsync(long id)
+        public async Task<string> GetAsync(long id)
         {
-            return id;
+            return "返回业务类型[code-名称]";
         }
     }
 }

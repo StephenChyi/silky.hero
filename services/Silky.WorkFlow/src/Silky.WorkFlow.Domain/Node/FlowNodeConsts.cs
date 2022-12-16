@@ -1,6 +1,6 @@
 namespace Silky.WorkFlow.Domain;
 
-public static class WorkFlowConsts
+public static class FlowNodeConsts
 {
     public const int MaxNameLength = 256;
 

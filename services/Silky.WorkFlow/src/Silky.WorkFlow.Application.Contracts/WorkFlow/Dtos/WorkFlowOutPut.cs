@@ -1,13 +1,11 @@
-﻿using Silky.EntityFrameworkCore.Entities;
-using Silky.Hero.Common.Enums;
+﻿using Silky.Hero.Common.Enums;
 
-namespace Silky.WorkFlow.Domain
+namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
 {
-    /// <summary>
-    /// 具体到某一数据的工作流
-    /// </summary>
-    public class WorkFlowNode : Entity<long>
+    public class WorkFlowOutPut
     {
+        public long Id { get; set; }
+
         /// <summary>
         /// 单据主键
         /// </summary>
@@ -21,12 +19,12 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 代码
         /// </summary>
-        public string FlowNodeCode { get; set; }
+        public string NodeCode { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        public string FlowNodeName { get; set; }
+        public string NodeName { get; set; }
 
         /// <summary>
         /// 节点类型
@@ -36,7 +34,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 节点类型
         /// </summary>
-        public virtual NodeType NodeType { get; protected set; }
+        public string NodeTypeName { get; set; }
 
         /// <summary>
         /// 节点问题
@@ -54,19 +52,18 @@ namespace Silky.WorkFlow.Domain
         public NodeAction NodeAction { get; set; }
 
         /// <summary>
-        /// 下一节点
+        /// 当前节点ID
         /// </summary>
-        public virtual ICollection<WorkFlowNodeActionResult> NextFlowNodes { get; protected set; }
-
-        /// <summary>
-        /// 节点状态
-        /// </summary>
-        public WorkFlowNodeStatus NodeStatus { get; set; }
+        public long ActivityId { get; set; }
 
         /// <summary>
         /// 上一个节点ID
         /// </summary>
         public long PreviousId { get; set; }
-        
+
+        /// <summary>
+        /// 上一个节点ID
+        /// </summary>
+        public long NextId { get; set; }
     }
 }

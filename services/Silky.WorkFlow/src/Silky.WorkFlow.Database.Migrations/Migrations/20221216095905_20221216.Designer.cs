@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Silky.WorkFlow.EntityFrameworkCore.DbContexts;
 
@@ -10,9 +11,10 @@ using Silky.WorkFlow.EntityFrameworkCore.DbContexts;
 namespace Silky.WorkFlow.Database.Migrations.Migrations
 {
     [DbContext(typeof(DefaultDbContext))]
-    partial class DefaultDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221216095905_20221216")]
+    partial class _20221216
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +77,9 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         .HasColumnType("varchar(256)")
                         .HasColumnName("FlowNodeName");
 
-                    b.Property<long>("NodeTypeId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("NodeTypeId");
+                    b.Property<int>("NodeType")
+                        .HasColumnType("int")
+                        .HasColumnName("NodeType");
 
                     b.Property<string>("NodeValue")
                         .IsRequired()
@@ -95,8 +97,6 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NodeTypeId");
 
                     b.ToTable("FlowNode", (string)null);
                 });
@@ -151,40 +151,15 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                     b.ToTable("NodeActionResult", (string)null);
                 });
 
-            modelBuilder.Entity("Silky.WorkFlow.Domain.NodeType", b =>
+            modelBuilder.Entity("Silky.WorkFlow.Domain.WorkFlow", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<DateTimeOffset>("CreatedTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("NodeTypeCode")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("NodeTypeCode");
-
-                    b.Property<string>("NodeTypeName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("NodeTypeName");
-
-                    b.Property<DateTimeOffset?>("UpdatedTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NodeType", (string)null);
-                });
-
-            modelBuilder.Entity("Silky.WorkFlow.Domain.WorkFlowNode", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<long>("ActivityId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("ActivityId");
 
                     b.Property<string>("BusinessCode")
                         .IsRequired()
@@ -195,29 +170,29 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("FlowNodeCode")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("FlowNodeCode");
-
-                    b.Property<string>("FlowNodeName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<long>("NextId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("NextId");
 
                     b.Property<int>("NodeAction")
                         .HasColumnType("int")
                         .HasColumnName("NodeAction");
 
-                    b.Property<int>("NodeStatus")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(2)
-                        .HasColumnName("NodeStatus");
+                    b.Property<string>("NodeCode")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("NodeCode");
 
-                    b.Property<long>("NodeTypeId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("NodeTypeId");
+                    b.Property<string>("NodeName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("NodeName");
+
+                    b.Property<int>("NodeType")
+                        .HasColumnType("int")
+                        .HasColumnName("NodeType");
 
                     b.Property<string>("NodeValue")
                         .IsRequired()
@@ -244,70 +219,7 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NodeTypeId");
-
                     b.ToTable("WorkFlow", (string)null);
-                });
-
-            modelBuilder.Entity("Silky.WorkFlow.Domain.WorkFlowNodeActionResult", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("BusinessCode")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("BusinessCode");
-
-                    b.Property<DateTimeOffset>("CreatedTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("FlowNodeCode")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("FlowNodeCode");
-
-                    b.Property<string>("NextFlowNodeCode")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("NextFlowNodeCode");
-
-                    b.Property<string>("NextFlowNodeId")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("NextFlowNodeId");
-
-                    b.Property<int>("NodeAction")
-                        .HasColumnType("int")
-                        .HasColumnName("NodeAction");
-
-                    b.Property<DateTimeOffset?>("UpdatedTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<long>("WorkFlowId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("WorkFlowId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WorkFlowId");
-
-                    b.ToTable("WorkFlowNodeActionResult", (string)null);
-                });
-
-            modelBuilder.Entity("Silky.WorkFlow.Domain.FlowNode", b =>
-                {
-                    b.HasOne("Silky.WorkFlow.Domain.NodeType", "NodeType")
-                        .WithMany("FlowNodes")
-                        .HasForeignKey("NodeTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("NodeType");
                 });
 
             modelBuilder.Entity("Silky.WorkFlow.Domain.NodeActionResult", b =>
@@ -321,41 +233,7 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                     b.Navigation("FlowNode");
                 });
 
-            modelBuilder.Entity("Silky.WorkFlow.Domain.WorkFlowNode", b =>
-                {
-                    b.HasOne("Silky.WorkFlow.Domain.NodeType", "NodeType")
-                        .WithMany("WorkFlows")
-                        .HasForeignKey("NodeTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("NodeType");
-                });
-
-            modelBuilder.Entity("Silky.WorkFlow.Domain.WorkFlowNodeActionResult", b =>
-                {
-                    b.HasOne("Silky.WorkFlow.Domain.WorkFlowNode", "WorkFlow")
-                        .WithMany("NextFlowNodes")
-                        .HasForeignKey("WorkFlowId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WorkFlow");
-                });
-
             modelBuilder.Entity("Silky.WorkFlow.Domain.FlowNode", b =>
-                {
-                    b.Navigation("NextFlowNodes");
-                });
-
-            modelBuilder.Entity("Silky.WorkFlow.Domain.NodeType", b =>
-                {
-                    b.Navigation("FlowNodes");
-
-                    b.Navigation("WorkFlows");
-                });
-
-            modelBuilder.Entity("Silky.WorkFlow.Domain.WorkFlowNode", b =>
                 {
                     b.Navigation("NextFlowNodes");
                 });

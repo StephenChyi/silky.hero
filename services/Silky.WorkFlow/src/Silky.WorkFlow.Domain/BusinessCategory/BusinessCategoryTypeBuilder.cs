@@ -9,7 +9,7 @@ public class BusinessCategoryTypeBuilder : IEntityTypeBuilder<BusinessCategory>
 {
     public void Configure(EntityTypeBuilder<BusinessCategory> entityBuilder, DbContext dbContext, Type dbContextLocator)
     {
-        entityBuilder.ToTable(WorkFlowDbProperties.DbTablePrefix + "BusinessCategory", WorkFlowDbProperties.DbSchema);
+        entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "BusinessCategory", WorkFlowNodeDbProperties.DbSchema);
         entityBuilder.ConfigureByConvention();
 
         entityBuilder

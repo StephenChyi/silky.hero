@@ -1,18 +1,12 @@
 ﻿using Silky.EntityFrameworkCore.Entities;
-using Silky.Hero.Common.Enums;
 
 namespace Silky.WorkFlow.Domain
 {
     /// <summary>
-    /// 具体到某一数据的工作流
+    /// 业务流程节点
     /// </summary>
-    public class WorkFlowNode : Entity<long>
+    public class FlowNode : Entity<long>
     {
-        /// <summary>
-        /// 单据主键
-        /// </summary>
-        public long ProofId { get; set; }
-
         /// <summary>
         /// 业务代码
         /// </summary>
@@ -49,24 +43,8 @@ namespace Silky.WorkFlow.Domain
         public string NodeValue { get; set; }
 
         /// <summary>
-        /// 节点动作
-        /// </summary>
-        public NodeAction NodeAction { get; set; }
-
-        /// <summary>
         /// 下一节点
         /// </summary>
-        public virtual ICollection<WorkFlowNodeActionResult> NextFlowNodes { get; protected set; }
-
-        /// <summary>
-        /// 节点状态
-        /// </summary>
-        public WorkFlowNodeStatus NodeStatus { get; set; }
-
-        /// <summary>
-        /// 上一个节点ID
-        /// </summary>
-        public long PreviousId { get; set; }
-        
+        public virtual ICollection<NodeActionResult> NextFlowNodes { get; protected set; }
     }
 }

@@ -1,23 +1,28 @@
-﻿using Silky.EntityFrameworkCore.Entities;
-using Silky.Hero.Common.Enums;
+﻿using Silky.Hero.Common.Enums;
 
-namespace Silky.WorkFlow.Domain
+namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
 {
     /// <summary>
-    /// 具体到某一数据的工作流
+    /// 业务工作流
     /// </summary>
-    public class WorkFlow : Entity<long>
+    public class FlowNodeInPut
     {
-        /// <summary>
-        /// 单据主键
-        /// </summary>
-        public long ProofId { get; set; }
-
         /// <summary>
         /// 业务代码
         /// </summary>
         public string BusinessCode { get; set; }
 
+        /// <summary>
+        /// 业务工作流节点集合
+        /// </summary>
+        public NodeInPut[] Nodes { get; set; }
+    }
+
+    /// <summary>
+    /// 业务工作流节点
+    /// </summary>
+    public class NodeInPut
+    {
         /// <summary>
         /// 代码
         /// </summary>
@@ -31,7 +36,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 节点类型
         /// </summary>
-        public NodeType NodeType { get; set; }
+        public long NodeTypeId { get; set; }
 
         /// <summary>
         /// 节点问题
@@ -49,18 +54,21 @@ namespace Silky.WorkFlow.Domain
         public NodeAction NodeAction { get; set; }
 
         /// <summary>
-        /// 当前节点ID
+        /// 下一节点
         /// </summary>
-        public long ActivityId { get; set; }
+        public NodeActionResult[] NextNodes { get; set; }
+    }
+
+    public class NodeActionResult
+    {
+        /// <summary>
+        /// 节点动作
+        /// </summary>
+        public NodeAction NodeAction { get; set; }
 
         /// <summary>
-        /// 上一个节点ID
+        /// 动作节点
         /// </summary>
-        public long PreviousId { get; set; }
-
-        /// <summary>
-        /// 上一个节点ID
-        /// </summary>
-        public long NextId { get; set; }
+        public NodeInPut NextNode { get; set; }
     }
 }

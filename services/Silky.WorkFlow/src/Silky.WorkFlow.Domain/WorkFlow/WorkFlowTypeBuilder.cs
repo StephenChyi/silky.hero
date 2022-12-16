@@ -6,76 +6,65 @@ using Silky.Hero.Common.Enums;
 
 namespace Silky.WorkFlow.Domain;
 
-public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlow>
+public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
 {
-    public void Configure(EntityTypeBuilder<WorkFlow> entityBuilder, DbContext dbContext, Type dbContextLocator)
+    public void Configure(EntityTypeBuilder<WorkFlowNode> entityBuilder, DbContext dbContext, Type dbContextLocator)
     {
-        entityBuilder.ToTable(WorkFlowDbProperties.DbTablePrefix + "WorkFlow", WorkFlowDbProperties.DbSchema);
+        entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "WorkFlow", WorkFlowNodeDbProperties.DbSchema);
         entityBuilder.ConfigureByConvention();
 
         entityBuilder
-          .Property(b => b.ProofId)
+          .Property(w => w.ProofId)
           .IsRequired()
-          .HasColumnName(nameof(WorkFlow.ProofId));
+          .HasColumnName(nameof(WorkFlowNode.ProofId));
 
         entityBuilder
-          .Property(b => b.BusinessCode)
-          .IsRequired()
-          .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-          .HasColumnName(nameof(WorkFlow.BusinessCode));
-
-        entityBuilder
-          .Property(b => b.NodeCode)
-          .IsRequired()
-          .HasMaxLength(WorkFlowNodeConsts.MaxCodeLength)
-          .HasColumnName(nameof(WorkFlow.NodeCode));
-
-        entityBuilder
-          .Property(b => b.NodeName)
-          .IsRequired()
-          .HasMaxLength(WorkFlowNodeConsts.MaxNameLength)
-          .HasColumnName(nameof(WorkFlow.NodeName));
-
-        entityBuilder
-          .Property(b => b.NodeType)
-          .IsRequired()
-          .HasColumnName(nameof(NodeType));
-
-        entityBuilder
-          .Property(b => b.NodeVariable)
-          .IsRequired()
-          .HasMaxLength(NodeVariantConsts.Val)
-          .HasColumnName(nameof(WorkFlow.NodeVariable));
-
-        entityBuilder
-          .Property(b => b.NodeValue)
-          .IsRequired()
-          .HasMaxLength(NodeVariantConsts.Val)
-          .HasColumnName(nameof(WorkFlow.NodeValue));
-
-        entityBuilder
-          .Property(b => b.NodeCode)
+          .Property(w => w.BusinessCode)
           .IsRequired()
           .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-          .HasColumnName(nameof(WorkFlow.NodeCode));
+          .HasColumnName(nameof(WorkFlowNode.BusinessCode));
 
         entityBuilder
-          .Property(b => b.NodeAction)
+          .Property(w => w.FlowNodeCode)
           .IsRequired()
-          .HasColumnName(nameof(NodeAction));
+          .HasMaxLength(FlowNodeConsts.MaxCodeLength)
+          .HasColumnName(nameof(WorkFlowNode.FlowNodeCode));
 
         entityBuilder
-         .Property(b => b.ActivityId)
-         .IsRequired()
-         .HasColumnName(nameof(WorkFlow.ActivityId));
+          .Property(w => w.NodeTypeId)
+          .IsRequired()         
+          .HasColumnName(nameof(WorkFlowNode.NodeTypeId));
+       
         entityBuilder
-         .Property(b => b.PreviousId)
-         .IsRequired()
-         .HasColumnName(nameof(WorkFlow.PreviousId));
-        entityBuilder
-         .Property(b => b.NextId)
-         .IsRequired()
-         .HasColumnName(nameof(WorkFlow.NextId));
+           .Property(w => w.NodeVariable)
+           .IsRequired()
+           .HasMaxLength(FlowNodeConsts.MaxNameLength)
+           .HasColumnName(nameof(WorkFlowNode.NodeVariable));
 
+        entityBuilder
+          .Property(w => w.NodeValue)
+          .IsRequired()
+          .HasMaxLength(FlowNodeConsts.MaxNameLength)
+          .HasColumnName(nameof(WorkFlowNode.NodeValue));
+
+        entityBuilder
+          .Property(w => w.NodeAction)
+          .IsRequired()
+          .HasColumnName(nameof(WorkFlowNode.NodeAction));
+
+        entityBuilder
+          .Property(w => w.NodeStatus)
+          .IsRequired()
+          .HasDefaultValue(WorkFlowNodeStatus.Incoming)
+          .HasColumnName(nameof(WorkFlowNode.NodeStatus));
+
+        entityBuilder
+          .Property(w => w.PreviousId)
+          .IsRequired()
+          .HasColumnName(nameof(WorkFlowNode.PreviousId));
+
+        entityBuilder.HasMany(w => w.NextFlowNodes)
+           .WithOne(w => w.WorkFlow)
+           .HasForeignKey(w => w.WorkFlowId);
     }
 }

@@ -5,7 +5,7 @@ using Silky.WorkFlow.Domain;
 
 namespace Silky.WorkFlow.EntityFrameworkCore.DbContexts
 {
-    [AppDbContext(WorkFlowDbProperties.ConnectionStringName, DbProvider.MySql)]
+    [AppDbContext(WorkFlowNodeDbProperties.ConnectionStringName, DbProvider.MySql)]
     public class DefaultDbContext : SilkyDbContext<DefaultDbContext>
     {
         public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)
@@ -13,8 +13,10 @@ namespace Silky.WorkFlow.EntityFrameworkCore.DbContexts
         }
 
         public DbSet<BusinessCategory> BusinessCategories { get; set; }
-        public DbSet<NodeVariant> NodeVariants { get; set; }
-        public DbSet<Domain.WorkFlow> WorkFlows { get; set; }
         public DbSet<WorkFlowNode> WorkFlowNodes { get; set; }
+        public DbSet<FlowNode> FlowNodes { get; set; }
+        public DbSet<NodeActionResult> NodeActionResults { get; set; }
+        public DbSet<WorkFlowNodeActionResult> WorkFlowNodeActionResults { get; set; }
+        public DbSet<NodeType> NodeTypes { get; set; }
     }
 }
