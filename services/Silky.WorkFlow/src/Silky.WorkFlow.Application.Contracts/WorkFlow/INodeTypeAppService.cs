@@ -10,6 +10,7 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow
     public interface INodeTypeAppService
     {
         [HttpPost]
+        [Authorize]
         Task CreateAsync(CreateNodeTypeInput input);
 
         [HttpGet]

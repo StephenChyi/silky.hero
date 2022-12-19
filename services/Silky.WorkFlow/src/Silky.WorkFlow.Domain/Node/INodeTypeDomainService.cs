@@ -8,7 +8,7 @@ namespace Silky.WorkFlow.Domain
     {
         IRepository<NodeType> NodeTypeRepository { get; }
         Task CreateAsync(CreateNodeTypeInput input);
-        Task UpdateAsync(UpdateNodeTypeInput update);
+        //Task UpdateAsync(UpdateNodeTypeInput update);
         Task<ICollection<GetNodeTypeOutput>> GetDicAsync();
     }
 }

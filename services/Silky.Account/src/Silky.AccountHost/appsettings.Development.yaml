@@ -4,6 +4,9 @@ nacosConfig:
       dataId: silky.hero.nacos.account
       group: DEV_GROUP
       appName: account
+    - optional: false
+      dataId: silky.hero.nacos.common
+      group: DEV_GROUP
   serverAddresses:
     - http://127.0.0.1:8848/
     - http://127.0.0.1:8849/

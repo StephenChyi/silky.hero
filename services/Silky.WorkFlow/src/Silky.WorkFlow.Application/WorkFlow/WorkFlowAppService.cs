@@ -12,9 +12,9 @@ namespace Silky.WorkFlow.Application.WorkFlow
             _workFlowDomainService = workFlowDomainService;
         }
 
-        public Task<IEnumerable<WorkFlowOutPut>> GetAsync(long id, string businessCategoryCode)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<WorkFlowOutPut>> GetAsync(long id, string businessCategoryCode)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

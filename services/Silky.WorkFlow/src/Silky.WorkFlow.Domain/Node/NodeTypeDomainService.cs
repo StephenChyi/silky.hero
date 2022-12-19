@@ -25,10 +25,10 @@ namespace Silky.WorkFlow.Domain
             await NodeTypeRepository.InsertAsync(input.Adapt<NodeType>());
         }
 
-        public async Task UpdateAsync(UpdateNodeTypeInput update)
-        {
+        //public async Task UpdateAsync(UpdateNodeTypeInput update)
+        //{
 
-        }
+        //}
 
         public async Task<ICollection<GetNodeTypeOutput>> GetDicAsync()
         {

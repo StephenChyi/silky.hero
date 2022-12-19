@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Silky.Rpc.Routing;
-using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
 using Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos;
 
@@ -16,9 +15,8 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow
         /// <param name="id"></param>
         /// <param name="businessCategoryCode"></param>
         /// <returns></returns>
-        [HttpGet("{id:long}")]
-        [GetCachingIntercept("id:{id}")]
-        [Authorize]
-        Task<IEnumerable<WorkFlowOutPut>> GetAsync(long id, string businessCategoryCode);
+        //[HttpGet("{id:long}/{businessCategoryCode:string}")]
+        //[Authorize]
+        //Task<IEnumerable<WorkFlowOutPut>> GetAsync(long id, string businessCategoryCode);
     }
 }
