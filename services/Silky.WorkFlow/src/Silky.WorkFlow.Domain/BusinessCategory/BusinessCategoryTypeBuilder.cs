@@ -13,15 +13,15 @@ public class BusinessCategoryTypeBuilder : IEntityTypeBuilder<BusinessCategory>
         entityBuilder.ConfigureByConvention();
 
         entityBuilder
-            .Property(b => b.BusinessCode)
+            .Property(b => b.BusinessCategoryCode)
             .IsRequired()
             .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-            .HasColumnName(nameof(BusinessCategory.BusinessCode));
+            .HasColumnName(nameof(BusinessCategory.BusinessCategoryCode));
 
         entityBuilder
-           .Property(b => b.BusinessName)
+           .Property(b => b.BusinessCategoryName)
            .IsRequired()
            .HasMaxLength(BusinessCategoryConsts.MaxNameLength)
-           .HasColumnName(nameof(BusinessCategory.BusinessName));
+           .HasColumnName(nameof(BusinessCategory.BusinessCategoryName));
     }
 }

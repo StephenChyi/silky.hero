@@ -1,6 +1,6 @@
 ﻿using Silky.Core.DependencyInjection;
 using Silky.EntityFrameworkCore.Repositories;
-using Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos;
+using Silky.WorkFlow.Application.Contracts.FlowNode.Dto;
 
 namespace Silky.WorkFlow.Domain
 {

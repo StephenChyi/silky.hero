@@ -1,12 +1,8 @@
-﻿using Silky.EntityFrameworkCore.Entities;
-using Silky.WorkFlow.Domain.Shared;
+﻿using Silky.WorkFlow.Domain.Shared;
 
-namespace Silky.WorkFlow.Domain
+namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
 {
-    /// <summary>
-    /// 具体到某一数据的工作流
-    /// </summary>
-    public class WorkFlowNode : Entity<long>
+    public class GetWorkFlowOutPut
     {
         /// <summary>
         /// 单据主键
@@ -19,6 +15,19 @@ namespace Silky.WorkFlow.Domain
         public string BusinessCategoryCode { get; set; }
 
         /// <summary>
+        /// 开始节点
+        /// </summary>
+        public WorkFlowNodeOutput StartNode { get; set; }
+    }
+
+    /// <summary>
+    /// 工作流节点
+    /// </summary>
+    public class WorkFlowNodeOutput
+    {
+        public long Id { get; set; }
+
+        /// <summary>
         /// 代码
         /// </summary>
         public string FlowNodeCode { get; set; }
@@ -29,14 +38,9 @@ namespace Silky.WorkFlow.Domain
         public string FlowNodeName { get; set; }
 
         /// <summary>
-        /// 节点类型
+        ///  节点类型名称
         /// </summary>
-        public long NodeTypeId { get; set; }
-
-        /// <summary>
-        /// 节点类型
-        /// </summary>
-        public virtual NodeType NodeType { get; protected set; }
+        public string NodeTypeName { get; set; }
 
         /// <summary>
         /// 节点问题
@@ -65,7 +69,20 @@ namespace Silky.WorkFlow.Domain
 
         /// <summary>
         /// 下一节点
+        /// </summary>        
+        public WorkFlowNodeActionResultOutput[] NextNodes { get; set; }
+    }
+
+    public class WorkFlowNodeActionResultOutput
+    {
+        /// <summary>
+        /// 节点动作
         /// </summary>
-        public virtual ICollection<WorkFlowNodeActionResult> NextFlowNodes { get; protected set; }
+        public NodeAction NodeAction { get; set; }
+
+        /// <summary>
+        /// 下一节点
+        /// </summary>
+        public WorkFlowNodeOutput WorkFlowNode { get; set; }
     }
 }

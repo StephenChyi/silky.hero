@@ -1,4 +1,4 @@
-﻿namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
+﻿namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
 {
     public class GetNodeTypeOutput : NodeTypeBaseDto
     {

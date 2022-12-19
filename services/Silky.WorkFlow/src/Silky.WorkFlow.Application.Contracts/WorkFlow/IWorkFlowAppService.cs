@@ -9,14 +9,14 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow
     [Authorize]
     public interface IWorkFlowAppService
     {
-        /// <summary>
-        /// 获取单据工作流(具体到某一单据)
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="businessCategoryCode"></param>
-        /// <returns></returns>
-        //[HttpGet("{id:long}/{businessCategoryCode:string}")]
-        //[Authorize]
-        //Task<IEnumerable<WorkFlowOutPut>> GetAsync(long id, string businessCategoryCode);
+
+        [HttpPost("{proofId:long}")]
+        [Authorize]
+        Task CreateAsync(long proofId, [FromQuery] string businessCategoryCode);
+
+
+        [HttpGet("workflow/{proofId:long}")]
+        [Authorize]
+        Task<GetWorkFlowOutPut> GetWorkFlowAsync(long proofId, [FromQuery] string businessCategoryCode);
     }
 }

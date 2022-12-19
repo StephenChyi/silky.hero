@@ -10,7 +10,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 业务代码
         /// </summary>
-        public string BusinessCode { get; set; }
+        public string BusinessCategoryCode { get; set; }
 
         /// <summary>
         /// 代码
@@ -43,8 +43,13 @@ namespace Silky.WorkFlow.Domain
         public string NodeValue { get; set; }
 
         /// <summary>
+        /// 步骤编号
+        /// </summary>
+        public int StepNo { get; set; }
+
+        /// <summary>
         /// 下一节点
         /// </summary>
-        public virtual ICollection<NodeActionResult> NextFlowNodes { get; protected set; }
+        public virtual ICollection<NodeActionResult> NextNodes { get; protected set; }
     }
 }

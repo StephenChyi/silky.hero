@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Silky.Rpc.Routing;
-using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
+using Silky.WorkFlow.Application.Contracts.BusinessCategory.Dto;
 
 namespace Silky.WorkFlow.Application.Contracts.BusinessCategory
 {
@@ -9,14 +9,13 @@ namespace Silky.WorkFlow.Application.Contracts.BusinessCategory
     [Authorize]
     public interface IBusinessCategoryAppService
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         [HttpGet("{id:long}")]
-        [GetCachingIntercept("id:{id}")]
-        [Authorize]
-        Task<string> GetAsync(long id);
+        Task<GetBusinessCategoryOutPut> GetAsync(long id);
+
+        [HttpGet]
+        Task<ICollection<GetBusinessCategoryOutPut>> GetBusinessCategoriesAsync();
+
+        [HttpPost]
+        Task CreateAsync(CreateBusinessCategoryInPut input);
     }
 }

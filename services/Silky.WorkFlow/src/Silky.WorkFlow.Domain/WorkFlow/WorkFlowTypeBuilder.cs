@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Silky.EntityFrameworkCore.Entities.Configures;
 using Silky.EntityFrameworkCore.Extras.Modeling;
-using Silky.Hero.Common.Enums;
+using Silky.WorkFlow.Domain.Shared;
 
 namespace Silky.WorkFlow.Domain;
 
@@ -19,10 +19,10 @@ public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .HasColumnName(nameof(WorkFlowNode.ProofId));
 
         entityBuilder
-          .Property(w => w.BusinessCode)
+          .Property(w => w.BusinessCategoryCode)
           .IsRequired()
           .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-          .HasColumnName(nameof(WorkFlowNode.BusinessCode));
+          .HasColumnName(nameof(WorkFlowNode.BusinessCategoryCode));
 
         entityBuilder
           .Property(w => w.FlowNodeCode)
@@ -31,10 +31,16 @@ public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .HasColumnName(nameof(WorkFlowNode.FlowNodeCode));
 
         entityBuilder
+          .Property(w => w.FlowNodeName)
+          .IsRequired()
+          .HasMaxLength(FlowNodeConsts.MaxNameLength)
+          .HasColumnName(nameof(WorkFlowNode.FlowNodeName));
+
+        entityBuilder
           .Property(w => w.NodeTypeId)
-          .IsRequired()         
+          .IsRequired()
           .HasColumnName(nameof(WorkFlowNode.NodeTypeId));
-       
+
         entityBuilder
            .Property(w => w.NodeVariable)
            .IsRequired()
@@ -48,9 +54,9 @@ public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .HasColumnName(nameof(WorkFlowNode.NodeValue));
 
         entityBuilder
-          .Property(w => w.NodeAction)
+          .Property(w => w.StepNo)
           .IsRequired()
-          .HasColumnName(nameof(WorkFlowNode.NodeAction));
+          .HasColumnName(nameof(WorkFlowNode.StepNo));
 
         entityBuilder
           .Property(w => w.NodeStatus)

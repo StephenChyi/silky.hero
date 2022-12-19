@@ -25,17 +25,17 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<string>("BusinessCode")
+                    b.Property<string>("BusinessCategoryCode")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)")
-                        .HasColumnName("BusinessCode");
+                        .HasColumnName("BusinessCategoryCode");
 
-                    b.Property<string>("BusinessName")
+                    b.Property<string>("BusinessCategoryName")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)")
-                        .HasColumnName("BusinessName");
+                        .HasColumnName("BusinessCategoryName");
 
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
@@ -54,11 +54,11 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<string>("BusinessCode")
+                    b.Property<string>("BusinessCategoryCode")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)")
-                        .HasColumnName("BusinessCode");
+                        .HasColumnName("BusinessCategoryCode");
 
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
@@ -91,6 +91,10 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         .HasColumnType("varchar(256)")
                         .HasColumnName("NodeVariable");
 
+                    b.Property<int>("StepNo")
+                        .HasColumnType("int")
+                        .HasColumnName("StepNo");
+
                     b.Property<DateTimeOffset?>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
@@ -106,12 +110,6 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
-
-                    b.Property<string>("BusinessCode")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("BusinessCode");
 
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
@@ -186,11 +184,11 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<string>("BusinessCode")
+                    b.Property<string>("BusinessCategoryCode")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)")
-                        .HasColumnName("BusinessCode");
+                        .HasColumnName("BusinessCategoryCode");
 
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
@@ -203,16 +201,14 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
 
                     b.Property<string>("FlowNodeName")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("NodeAction")
-                        .HasColumnType("int")
-                        .HasColumnName("NodeAction");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("FlowNodeName");
 
                     b.Property<int>("NodeStatus")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(2)
+                        .HasDefaultValue(1)
                         .HasColumnName("NodeStatus");
 
                     b.Property<long>("NodeTypeId")
@@ -239,6 +235,10 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("ProofId");
 
+                    b.Property<int>("StepNo")
+                        .HasColumnType("int")
+                        .HasColumnName("StepNo");
+
                     b.Property<DateTimeOffset?>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
@@ -254,12 +254,6 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
-
-                    b.Property<string>("BusinessCode")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("BusinessCode");
 
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");

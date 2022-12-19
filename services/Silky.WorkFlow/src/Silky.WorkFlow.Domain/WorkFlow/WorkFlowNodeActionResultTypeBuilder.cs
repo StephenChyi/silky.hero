@@ -13,12 +13,6 @@ namespace Silky.WorkFlow.Domain
             entityBuilder.ConfigureByConvention();
 
             entityBuilder
-               .Property(wr => wr.BusinessCode)
-               .IsRequired()
-               .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-               .HasColumnName(nameof(WorkFlowNodeActionResult.BusinessCode));
-
-            entityBuilder
                .Property(wr => wr.WorkFlowId)
                .IsRequired()
                .HasColumnName(nameof(WorkFlowNodeActionResult.WorkFlowId));

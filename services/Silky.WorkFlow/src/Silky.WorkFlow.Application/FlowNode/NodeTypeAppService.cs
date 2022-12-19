@@ -1,8 +1,8 @@
-﻿using Silky.WorkFlow.Application.Contracts.WorkFlow;
-using Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos;
+﻿using Silky.WorkFlow.Application.Contracts.FlowNode;
+using Silky.WorkFlow.Application.Contracts.FlowNode.Dto;
 using Silky.WorkFlow.Domain;
 
-namespace Silky.WorkFlow.Application.WorkFlow
+namespace Silky.WorkFlow.Application.FlowNode
 {
     public class NodeTypeAppService : INodeTypeAppService
     {

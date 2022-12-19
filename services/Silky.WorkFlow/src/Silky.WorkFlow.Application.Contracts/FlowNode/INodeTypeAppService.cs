@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Silky.Rpc.Routing;
 using Silky.Rpc.Security;
-using Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos;
+using Silky.WorkFlow.Application.Contracts.FlowNode.Dto;
 
-namespace Silky.WorkFlow.Application.Contracts.WorkFlow
+namespace Silky.WorkFlow.Application.Contracts.FlowNode
 {
     [ServiceRoute]
     [Authorize]

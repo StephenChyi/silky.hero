@@ -13,12 +13,6 @@ namespace Silky.WorkFlow.Domain
             entityBuilder.ConfigureByConvention();
 
             entityBuilder
-               .Property(n => n.BusinessCode)
-               .IsRequired()
-               .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-               .HasColumnName(nameof(NodeActionResult.BusinessCode));
-
-            entityBuilder
                .Property(n => n.FlowNodeId)
                .IsRequired()
                .HasColumnName(nameof(NodeActionResult.FlowNodeId));
@@ -32,7 +26,7 @@ namespace Silky.WorkFlow.Domain
             entityBuilder
                .Property(n => n.NodeAction)
                .IsRequired()
-               .HasColumnName(nameof(WorkFlowNode.NodeAction));
+               .HasColumnName(nameof(NodeActionResult.NodeAction));
 
             entityBuilder
                .Property(n => n.NextFlowNodeId)

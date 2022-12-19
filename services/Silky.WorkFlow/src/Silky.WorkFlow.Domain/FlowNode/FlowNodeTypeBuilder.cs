@@ -13,10 +13,10 @@ public class FlowNodeTypeBuilder : IEntityTypeBuilder<FlowNode>
         entityBuilder.ConfigureByConvention();
 
         entityBuilder
-           .Property(f => f.BusinessCode)
+           .Property(f => f.BusinessCategoryCode)
            .IsRequired()
            .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-           .HasColumnName(nameof(FlowNode.BusinessCode));
+           .HasColumnName(nameof(FlowNode.BusinessCategoryCode));
 
         entityBuilder
            .Property(f => f.FlowNodeCode)
@@ -42,12 +42,17 @@ public class FlowNodeTypeBuilder : IEntityTypeBuilder<FlowNode>
            .HasColumnName(nameof(FlowNode.NodeVariable));
 
         entityBuilder
-          .Property(f => f.NodeValue)
-          .IsRequired()
-          .HasMaxLength(FlowNodeConsts.MaxNameLength)
-          .HasColumnName(nameof(FlowNode.NodeValue));
+           .Property(f => f.NodeValue)
+           .IsRequired()
+           .HasMaxLength(FlowNodeConsts.MaxNameLength)
+           .HasColumnName(nameof(FlowNode.NodeValue));
 
-        entityBuilder.HasMany(f => f.NextFlowNodes)
+        entityBuilder
+           .Property(f => f.StepNo)
+           .IsRequired()
+           .HasColumnName(nameof(FlowNode.StepNo));
+
+        entityBuilder.HasMany(f => f.NextNodes)
            .WithOne(f => f.FlowNode)
            .HasForeignKey(n => n.FlowNodeId);
     }

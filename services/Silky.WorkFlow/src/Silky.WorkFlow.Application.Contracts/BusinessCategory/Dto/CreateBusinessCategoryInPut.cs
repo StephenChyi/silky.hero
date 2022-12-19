@@ -1,8 +1,6 @@
-﻿using Silky.EntityFrameworkCore.Entities;
-
-namespace Silky.WorkFlow.Domain
+﻿namespace Silky.WorkFlow.Application.Contracts.BusinessCategory.Dto
 {
-    public class BusinessCategory : Entity<long>
+    public class CreateBusinessCategoryInPut
     {
         public string BusinessCategoryCode { get; set; }
         public string BusinessCategoryName { get; set; }

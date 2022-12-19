@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
+namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
 {
     public class UpdateNodeTypeInput
     {

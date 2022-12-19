@@ -1,15 +1,10 @@
 ﻿using Silky.EntityFrameworkCore.Entities;
-using Silky.Hero.Common.Enums;
+using Silky.WorkFlow.Domain.Shared;
 
 namespace Silky.WorkFlow.Domain
 {
     public class NodeActionResult : Entity<long>
     {
-        /// <summary>
-        /// 业务代码 
-        /// </summary>
-        public string BusinessCode { get; set; }
-
         /// <summary>
         /// 节点ID
         /// </summary>
