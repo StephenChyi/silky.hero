@@ -4,5 +4,5 @@ namespace Silky.Log.Application.Contracts.AuditLogging.Dtos;
 
 public class GetAuditLogPageOutput : AuditLogDtoBase
 {
-    
+
 }

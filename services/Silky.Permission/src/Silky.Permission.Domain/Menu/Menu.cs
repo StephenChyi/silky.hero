@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Silky.EntityFrameworkCore.Entities;
+﻿using Silky.EntityFrameworkCore.Entities;
 using Silky.EntityFrameworkCore.Extras.Entities;
 using Silky.Hero.Common.EntityFrameworkCore.Entities;
 using Silky.Hero.Common.Enums;
 using Silky.Permission.Domain.Shared.Menu;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.Permission.Domain.Menu;
 
@@ -23,9 +23,9 @@ public class Menu : Entity<long>, ICreatedObject, IUpdatedObject, ISoftDeletedOb
     public string RoutePath { get; set; }
 
     public string Component { get; set; }
-    
+
     public bool? ExternalLink { get; set; }
-    
+
     public ExternalLinkType? ExternalLinkType { get; set; }
 
     public bool? Display { get; set; }
@@ -33,7 +33,7 @@ public class Menu : Entity<long>, ICreatedObject, IUpdatedObject, ISoftDeletedOb
     public bool? KeepAlive { get; set; }
 
     public bool? HideBreadcrumb { get; set; }
-    
+
     public bool? HideChildrenInMenu { get; set; }
 
     public string CurrentActiveMenu { get; set; }

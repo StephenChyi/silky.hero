@@ -12,11 +12,11 @@ public class SaasPermissions
         public const string Search = GroupName + ".Search";
         public const string LookDetail = GroupName + ".LookDetail";
     }
-    
+
     public static class Editions
     {
         private const string GroupName = "Edition";
-        
+
         public const string Default = GroupName + ".Default";
         public const string Create = GroupName + ".Create";
         public const string Update = GroupName + ".Update";

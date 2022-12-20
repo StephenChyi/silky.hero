@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Silky.Identity.Application.Contracts.ClaimType.Dtos;
 using Silky.Identity.Domain.Shared;
 using Silky.Rpc.Routing;
 using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Identity.Application.Contracts.ClaimType;
 

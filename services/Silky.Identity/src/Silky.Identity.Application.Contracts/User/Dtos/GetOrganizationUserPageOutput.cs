@@ -9,6 +9,6 @@ public class GetOrganizationUserPageOutput : UserDtoBase
     public string PositionName { get; set; }
 
     public bool IsLeader { get; set; }
-    
-    
+
+
 }

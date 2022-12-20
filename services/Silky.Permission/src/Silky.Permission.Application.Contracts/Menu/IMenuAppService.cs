@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Silky.Permission.Application.Contracts.Menu.Dtos;
 using Silky.Permission.Domain.Shared;
-using Silky.Rpc.CachingInterceptor;
 using Silky.Rpc.Routing;
 using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Permission.Application.Contracts.Menu;
 
@@ -24,7 +23,7 @@ public interface IMenuAppService
     /// <returns></returns>
     [Authorize(PermissionPermissions.Menus.Create)]
     Task CreateAsync(CreateMenuInput input);
-    
+
     /// <summary>
     /// 检查菜单是否存在
     /// </summary>
@@ -63,13 +62,13 @@ public interface IMenuAppService
     [Authorize(PermissionPermissions.Menus.Delete)]
     Task DeleteAsync(long id);
 
-    
+
     /// <summary>
     /// 获取菜单树
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    Task<ICollection<GetMenuTreeOutput>> GetTreeAsync([FromQuery]string name);
+    Task<ICollection<GetMenuTreeOutput>> GetTreeAsync([FromQuery] string name);
 
     /// <summary>
     /// 根据Id判断是否存在菜单
@@ -84,7 +83,7 @@ public interface IMenuAppService
     Task<ICollection<string>> GetPermissions(List<long> menuIds);
 
     [ProhibitExtranet]
-    Task<ICollection<GetMenuOutput>> GetMenusAsync(long[] menuIds,bool includeParents = true);
+    Task<ICollection<GetMenuOutput>> GetMenusAsync(long[] menuIds, bool includeParents = true);
 
     [ProhibitExtranet]
     Task<long[]> GetAllMenuIdsAsync(bool onlyValid = true);

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Silky.Core.Exceptions;
@@ -10,6 +8,8 @@ using Silky.EntityFrameworkCore.Repositories;
 using Silky.Identity.Application.Contracts.ClaimType;
 using Silky.Identity.Application.Contracts.ClaimType.Dtos;
 using Silky.Identity.Domain;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Identity.Application.ClaimType;
 

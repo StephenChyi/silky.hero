@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Silky.Core;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Silky.Permission.Domain.Menu;
 
 public static class MenuExtensions
 {
-    
+
     public static ICollection<Menu> GetChildrenMenus(this ICollection<Menu> menus,
         long menuId, bool includeSelf = true, bool isAll = true)
     {
@@ -31,8 +31,8 @@ public static class MenuExtensions
         }
         return childrenMenus;
     }
-    
-    public static ICollection<Menu> BuildTree([NotNull]this ICollection<Menu> treeData)
+
+    public static ICollection<Menu> BuildTree([NotNull] this ICollection<Menu> treeData)
     {
         Check.NotNull(treeData, nameof(treeData));
         var treeResult = new List<Menu>();

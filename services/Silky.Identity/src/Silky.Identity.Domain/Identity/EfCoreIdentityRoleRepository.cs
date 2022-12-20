@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Silky.Core.DependencyInjection;
+using Silky.EntityFrameworkCore.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Silky.Core.DependencyInjection;
-using Silky.EntityFrameworkCore.Repositories;
 
 namespace Silky.Identity.Domain;
 

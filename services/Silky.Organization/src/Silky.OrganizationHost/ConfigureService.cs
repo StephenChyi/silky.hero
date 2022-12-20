@@ -11,12 +11,15 @@ namespace Silky.OrganizationHost
         {
             services.AddSilkySkyApm()
                 .AddObjectMapper();
-            
+
             services.AddDatabaseAccessor(
-                options => { options.AddDbPool<DefaultDbContext>(providerName: default, optionBuilder: opt =>
+                options =>
+                {
+                    options.AddDbPool<DefaultDbContext>(providerName: default, optionBuilder: opt =>
                 {
                     opt.UseBatchEF_MySQLPomelo();
-                }); },
+                });
+                },
                 "Silky.Organization.Database.Migrations");
         }
     }

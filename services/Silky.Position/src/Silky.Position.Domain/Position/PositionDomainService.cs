@@ -1,10 +1,9 @@
-using System.Threading.Tasks;
 using Mapster;
-using Silky.Core;
 using Silky.Core.Exceptions;
 using Silky.EntityFrameworkCore.Repositories;
 using Silky.Identity.Application.Contracts.User;
 using Silky.Position.Application.Contracts.Position.Dtos;
+using System.Threading.Tasks;
 
 namespace Silky.Position.Domain;
 
@@ -49,7 +48,7 @@ public class PositionDomainService : IPositionDomainService
                 throw new UserFriendlyException($"已经存在名称为{input.Name}的职位");
             }
         }
-        
+
         position = input.Adapt(position);
         await PositionRepository.UpdateAsync(position);
     }
@@ -70,7 +69,7 @@ public class PositionDomainService : IPositionDomainService
         {
             throw new UserFriendlyException($"该职位存在用户,无法删除");
         }
-        
+
         await PositionRepository.DeleteAsync(position);
     }
 }

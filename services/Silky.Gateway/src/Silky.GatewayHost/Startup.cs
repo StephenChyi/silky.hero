@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,8 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Silky.GatewayHost.AuditLogging;
 using Silky.GatewayHost.Authorization;
 using Silky.Hero.Common;
-using Silky.Http.Core;
-using Silky.Http.MiniProfiler;
 
 namespace Silky.GatewayHost
 {
@@ -35,7 +32,7 @@ namespace Silky.GatewayHost
                 .AddAuditing<HeroAuditingStore>();
 
             services.AddCorsAccessor();
-            
+
             services.AddHealthChecks()
                 .AddSilkyRpc()
                 .AddSilkyGateway()

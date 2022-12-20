@@ -50,6 +50,6 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 下一节点
         /// </summary>
-        public virtual ICollection<NodeActionResult> NextNodes { get; protected set; }
+        public virtual ICollection<NodeActionResult> NextNodes { get; set; }
     }
 }

@@ -9,7 +9,7 @@ public static class DistributedCacheKeyNormalizerExtensions
     public static string NormalizeTenantKey(this IDistributedCacheKeyNormalizer normalizer,
         DistributedCacheKeyNormalizeArgs args, long tenantId)
     {
-        
+
         var silkyDistributedCacheOptions = EngineContext.Current.GetOptions<SilkyDistributedCacheOptions>();
         var normalizedKey = $"c:{args.CacheName},k:{silkyDistributedCacheOptions.KeyPrefix}{args.Key}";
         if (!args.IgnoreMultiTenancy)
@@ -19,7 +19,7 @@ public static class DistributedCacheKeyNormalizerExtensions
 
         return normalizedKey;
     }
-    
+
     public static string NormalizeTenantKey(this IDistributedCacheKeyNormalizer normalizer, string key, string cacheName, long tenantId)
     {
         return normalizer.NormalizeTenantKey(

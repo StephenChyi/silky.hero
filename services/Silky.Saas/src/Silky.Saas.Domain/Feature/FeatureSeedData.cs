@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Silky.EntityFrameworkCore.Entities.Configures;
 using Silky.Saas.Domain.Shared.Feature;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.Saas.Domain;
 
@@ -21,7 +21,7 @@ public class FeatureSeedData : IEntitySeedData<Feature>
             FeatureType = FeatureType.Number,
             Code = FeatureCode.AllowMaxUserCount,
         });
-        
+
         initData.Add(new Feature()
         {
             Id = 2,
@@ -32,7 +32,7 @@ public class FeatureSeedData : IEntitySeedData<Feature>
             FeatureType = FeatureType.Boolen,
             Code = FeatureCode.EnabledAuditingLog,
         });
-        
+
         initData.Add(new Feature()
         {
             Id = 3,
@@ -43,7 +43,7 @@ public class FeatureSeedData : IEntitySeedData<Feature>
             FeatureType = FeatureType.Boolen,
             Code = FeatureCode.EnabledMenuManage,
         });
-        
+
         initData.Add(new Feature()
         {
             Id = 4,
@@ -54,7 +54,7 @@ public class FeatureSeedData : IEntitySeedData<Feature>
             FeatureType = FeatureType.Boolen,
             Code = FeatureCode.EnabledSilkyDashboard,
         });
-        
+
         initData.Add(new Feature()
         {
             Id = 5,

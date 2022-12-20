@@ -1,16 +1,16 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Silky.Core;
+using Silky.Hero.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Silky.Core;
-using Silky.Hero.Common.Enums;
 
 namespace Silky.Identity.Domain;
 
@@ -181,7 +181,7 @@ public class IdentityUserStore :
 
         try
         {
-            await UserRepository.UpdateNowAsync(user,ignoreNullValues:false);
+            await UserRepository.UpdateNowAsync(user, ignoreNullValues: false);
         }
         catch (Exception ex)
         {
@@ -1054,7 +1054,7 @@ public class IdentityUserStore :
 
         return Task.CompletedTask;
     }
-    
+
     public Task<string> GetJobNumberAsync(IdentityUser user, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -1063,7 +1063,7 @@ public class IdentityUserStore :
 
         return Task.FromResult(user.JobNumber);
     }
-    
+
     public Task SetJobNumberAsync([NotNull] IdentityUser user, string jobNumber,
         CancellationToken cancellationToken = default)
     {
@@ -1095,7 +1095,7 @@ public class IdentityUserStore :
         return UserRepository.FindByAccountAsync(account, tenantId, includeDetails,
             cancellationToken: cancellationToken);
     }
-    
+
     public async Task<IdentityRole[]> DefaultRolesAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -1115,5 +1115,5 @@ public class IdentityUserStore :
     {
     }
 
- 
+
 }

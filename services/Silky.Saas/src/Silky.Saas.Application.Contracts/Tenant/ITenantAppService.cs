@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Silky.Rpc.Routing;
 using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
 using Silky.Saas.Application.Contracts.Tenant.Dtos;
 using Silky.Saas.Domain.Shared;
 using Silky.Transaction;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Saas.Application.Contracts.Tenant;
 
@@ -82,7 +82,7 @@ public interface ITenantAppService
     [GetCachingIntercept("all")]
     [AllowAnonymous]
     Task<ICollection<GetTenantOutput>> GetAllAsync();
-    
+
     /// <summary>
     /// 通过租户标识获取租户信息
     /// </summary>

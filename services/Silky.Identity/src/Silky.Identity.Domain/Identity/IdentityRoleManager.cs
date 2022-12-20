@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -14,6 +11,9 @@ using Silky.Identity.Domain.Extensions;
 using Silky.Identity.Domain.Shared;
 using Silky.Organization.Application.Contracts.Organization;
 using Silky.Permission.Application.Contracts.Menu;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Identity.Domain;
 
@@ -22,9 +22,9 @@ public class IdentityRoleManager : RoleManager<IdentityRole>
     public IIdentityRoleRepository RoleRepository { get; }
     public IRepository<IdentityRoleMenu> RoleMenuRepository { get; }
     public IRepository<IdentityRoleOrganization> RoleOrganizationRepository { get; }
-    
+
     public IMenuAppService MenuAppService { get; }
-    
+
     private readonly IOrganizationAppService _organizationAppService;
 
     public IdentityRoleManager(IdentityRoleStore store,
@@ -245,7 +245,7 @@ public class IdentityRoleManager : RoleManager<IdentityRole>
         roleOutput.Menus = frontendMenus.BuildTree().Adapt<ICollection<GetRoleMenuTreeOutput>>();
         foreach (var customOrganizationOutput in roleOutput.CustomOrganizationDataRanges)
         {
-           await customOrganizationOutput.SetOrganizationName();
+            await customOrganizationOutput.SetOrganizationName();
         }
         return roleOutput;
     }

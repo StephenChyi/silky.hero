@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using Silky.Permission.Domain.Shared.Permission;
-using Silky.Rpc.Runtime.Server;
+﻿using Silky.Permission.Domain.Shared.Permission;
+using System.Collections.Generic;
 
 namespace Silky.Permission.Application.Contracts.Permission.Dtos;
 

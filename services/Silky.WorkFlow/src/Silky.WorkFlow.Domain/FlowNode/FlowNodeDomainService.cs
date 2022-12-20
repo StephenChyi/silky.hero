@@ -1,25 +1,25 @@
-﻿using Mapster;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Silky.Core.DbContext.UnitOfWork;
 using Silky.EntityFrameworkCore.Repositories;
-using Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos;
-using Silky.WorkFlow.Domain.Shared;
 
 namespace Silky.WorkFlow.Domain
 {
     public class FlowNodeDomainService : IFlowNodeDomainService
     {
         public IRepository<FlowNode> FlowNodeRepository { get; }
+        public IRepository<NodeActionResult> NodeActionResults { get; }
 
-        public FlowNodeDomainService(IRepository<FlowNode> flowNodeRepository)
+        public FlowNodeDomainService(IRepository<FlowNode> flowNodeRepository, IRepository<NodeActionResult> nodeActionResults)
         {
             FlowNodeRepository = flowNodeRepository;
+            NodeActionResults = nodeActionResults;
         }
 
         [UnitOfWork]
-        public async Task CreateAsync(FlowNode[] flowNodes)
+        public async Task CreateAsync(FlowNode[] flowNodes, NodeActionResult[] nodeActionResults)
         {
             await FlowNodeRepository.InsertAsync(flowNodes);
+            await NodeActionResults.InsertAsync(nodeActionResults);
         }
 
         public async Task<ICollection<FlowNode>> GetFlowNodesAsync(string businessCategoryCode)
@@ -29,7 +29,7 @@ namespace Silky.WorkFlow.Domain
                  .AsNoTracking()
                  .Include(f => f.NodeType)
                  .Include(f => f.NextNodes)
-                 .Where(f => f.BusinessCategoryCode == businessCategoryCode)
+                 .Where(f => f.BusinessCategoryCode == businessCategoryCode || f.Id == 0)
                  .OrderBy(f => f.StepNo)
                  .ToListAsync();
         }

@@ -5,12 +5,12 @@ using Silky.Saas.Domain;
 
 namespace Silky.Saas.EntityFrameworkCore.DbContexts
 {
-    [AppDbContext(TenantDbProperties.ConnectionStringName,DbProvider.MySql)]
+    [AppDbContext(TenantDbProperties.ConnectionStringName, DbProvider.MySql)]
     public class DefaultContext : SilkyDbContext<DefaultContext>
     {
         public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
         {
         }
-        
+
     }
 }

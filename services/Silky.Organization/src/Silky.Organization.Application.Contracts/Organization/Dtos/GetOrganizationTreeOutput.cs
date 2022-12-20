@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Silky.Hero.Common.Enums;
+using System.Collections.Generic;
 using System.Linq;
-using Silky.Hero.Common.Enums;
 
 namespace Silky.Organization.Application.Contracts.Organization.Dtos;
 
@@ -11,11 +11,11 @@ public class GetOrganizationTreeOutput
     public long? ParentId { get; set; }
 
     public string Name { get; set; }
-    
+
     public string Remark { get; set; }
 
     public Status Status { get; set; }
-    
+
     public bool IsBelong { get; set; }
 
     public virtual ICollection<GetOrganizationTreeOutput> Children { get; set; }

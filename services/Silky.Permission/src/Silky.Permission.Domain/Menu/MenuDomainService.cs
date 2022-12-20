@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Silky.Caching;
@@ -15,6 +12,9 @@ using Silky.Permission.Application.Contracts.Menu.Dtos;
 using Silky.Permission.Domain.Shared.Menu;
 using Silky.Saas.Application.Contracts.Edition;
 using Silky.Saas.Domain.Shared.Feature;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Permission.Domain.Menu;
 
@@ -83,7 +83,7 @@ public class MenuDomainService : IMenuDomainService, IScopedDependency
         menu = input.Adapt(menu);
         await MenuRepository.UpdateAsync(menu);
         var childrenMenus = await GetChildrenMenusAsync(menu.Id);
-        await RemoveMenuCacheAsync(childrenMenus.Select(p=> p.PermissionCode).ToArray());
+        await RemoveMenuCacheAsync(childrenMenus.Select(p => p.PermissionCode).ToArray());
     }
 
     public async Task<ICollection<Menu>> GetTreeAsync(string name)

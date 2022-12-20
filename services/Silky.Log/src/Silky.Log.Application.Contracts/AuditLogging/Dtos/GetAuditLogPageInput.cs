@@ -1,5 +1,5 @@
-﻿using System;
-using Silky.Hero.Common.Dtos;
+﻿using Silky.Hero.Common.Dtos;
+using System;
 
 namespace Silky.Log.Application.Contracts.AuditLogging.Dtos;
 
@@ -39,8 +39,8 @@ public class GetAuditLogPageInput : PageDtoBase
     /// http请求方法
     /// </summary>
     public string HttpMethod { get; set; }
-    
-    
+
+
     /// <summary>
     /// 响应码
     /// </summary>

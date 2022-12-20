@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Silky.Core.Exceptions;
@@ -12,6 +9,9 @@ using Silky.Organization.Application.Contracts.Organization;
 using Silky.Position.Application.Contracts.Position;
 using Silky.Position.Application.Contracts.Position.Dtos;
 using Silky.Position.Domain;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Position.Application.Position;
 
@@ -73,7 +73,7 @@ public class PositionAppService : IPositionAppService
             .AsQueryable(false)
             .Where(isAll == false,
                 p => (organizationPositionIds.Contains(p.Id) || p.IsPublic) && p.Status == Status.Valid)
-            .Where(isAll == true || isAll == null, p=> p.Status == Status.Valid)
+            .Where(isAll == true || isAll == null, p => p.Status == Status.Valid)
             .ProjectToType<GetAllocationOrganizationPositionOutput>()
             .ToListAsync();
         foreach (var output in outputList)
@@ -81,7 +81,7 @@ public class PositionAppService : IPositionAppService
             output.IsBelong = organizationPositionIds.Any(p => p == output.Id);
         }
 
-        return outputList.OrderByDescending(p=> p.IsBelong).ToList();
+        return outputList.OrderByDescending(p => p.IsBelong).ToList();
     }
 
     public Task<bool> CheckAsync(CheckPositionInput input)

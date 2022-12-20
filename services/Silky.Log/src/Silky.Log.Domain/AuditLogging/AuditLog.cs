@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Silky.EntityFrameworkCore.Entities;
+﻿using Silky.EntityFrameworkCore.Entities;
 using Silky.EntityFrameworkCore.Extras.Entities;
-using Silky.Hero.Common.EntityFrameworkCore.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.Log.Domain.AuditLogging;
 
@@ -34,9 +33,9 @@ public class AuditLog : IEntity, IHasTenantObject
     public int? HttpStatusCode { get; set; }
 
     public string ExceptionMessage { get; set; }
-    
+
     public string RequestParameters { get; set; }
 
     public virtual ICollection<AuditLogAction> Actions { get; set; }
-    
+
 }

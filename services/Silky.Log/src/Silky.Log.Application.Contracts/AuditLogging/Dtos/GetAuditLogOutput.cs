@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Silky.Log.Domain.Shared.AuditLogging;
+﻿using Silky.Log.Domain.Shared.AuditLogging;
+using System.Collections.Generic;
 
 namespace Silky.Log.Application.Contracts.AuditLogging.Dtos;
 
@@ -15,7 +15,7 @@ public class GetAuditLogOutput : AuditLogDtoBase
     /// </summary>
 
     public string ClientId { get; set; }
-    
+
     /// <summary>
     /// 异常信息
     /// </summary>

@@ -1,6 +1,4 @@
-﻿using Silky.Rpc.Runtime.Server;
-
-namespace Silky.Identity.Application.Contracts.User.Dtos;
+﻿namespace Silky.Identity.Application.Contracts.User.Dtos;
 
 public class UpdateUserInput : UserDtoBase
 {

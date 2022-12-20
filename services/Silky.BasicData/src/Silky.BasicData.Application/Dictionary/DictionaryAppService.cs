@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Silky.BasicData.Application.Contracts.Dictionary;
 using Silky.BasicData.Application.Contracts.Dictionary.Dtos;
@@ -9,6 +6,9 @@ using Silky.BasicData.Domain.Dictionary;
 using Silky.Core.Exceptions;
 using Silky.Core.Extensions;
 using Silky.EntityFrameworkCore.Extensions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.BasicData.Application.Dictionary;
 
@@ -20,7 +20,7 @@ public class DictionaryAppService : IDictionaryAppService
     {
         _dictionaryDomainService = dictionaryDomainService;
     }
-    
+
     public Task CreateTypeAsync(CreateDictionaryTypeInput input)
     {
         return _dictionaryDomainService.CreateTypeAsync(input);

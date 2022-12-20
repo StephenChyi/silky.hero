@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using Silky.BasicData.Application.Contracts.Dictionary.Dtos;
 using Silky.EntityFrameworkCore.Repositories;
+using System.Threading.Tasks;
 
 namespace Silky.BasicData.Domain.Dictionary;
 

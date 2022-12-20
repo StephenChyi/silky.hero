@@ -9,8 +9,8 @@ public class EditionFeature : Entity<long>, ICreatedObject, IUpdatedObject
     public EditionFeature()
     {
     }
-    
-    public EditionFeature(long editionId,long featureId,int featureValue)
+
+    public EditionFeature(long editionId, long featureId, int featureValue)
     {
         EditionId = editionId;
         FeatureId = featureId;
@@ -18,16 +18,16 @@ public class EditionFeature : Entity<long>, ICreatedObject, IUpdatedObject
     }
 
     public long EditionId { get; set; }
-    
+
     public long FeatureId { get; set; }
 
     public int FeatureValue { get; set; }
 
     public long? CreatedBy { get; set; }
-    
+
     public long? UpdatedBy { get; set; }
-    
+
     public Edition Edition { get; set; }
-    
+
     public Feature Feature { get; set; }
 }

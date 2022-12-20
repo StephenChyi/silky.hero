@@ -1,6 +1,6 @@
+using Silky.Identity.Domain.Shared;
 using System;
 using System.Collections.Generic;
-using Silky.Identity.Domain.Shared;
 
 namespace Silky.Account.Application.Contracts.Account.Dtos;
 
@@ -40,7 +40,7 @@ public class GetCurrentUserInfoOutput
     /// 电子邮件
     /// </summary>
     public string Email { get; set; }
-    
+
     /// <summary>
     /// 联系电话
     /// </summary>

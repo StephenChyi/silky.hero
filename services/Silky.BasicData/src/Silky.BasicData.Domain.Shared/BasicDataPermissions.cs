@@ -3,11 +3,11 @@
 public class BasicDataPermissions
 {
     private const string GroupName = "BasicData";
-    
+
     public static class Dictionaries
     {
         public const string Default = GroupName + ".Dictionary";
-      
+
         public static class Types
         {
             public const string Default = Dictionaries.Default + ".Type";
@@ -16,7 +16,7 @@ public class BasicDataPermissions
             public const string Delete = Default + ".Delete";
             public const string LookDetail = Default + ".LookDetail";
         }
-        
+
         public static class Items
         {
             public const string Default = Dictionaries.Default + ".Item";

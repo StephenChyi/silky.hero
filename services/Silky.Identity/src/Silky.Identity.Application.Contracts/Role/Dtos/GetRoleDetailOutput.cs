@@ -1,12 +1,12 @@
+using Silky.Identity.Domain.Shared;
 using System;
 using System.Collections.Generic;
-using Silky.Identity.Domain.Shared;
 
 namespace Silky.Identity.Application.Contracts.Role.Dtos;
 
 public class GetRoleDetailOutput : RoleDtoBase
 {
-    
+
     /// <summary>
     /// 主键Id
     /// </summary>
@@ -26,9 +26,9 @@ public class GetRoleDetailOutput : RoleDtoBase
     /// 用户所有的数据权限范围
     /// </summary>
     public ICollection<GetCustomOrganizationOutput> CustomOrganizationDataRanges { get; set; }
-    
+
     public DateTimeOffset CreatedTime { get; set; }
-    
+
     public DateTimeOffset? UpdatedTime { get; set; }
 
 }

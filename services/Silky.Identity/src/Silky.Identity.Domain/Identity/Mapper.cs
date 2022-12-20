@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using Mapster;
+﻿using Mapster;
 using Silky.Identity.Application.Contracts.Role.Dtos;
 using Silky.Identity.Domain.Identity;
+using System.Linq;
 
 namespace Silky.Identity.Domain;
 

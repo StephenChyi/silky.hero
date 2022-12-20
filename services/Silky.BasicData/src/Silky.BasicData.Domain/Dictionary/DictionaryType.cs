@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Silky.Hero.Common.EntityFrameworkCore.Entities;
+﻿using Silky.Hero.Common.EntityFrameworkCore.Entities;
+using System.Collections.Generic;
 
 namespace Silky.BasicData.Domain.Dictionary;
 

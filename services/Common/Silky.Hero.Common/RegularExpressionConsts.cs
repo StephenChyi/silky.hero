@@ -9,9 +9,9 @@ public class RegularExpressionConsts
     public const string Password = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
     public const string RoleName = "^\\w+$";
-    
+
     public const string UserName = "^\\w+$";
-    
+
     public const string JobNumber = "^\\w+$";
 
     public const string Http = "^https?:\\/\\/";

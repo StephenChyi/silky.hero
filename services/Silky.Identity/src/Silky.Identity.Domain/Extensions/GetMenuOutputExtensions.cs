@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Silky.Core.Extensions;
 using Silky.Hero.Common;
 using Silky.Hero.Common.Enums;
 using Silky.Identity.Domain.Identity;
 using Silky.Permission.Application.Contracts.Menu.Dtos;
 using Silky.Permission.Domain.Shared.Menu;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Silky.Identity.Domain.Extensions;
 
@@ -67,7 +67,7 @@ internal static class GetMenuOutputExtensions
 
         string SetName(GetMenuOutput menu)
         {
-            if (menu.Type == MenuType.Button) 
+            if (menu.Type == MenuType.Button)
             {
                 return menu.PermissionCode;
             }
@@ -92,7 +92,7 @@ internal static class GetMenuOutputExtensions
         }
 
         var frontendMenus = menus.Where(p => p.Status == Status.Valid)
-            .Where(!includeButton, p=> p.Type != MenuType.Button)
+            .Where(!includeButton, p => p.Type != MenuType.Button)
             .Select(m => new FrontendMenu()
             {
                 Id = m.Id,

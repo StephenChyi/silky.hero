@@ -1,17 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Silky.Hero.Common.Enums;
+﻿using Silky.Hero.Common.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Saas.Application.Contracts.Tenant.Dtos;
 
 public abstract class TenantDtoBase
 {
-    
+
     /// <summary>
     /// 租户标识
     /// </summary>
     [Required(ErrorMessage = "租户标识不允许为空")]
     public string Name { get; set; }
-    
+
     /// <summary>
     /// 租户名称
     /// </summary>
@@ -32,10 +32,10 @@ public abstract class TenantDtoBase
     /// 备注
     /// </summary>
     public string Remark { get; set; }
-    
+
     /// <summary>
     /// 版本Id
     /// </summary>
     public long EditionId { get; set; }
-    
+
 }

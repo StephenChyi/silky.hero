@@ -5,5 +5,5 @@ namespace Silky.Position.Application.Contracts.Position.Dtos;
 /// </summary>
 public class CreatePositionInput : PositionDtoBase
 {
- 
+
 }

@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Silky.BasicData.EntityFrameworkCore.DbContexts;
 using Silky.Core.Modularity;
+using System.Threading.Tasks;
 
 namespace Silky.BasicData.EntityFrameworkCore;
 

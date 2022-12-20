@@ -1,5 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 using Silky.Identity.Domain.Shared;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Identity.Application.Contracts.User.Dtos;
 
@@ -9,7 +9,7 @@ public class CheckAccountInput
     /// 账号Id
     /// </summary>
     public long? Id { get; set; }
-    
+
     /// <summary>
     /// 账号
     /// </summary>

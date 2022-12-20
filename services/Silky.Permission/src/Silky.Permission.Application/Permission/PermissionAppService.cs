@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Silky.Permission.Application.Contracts.Permission;
+﻿using Silky.Permission.Application.Contracts.Permission;
 using Silky.Permission.Domain;
+using System.Threading.Tasks;
 
 namespace Silky.Permission.Application.Permission;
 
@@ -20,6 +20,6 @@ public class PermissionAppService : IPermissionAppService
 
     public Task<bool> CheckRoleAsync(string roleName)
     {
-        return _permissionChecker.IsGrantedByRoleAsync(roleName);;
+        return _permissionChecker.IsGrantedByRoleAsync(roleName); ;
     }
 }

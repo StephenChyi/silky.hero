@@ -1,7 +1,7 @@
-﻿using System.Security.Claims;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Silky.Core;
 using Silky.EntityFrameworkCore.Extras.Entities;
+using System.Security.Claims;
 
 namespace Silky.Identity.Domain;
 
@@ -23,7 +23,7 @@ public abstract class IdentityClaim : AuditedEntity
     protected internal IdentityClaim([NotNull] string claimType, string claimValue, long? tenantId)
     {
         Check.NotNull(claimType, nameof(claimType));
-        
+
         ClaimType = claimType;
         ClaimValue = claimValue;
         TenantId = tenantId;

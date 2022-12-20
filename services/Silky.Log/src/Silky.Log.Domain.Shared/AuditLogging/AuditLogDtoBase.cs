@@ -8,7 +8,7 @@ public abstract class AuditLogDtoBase
     /// 主键Id
     /// </summary>
     public long Id { get; set; }
-    
+
     /// <summary>
     /// 用户名
     /// </summary>

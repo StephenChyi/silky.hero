@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Silky.EntityFrameworkCore.Extras.Entities;
+using Silky.Hero.Common.EntityFrameworkCore.Entities;
+using Silky.Hero.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Silky.EntityFrameworkCore.Extras.Entities;
-using Silky.Hero.Common.EntityFrameworkCore.Entities;
-using Silky.Hero.Common.Enums;
 
 namespace Silky.Organization.Domain;
 
@@ -37,7 +37,7 @@ public class Organization : FullAuditedEntity, IHasConcurrencyStamp
     public virtual ICollection<OrganizationRole> OrganizationRoles { get; set; }
 
     public virtual ICollection<OrganizationPosition> OrganizationPositions { get; set; }
-    
+
     public void SetRoles(params long[] roleIds)
     {
         foreach (var roleId in roleIds)

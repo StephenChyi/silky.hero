@@ -3,7 +3,7 @@
 public class PositionPermissions
 {
     private const string GroupName = "Position";
-    
+
     public static class Positions
     {
         public const string Default = GroupName + ".Default";

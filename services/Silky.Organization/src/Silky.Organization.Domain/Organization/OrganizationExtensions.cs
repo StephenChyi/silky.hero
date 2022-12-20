@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Silky.Core;
+using System.Collections.Generic;
 using System.Linq;
-using Silky.Core;
 
 namespace Silky.Organization.Domain;
 

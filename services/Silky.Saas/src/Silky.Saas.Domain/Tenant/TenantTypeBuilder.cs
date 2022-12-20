@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Silky.EntityFrameworkCore.Entities.Configures;
 using Silky.EntityFrameworkCore.Extras.Modeling;
 using Silky.Hero.Common.Enums;
 using Silky.Saas.Domain.Shared;
+using System;
 
 namespace Silky.Saas.Domain;
 
@@ -18,21 +18,21 @@ public class TenantTypeBuilder : IEntityTypeBuilder<Tenant>
             .IsRequired()
             .HasMaxLength(SaasConsts.MaxNameLength)
             .HasColumnName(nameof(Tenant.Name));
-        
+
         builder.Property(o => o.RealName)
             .IsRequired()
             .HasMaxLength(SaasConsts.MaxRealNameLength)
             .HasColumnName(nameof(Tenant.RealName));
-        
+
         builder.Property(o => o.Remark)
             .HasMaxLength(SaasConsts.MaxRemarkLength)
             .HasColumnName(nameof(Tenant.Remark));
-        
+
         builder.Property(o => o.Sort)
             .IsRequired()
             .HasDefaultValue(0)
             .HasColumnName(nameof(Tenant.Sort));
-        
+
         builder.Property(o => o.Status)
             .IsRequired()
             .HasDefaultValue(Status.Valid)

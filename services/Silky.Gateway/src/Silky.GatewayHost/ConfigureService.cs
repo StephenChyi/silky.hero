@@ -10,15 +10,15 @@ namespace Silky.GatewayHost
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddSilkySkyApm();
-          
-            
+
+
             services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq((context, configurator) =>
                 {
-                    configurator.Host(configuration["rabbitMq:host"], 
+                    configurator.Host(configuration["rabbitMq:host"],
                         configuration["rabbitMq:port"].To<ushort>(),
-                        configuration["rabbitMq:virtualHost"], 
+                        configuration["rabbitMq:virtualHost"],
                         config =>
                         {
                             config.Username(configuration["rabbitMq:userName"]);
@@ -26,7 +26,7 @@ namespace Silky.GatewayHost
                         });
                 });
             });
-            
+
         }
     }
 }

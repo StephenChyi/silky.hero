@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Silky.Hero.Common;
+﻿using Silky.Hero.Common;
 using Silky.Hero.Common.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Identity.Application.Contracts.Role.Dtos;
 
@@ -10,7 +10,7 @@ public abstract class RoleDtoBase
     /// 角色标识
     /// </summary>
     [Required(ErrorMessage = "角色标识不允许为空")]
-    [RegularExpression(RegularExpressionConsts.RoleName,ErrorMessage = "角色标识格式不正确")]
+    [RegularExpression(RegularExpressionConsts.RoleName, ErrorMessage = "角色标识格式不正确")]
     public string Name { get; set; }
 
     /// <summary>
@@ -18,7 +18,7 @@ public abstract class RoleDtoBase
     /// </summary>
     [Required(ErrorMessage = "角色真实名称不允许为空")]
     public string RealName { get; set; }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -28,7 +28,7 @@ public abstract class RoleDtoBase
     /// 排序
     /// </summary>
     public int Sort { get; set; }
-    
+
     /// <summary>
     /// 备注
     /// </summary>
@@ -43,7 +43,7 @@ public abstract class RoleDtoBase
     /// 是否公共角色
     /// </summary>
     public bool IsPublic { get; set; }
-    
+
     /// <summary>
     /// 是否静态角色
     /// </summary>

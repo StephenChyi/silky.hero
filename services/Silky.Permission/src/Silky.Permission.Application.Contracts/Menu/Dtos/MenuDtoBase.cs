@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Silky.Hero.Common.Enums;
+﻿using Silky.Hero.Common.Enums;
 using Silky.Permission.Domain.Shared.Menu;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Permission.Application.Contracts.Menu.Dtos;
 
@@ -51,7 +51,7 @@ public abstract class MenuDtoBase
     /// 是否外链
     /// </summary>
     public bool? ExternalLink { get; set; }
-    
+
     /// <summary>
     /// 外链类型
     /// </summary>
@@ -66,17 +66,17 @@ public abstract class MenuDtoBase
     /// 是否缓存
     /// </summary>
     public bool? KeepAlive { get; set; }
-    
+
     /// <summary>
     /// 是否隐藏面包屑导航 
     /// </summary>
     public bool? HideBreadcrumb { get; set; }
-    
+
     /// <summary>
     /// 隐藏子菜单
     /// </summary>
     public bool? HideChildrenInMenu { get; set; }
-    
+
     /// <summary>
     /// 当前活动的菜单页
     /// </summary>

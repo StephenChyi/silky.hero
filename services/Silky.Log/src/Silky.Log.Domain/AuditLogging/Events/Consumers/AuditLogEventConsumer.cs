@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using MassTransit;
 using Silky.Core;
 using Silky.Core.Extensions;
@@ -9,6 +8,7 @@ using Silky.MassTransit.Consumer;
 using Silky.Rpc.Auditing;
 using Silky.Saas.Application.Contracts.Edition;
 using Silky.Saas.Domain.Shared.Feature;
+using System.Threading.Tasks;
 
 namespace Silky.Log.Domain.AuditLogging.Events.Consumers;
 

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using Silky.EntityFrameworkCore.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
-using Silky.EntityFrameworkCore.Repositories;
 
 namespace Silky.Identity.Domain;
 
@@ -22,13 +22,13 @@ public interface IIdentityUserRepository : IRepository<IdentityUser>
         long id,
         CancellationToken cancellationToken = default
     );
-    
+
     IQueryable<IdentityRole> GetRolesAsync(
         long id,
         bool onlyValid = true,
         CancellationToken cancellationToken = default
     );
-    
+
     Task<IdentityUser> FindByLoginAsync(
         [NotNull] string loginProvider,
         [NotNull] string providerKey,
@@ -53,7 +53,7 @@ public interface IIdentityUserRepository : IRepository<IdentityUser>
         bool includeDetails = false,
         CancellationToken cancellationToken = default
     );
-    
+
     Task EnsureCollectionLoadedAsync<TProperty>(
         IdentityUser entity,
         Expression<Func<IdentityUser, IEnumerable<TProperty>>> propertyExpression,

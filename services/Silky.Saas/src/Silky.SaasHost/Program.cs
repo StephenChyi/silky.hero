@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace Silky.SaasHost
 {

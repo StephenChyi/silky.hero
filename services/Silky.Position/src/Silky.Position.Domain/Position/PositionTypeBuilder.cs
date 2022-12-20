@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Silky.EntityFrameworkCore.Entities.Configures;
 using Silky.EntityFrameworkCore.Extras.Modeling;
 using Silky.Hero.Common.Enums;
+using System;
 
 namespace Silky.Position.Domain;
 
@@ -24,17 +24,17 @@ public class PositionTypeBuilder : IEntityTypeBuilder<Position>
         entityBuilder.Property(o => o.Remark)
             .HasMaxLength(PositionConsts.MaxRemarkLength)
             .HasColumnName(nameof(Position.Remark));
-        
+
         entityBuilder.Property(o => o.IsStatic)
             .IsRequired()
             .HasDefaultValue(false)
             .HasColumnName(nameof(Position.IsStatic));
-        
+
         entityBuilder.Property(o => o.IsPublic)
             .IsRequired()
             .HasDefaultValue(false)
             .HasColumnName(nameof(Position.IsPublic));
-        
+
         entityBuilder.Property(o => o.Status)
             .IsRequired()
             .HasDefaultValue(Status.Valid)

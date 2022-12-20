@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Silky.EntityFrameworkCore.Entities;
 using Silky.EntityFrameworkCore.Extras.Entities;
 using Silky.Hero.Common.EntityFrameworkCore.Entities;
 using Silky.Saas.Domain.Shared.Feature;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.Saas.Domain;
 
@@ -12,11 +12,11 @@ public class Feature : Entity<long>, ICreatedObject, IUpdatedObject, ISoftDelete
 
     public Feature()
     {
-       // Options = new List<FeatureOption>();
+        // Options = new List<FeatureOption>();
     }
 
     public long FeatureCatalogId { get; set; }
-    
+
     public string Name { get; set; }
 
     public string Code { get; set; }

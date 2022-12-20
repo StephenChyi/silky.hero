@@ -10,7 +10,7 @@ namespace Silky.SaasHost
         {
             services.AddSilkySkyApm()
                 .AddObjectMapper();
-            
+
             services.AddDatabaseAccessor(
                 options => { options.AddDbPool<DefaultContext>(); },
                 "Silky.Saas.Database.Migrations");

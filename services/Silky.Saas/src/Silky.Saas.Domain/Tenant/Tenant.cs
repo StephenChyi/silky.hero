@@ -1,8 +1,8 @@
-﻿using System;
-using Silky.EntityFrameworkCore.Entities;
+﻿using Silky.EntityFrameworkCore.Entities;
 using Silky.EntityFrameworkCore.Extras.Entities;
 using Silky.Hero.Common.EntityFrameworkCore.Entities;
 using Silky.Hero.Common.Enums;
+using System;
 
 namespace Silky.Saas.Domain;
 
@@ -21,7 +21,7 @@ public class Tenant : Entity<long>, ICreatedObject, IUpdatedObject, ISoftDeleted
         Remark = remark;
         EditionId = editionId;
     }
-    
+
     public string Name { get; set; }
 
     public string RealName { get; set; }

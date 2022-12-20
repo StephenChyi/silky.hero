@@ -1,13 +1,12 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Silky.Hero.Common.Enums;
 using Silky.Position.Application.Contracts.Position.Dtos;
 using Silky.Position.Domain.Shared;
-using Silky.Rpc.CachingInterceptor;
 using Silky.Rpc.Routing;
 using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Position.Application.Contracts.Position;
 

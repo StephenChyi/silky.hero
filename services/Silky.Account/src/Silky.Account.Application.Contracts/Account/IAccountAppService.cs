@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Silky.Account.Application.Contracts.Account.Dtos;
 using Silky.Rpc.Routing;
 using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Account.Application.Contracts.Account;
 
@@ -47,7 +47,7 @@ public interface IAccountAppService
     [HttpGet("permissioncodes")]
     [GetCachingIntercept("CurrentUserPermissionCodes", OnlyCurrentUserData = true)]
     Task<string[]> GetCurrentUserPermissionCodesAsync();
-    
+
     [Authorize]
     [GetCachingIntercept("CurrentUserDataRange", OnlyCurrentUserData = true)]
     [ProhibitExtranet]

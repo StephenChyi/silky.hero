@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Silky.Hero.Common;
+﻿using Silky.Hero.Common;
 using Silky.Hero.Common.Enums;
 using Silky.Identity.Domain.Shared;
 using Silky.Rpc.Auditing;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Identity.Application.Contracts.User.Dtos;
 
 public abstract class UserDtoBase
 {
-    
+
     /// <summary>
     /// 用户名
     /// </summary>
@@ -74,7 +74,7 @@ public abstract class UserDtoBase
     [Required(ErrorMessage = "工号不允许为空")]
     [RegularExpression(RegularExpressionConsts.JobNumber, ErrorMessage = "工号格式不正确")]
     public string JobNumber { get; set; }
-    
+
     /// <summary>
     /// 用户状态
     /// </summary>
@@ -89,5 +89,5 @@ public abstract class UserDtoBase
     /// 用户岗位、组织机构信息
     /// </summary>
     public virtual ICollection<UserSubsidiaryDto> UserSubsidiaries { get; set; }
-    
+
 }

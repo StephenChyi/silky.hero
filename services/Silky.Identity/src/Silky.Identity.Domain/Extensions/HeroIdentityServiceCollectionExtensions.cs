@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Silky.Identity.Domain;
+using System;
 using IdentityRole = Silky.Identity.Domain.IdentityRole;
 using IdentityUser = Silky.Identity.Domain.IdentityUser;
 

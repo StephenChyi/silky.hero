@@ -5,6 +5,6 @@ namespace Silky.WorkFlow.Domain
 {
     public interface INodeActionResultDomainService : IScopedDependency
     {
-        IRepository<NodeActionResult> NodeActionResultRepository { get; }       
+        IRepository<NodeActionResult> NodeActionResultRepository { get; }
     }
 }

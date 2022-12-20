@@ -10,7 +10,7 @@ namespace Silky.PositionHost
         {
             services.AddSilkySkyApm()
                 .AddObjectMapper();
-            
+
             services.AddDatabaseAccessor(
                 options => { options.AddDbPool<DefaultContext>(); },
                 "Silky.Position.Database.Migrations");

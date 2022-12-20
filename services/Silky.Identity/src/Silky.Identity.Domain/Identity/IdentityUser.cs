@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Security.Claims;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Microsoft.AspNetCore.Identity;
 using Silky.Core;
 using Silky.Core.Extensions.Collections.Generic;
@@ -11,6 +6,11 @@ using Silky.EntityFrameworkCore.Extras.Entities;
 using Silky.Hero.Common.EntityFrameworkCore.Entities;
 using Silky.Hero.Common.Enums;
 using Silky.Identity.Domain.Shared;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Security.Claims;
 
 namespace Silky.Identity.Domain;
 
@@ -37,7 +37,7 @@ public class IdentityUser : FullAuditedEntity, IHasConcurrencyStamp
     public string TelPhone { get; set; }
 
     [NotNull] public string MobilePhone { get; protected internal set; }
-    
+
     public string JobNumber { get; set; }
 
     public Status Status { get; set; }
@@ -240,7 +240,7 @@ public class IdentityUser : FullAuditedEntity, IHasConcurrencyStamp
         {
             return;
         }
-        
+
         UserSubsidiaries.Add(
             new UserSubsidiary(
                 Id,
@@ -279,7 +279,7 @@ public class IdentityUser : FullAuditedEntity, IHasConcurrencyStamp
         );
     }
 
-    
+
     public override string ToString()
     {
         return $"{base.ToString()}, UserName = {UserName}";

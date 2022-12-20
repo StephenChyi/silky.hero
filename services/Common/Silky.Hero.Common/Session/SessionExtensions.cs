@@ -18,7 +18,7 @@ public static class SessionExtensions
         }
 
         var invokeTemplate = EngineContext.Current.Resolve<IInvokeTemplate>();
-        var  result = await invokeTemplate.InvokeForObjectByServiceEntryId<CurrentUserDataRange>(getCurrentUserDataRangeServiceEntryId);
+        var result = await invokeTemplate.InvokeForObjectByServiceEntryId<CurrentUserDataRange>(getCurrentUserDataRangeServiceEntryId);
         return result;
     }
 

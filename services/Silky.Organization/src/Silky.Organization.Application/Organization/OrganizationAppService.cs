@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Silky.Core.Exceptions;
 using Silky.Core.Runtime.Session;
@@ -17,6 +14,9 @@ using Silky.Organization.Domain;
 using Silky.Position.Application.Contracts.Position;
 using Silky.Position.Application.Contracts.Position.Dtos;
 using Silky.Transaction.Tcc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Organization.Application.Organization;
 
@@ -114,9 +114,9 @@ public class OrganizationAppService : IOrganizationAppService
         return organizations;
     }
 
-    public Task<bool> CheckHasLeaderAsync(long organizationId,long? userId)
+    public Task<bool> CheckHasLeaderAsync(long organizationId, long? userId)
     {
-        return _userAppService.CheckHasLeaderAsync(organizationId,userId);
+        return _userAppService.CheckHasLeaderAsync(organizationId, userId);
     }
 
     public async Task<bool> HasOrganizationAsync(long organizationId)

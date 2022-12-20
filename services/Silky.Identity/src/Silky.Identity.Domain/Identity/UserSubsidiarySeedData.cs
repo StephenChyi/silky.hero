@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Silky.EntityFrameworkCore.Entities.Configures;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.Identity.Domain.Identity;
 

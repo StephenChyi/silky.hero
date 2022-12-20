@@ -6,19 +6,14 @@ namespace Silky.WorkFlow.Domain
     public class WorkFlowNodeActionResult : Entity<long>
     {
         /// <summary>
-        /// 
+        /// 上一节点
         /// </summary>
-        public long WorkFlowId { get; set; }
+        public long PrevWorkFlowId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public WorkFlowNode WorkFlow { get; set; }
-
-        /// <summary>
-        /// 代码
-        /// </summary>
-        public string FlowNodeCode { get; set; }
+        public string BusinessCategoryCode { get; set; }
 
         /// <summary>
         /// 节点动作
@@ -26,13 +21,18 @@ namespace Silky.WorkFlow.Domain
         public NodeAction NodeAction { get; set; }
 
         /// <summary>
-        /// 下一节点
+        /// 单据主键
         /// </summary>
-        public string NextFlowNodeId { get; set; }
+        public long ProofId { get; set; }
 
         /// <summary>
-        /// 下一节点代码
+        /// 
         /// </summary>
-        public string NextFlowNodeCode { get; set; }
+        public long WorkFlowId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual WorkFlowNode WorkFlow { get; set; }
     }
 }

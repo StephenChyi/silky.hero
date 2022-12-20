@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Silky.EntityFrameworkCore.Entities.Configures;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.BasicData.Domain.Dictionary;
 
@@ -11,7 +11,7 @@ public class DictionaryTypeSeedData : IEntitySeedData<DictionaryType>
     {
         var initList = new List<DictionaryType>();
 
-        initList.Add(new ()
+        initList.Add(new()
         {
             Id = 1,
             Code = "sex",
@@ -19,7 +19,7 @@ public class DictionaryTypeSeedData : IEntitySeedData<DictionaryType>
             Sort = 1,
             TenantId = 1,
         });
-        
+
         return initList;
     }
 }

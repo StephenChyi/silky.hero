@@ -15,9 +15,9 @@ public class GetUserPageInput : PageDtoBase
     public string TelPhone { get; set; }
 
     public string Email { get; set; }
-    
+
     public Status? Status { get; set; }
-    
+
     public bool? IsLockout { get; set; }
 
     public bool? IsLeader { get; set; }
@@ -29,6 +29,6 @@ public class GetUserPageInput : PageDtoBase
     public long[] OrganizationIds { get; set; }
 
     public long[] PositionIds { get; set; }
-    
+
     public long[] RoleIds { get; set; }
 }

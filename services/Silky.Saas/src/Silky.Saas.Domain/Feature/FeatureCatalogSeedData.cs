@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Silky.EntityFrameworkCore.Entities.Configures;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.Saas.Domain;
 
@@ -20,13 +20,13 @@ public class FeatureCatalogSeedData : IEntitySeedData<FeatureCatalog>
             Id = 2,
             Name = "审计日志"
         });
-        
+
         initData.Add(new FeatureCatalog()
         {
             Id = 3,
             Name = "权限管理"
         });
-        
+
         initData.Add(new FeatureCatalog()
         {
             Id = 4,

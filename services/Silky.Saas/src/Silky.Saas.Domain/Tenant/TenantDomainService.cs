@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.Extensions.Caching.Distributed;
 using Silky.Caching;
 using Silky.Core.DependencyInjection;
@@ -12,6 +10,7 @@ using Silky.Identity.Application.Contracts.User;
 using Silky.Identity.Application.Contracts.User.Dtos;
 using Silky.Saas.Application.Contracts.Edition.Dtos;
 using Silky.Saas.Application.Contracts.Tenant.Dtos;
+using System.Threading.Tasks;
 
 namespace Silky.Saas.Domain;
 
@@ -21,10 +20,10 @@ public class TenantDomainService : ITenantDomainService, IScopedDependency
     private readonly IRoleAppService _roleAppService;
     private readonly IDistributedCache _distributedCache;
     private readonly IDistributedCacheKeyNormalizer _distributedCacheKeyNormalizer;
-    public TenantDomainService(IRepository<Tenant> tenantRepository, 
-        IUserAppService userAppService, 
-        IRoleAppService roleAppService, 
-        IDistributedCache distributedCache, 
+    public TenantDomainService(IRepository<Tenant> tenantRepository,
+        IUserAppService userAppService,
+        IRoleAppService roleAppService,
+        IDistributedCache distributedCache,
         IDistributedCacheKeyNormalizer distributedCacheKeyNormalizer)
     {
         TenantRepository = tenantRepository;
@@ -64,14 +63,14 @@ public class TenantDomainService : ITenantDomainService, IScopedDependency
 
     public async Task CreateConfirmAsync(CreateTenantInput input)
     {
-        var tenant = await TenantRepository.FirstAsync(p=> p.Name == input.Name);
+        var tenant = await TenantRepository.FirstAsync(p => p.Name == input.Name);
         tenant.Status = input.Status;
         await TenantRepository.UpdateNowAsync(tenant);
     }
 
     public async Task CreateCancelAsync(CreateTenantInput input)
     {
-        var tenant = await TenantRepository.FirstOrDefaultAsync(p=> p.Name == input.Name);
+        var tenant = await TenantRepository.FirstOrDefaultAsync(p => p.Name == input.Name);
         if (tenant != null)
         {
             await TenantRepository.DeleteNowAsync(tenant);

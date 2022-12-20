@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Silky.EntityFrameworkCore.Entities.Configures;
 using Silky.EntityFrameworkCore.Extras.Modeling;
 using Silky.Log.Domain.Shared.AuditLogging;
+using System;
 
 namespace Silky.Log.Domain.AuditLogging;
 
@@ -65,7 +65,7 @@ public class AuditLogTypeBuilder : IEntityTypeBuilder<AuditLog>
 
         builder.Property(o => o.HttpStatusCode)
             .HasColumnName(nameof(AuditLog.HttpStatusCode));
-        
+
         builder.Property(o => o.RequestParameters)
             .HasMaxLength(AuditLoggingConsts.LengthFor1024)
             .HasColumnName(nameof(AuditLog.RequestParameters));

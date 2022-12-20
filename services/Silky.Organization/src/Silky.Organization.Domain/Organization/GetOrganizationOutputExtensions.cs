@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Silky.Core;
+﻿using Silky.Core;
 using Silky.Core.Runtime.Session;
 using Silky.Hero.Common.Session;
 using Silky.Identity.Application.Contracts.Role;
@@ -9,6 +6,9 @@ using Silky.Identity.Application.Contracts.Role.Dtos;
 using Silky.Organization.Application.Contracts.Organization.Dtos;
 using Silky.Position.Application.Contracts.Position;
 using Silky.Position.Application.Contracts.Position.Dtos;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Organization.Domain;
 

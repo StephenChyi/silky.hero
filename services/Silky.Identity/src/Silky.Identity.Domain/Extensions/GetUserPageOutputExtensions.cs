@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Silky.Core;
 using Silky.Identity.Application.Contracts.Role;
 using Silky.Identity.Application.Contracts.User.Dtos;
 using Silky.Organization.Application.Contracts.Organization;
 using Silky.Position.Application.Contracts.Position;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Identity.Domain.Extensions;
 
@@ -25,7 +25,7 @@ public static class GetUserPageOutputExtensions
             }
         }
     }
-    
+
     public static async Task SetUserSubsidiaries(this GetUserOutput userOutput)
     {
         var positionAppService = EngineContext.Current.Resolve<IPositionAppService>();
@@ -39,10 +39,10 @@ public static class GetUserPageOutputExtensions
         }
     }
 
-    public static async Task SetUserRoles(this IEnumerable<GetUserOutput> userOutputs) 
+    public static async Task SetUserRoles(this IEnumerable<GetUserOutput> userOutputs)
     {
         var roleAppService = EngineContext.Current.Resolve<IRoleAppService>();
-        foreach (var userPageOutput in userOutputs) 
+        foreach (var userPageOutput in userOutputs)
         {
             foreach (var userRolePageOutput in userPageOutput.Roles)
             {
@@ -53,8 +53,8 @@ public static class GetUserPageOutputExtensions
             }
         }
     }
-    
-    public static async Task SetUserRoles(this GetUserOutput userOutput) 
+
+    public static async Task SetUserRoles(this GetUserOutput userOutput)
     {
         var roleAppService = EngineContext.Current.Resolve<IRoleAppService>();
         foreach (var userRolePageOutput in userOutput.Roles)

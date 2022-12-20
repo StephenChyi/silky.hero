@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.Extensions.Caching.Distributed;
 using Silky.BasicData.Application.Contracts.Dictionary.Dtos;
+using Silky.Caching;
 using Silky.Core.DependencyInjection;
 using Silky.Core.Exceptions;
 using Silky.EntityFrameworkCore.Repositories;
-using Silky.Caching;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.BasicData.Domain.Dictionary;
 
@@ -14,7 +14,7 @@ public class DictionaryDomainService : IDictionaryDomainService, IScopedDependen
 {
     public DictionaryDomainService(
         IRepository<DictionaryType> dictionaryTypeRepository,
-        IRepository<DictionaryItem> dictionaryItemRepository, 
+        IRepository<DictionaryItem> dictionaryItemRepository,
         IDistributedCache distributedCache)
     {
         DictionaryTypeRepository = dictionaryTypeRepository;

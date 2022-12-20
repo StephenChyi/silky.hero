@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Silky.WorkFlow.Database.Migrations.Migrations
 {
-    public partial class init : Migration
+    public partial class _202212201655init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -126,14 +126,11 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FlowNodeId = table.Column<long>(type: "bigint", nullable: false),
-                    FlowNodeCode = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PrevFlowNodeId = table.Column<long>(type: "bigint", nullable: false),
                     NodeAction = table.Column<int>(type: "int", nullable: false),
-                    NextFlowNodeId = table.Column<string>(type: "longtext", nullable: false)
+                    BusinessCategoryCode = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    NextFlowNodeCode = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    FlowNodeId = table.Column<long>(type: "bigint", nullable: false),
                     CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true)
                 },
@@ -155,14 +152,12 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    WorkFlowId = table.Column<long>(type: "bigint", nullable: false),
-                    FlowNodeCode = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
+                    PrevWorkFlowId = table.Column<long>(type: "bigint", nullable: false),
+                    BusinessCategoryCode = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NodeAction = table.Column<int>(type: "int", nullable: false),
-                    NextFlowNodeId = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NextFlowNodeCode = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ProofId = table.Column<long>(type: "bigint", nullable: false),
+                    WorkFlowId = table.Column<long>(type: "bigint", nullable: false),
                     CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true)
                 },
@@ -177,6 +172,21 @@ namespace Silky.WorkFlow.Database.Migrations.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "BusinessCategory",
+                columns: new[] { "Id", "BusinessCategoryCode", "BusinessCategoryName", "CreatedTime", "UpdatedTime" },
+                values: new object[] { 1L, "0", "系统值", new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null });
+
+            migrationBuilder.InsertData(
+                table: "NodeType",
+                columns: new[] { "Id", "CreatedTime", "NodeTypeCode", "NodeTypeName", "UpdatedTime" },
+                values: new object[] { 1L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "0", "系统节点", null });
+
+            migrationBuilder.InsertData(
+                table: "FlowNode",
+                columns: new[] { "Id", "BusinessCategoryCode", "CreatedTime", "FlowNodeCode", "FlowNodeName", "NodeTypeId", "NodeValue", "NodeVariable", "StepNo", "UpdatedTime" },
+                values: new object[] { 1L, "0", new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "0", "终节点", 1L, "", "", -1, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_FlowNode_NodeTypeId",

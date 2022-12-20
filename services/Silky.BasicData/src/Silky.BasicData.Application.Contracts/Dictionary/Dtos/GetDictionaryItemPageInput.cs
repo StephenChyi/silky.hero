@@ -4,7 +4,7 @@ namespace Silky.BasicData.Application.Contracts.Dictionary.Dtos;
 
 public class GetDictionaryItemPageInput : PageDtoBase
 {
-    
+
     /// <summary>
     /// 字典项的值
     /// </summary>

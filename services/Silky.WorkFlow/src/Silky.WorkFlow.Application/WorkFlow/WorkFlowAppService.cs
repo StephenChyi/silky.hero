@@ -9,14 +9,29 @@ namespace Silky.WorkFlow.Application.WorkFlow
     public class WorkFlowAppService : IWorkFlowAppService
     {
         private readonly IWorkFlowNodeDomainService _workFlowDomainService;
-        public WorkFlowAppService(IWorkFlowNodeDomainService workFlowDomainService)
+        private readonly IFlowNodeDomainService _flowNodeDomainService;
+        public WorkFlowAppService(IWorkFlowNodeDomainService workFlowDomainService, IFlowNodeDomainService flowNodeDomainService)
         {
             _workFlowDomainService = workFlowDomainService;
+            _flowNodeDomainService = flowNodeDomainService;
         }
 
-        public Task CreateAsync(long businessId, string businessCategoryCode)
+        public async Task CreateAsync(long proofId, string businessCategoryCode)
         {
-            throw new NotImplementedException();
+            //获得业务所有流程
+            var flowNodes = await _flowNodeDomainService.GetFlowNodesAsync(businessCategoryCode);
+            List<WorkFlowNode> workFlowNodes = new();
+            //拼装单据流
+            var startFlowNode = flowNodes.ElementAt(0);
+            var workFlowNode = startFlowNode.Adapt<WorkFlowNode>();
+            workFlowNodes.Add(workFlowNode);
+            workFlowNode.Id = 0;
+            workFlowNode.ProofId = proofId;
+            workFlowNode.PreviousId = 0;
+            workFlowNode.NodeStatus = WorkFlowNodeStatus.Doing;
+            //业务数据比对节点问题和答案 直接拼装下一步
+
+            await _workFlowDomainService.CreateAsync(workFlowNodes.ToArray());
         }
 
         public async Task<GetWorkFlowOutPut> GetWorkFlowAsync(long proofId, string businessCategoryCode)

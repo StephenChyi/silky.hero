@@ -17,7 +17,7 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         /// <summary>
         /// 业务工作流节点集合
         /// </summary>
-        public NodeInPut[] Nodes { get; set; }
+        public NodeInPut StartNode { get; set; }
     }
 
     /// <summary>
@@ -29,13 +29,13 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         /// 代码
         /// </summary>
         [Required(ErrorMessage = "节点代码不允许为空")]
-        public string NodeCode { get; set; }
+        public string FlowNodeCode { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
         [Required(ErrorMessage = "节点名称不允许为空")]
-        public string NodeName { get; set; }
+        public string FlowNodeName { get; set; }
 
         /// <summary>
         /// 节点类型
@@ -54,11 +54,6 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         /// </summary>
         [Required(ErrorMessage = "节点答案不允许为空")]
         public string NodeValue { get; set; }
-
-        /// <summary>
-        /// 步骤编号
-        /// </summary>
-        public int StepNo { get; set; }
 
         /// <summary>
         /// 下一节点

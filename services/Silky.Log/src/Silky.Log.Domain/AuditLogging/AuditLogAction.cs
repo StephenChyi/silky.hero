@@ -1,5 +1,5 @@
-﻿using System;
-using Silky.EntityFrameworkCore.Entities;
+﻿using Silky.EntityFrameworkCore.Entities;
+using System;
 
 namespace Silky.Log.Domain.AuditLogging;
 

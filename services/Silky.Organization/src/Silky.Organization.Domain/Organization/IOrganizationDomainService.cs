@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Silky.Core.DependencyInjection;
+﻿using Silky.Core.DependencyInjection;
 using Silky.EntityFrameworkCore.Repositories;
 using Silky.Organization.Application.Contracts.Organization.Dtos;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Organization.Domain;
 

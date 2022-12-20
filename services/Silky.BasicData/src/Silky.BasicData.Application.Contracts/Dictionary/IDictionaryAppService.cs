@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Silky.BasicData.Application.Contracts.Dictionary.Dtos;
 using Silky.BasicData.Domain.Shared;
 using Silky.Rpc.Routing;
 using Silky.Rpc.Runtime.Server;
 using Silky.Rpc.Security;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.BasicData.Application.Contracts.Dictionary;
 
@@ -24,13 +24,13 @@ public interface IDictionaryAppService
     /// <returns></returns>
     [Authorize(BasicDataPermissions.Dictionaries.Types.Create)]
     Task CreateTypeAsync(CreateDictionaryTypeInput input);
-    
+
     /// <summary>
     /// 更新字典类型服务
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [RemoveCachingIntercept(typeof(GetDictionaryTypeOutput),"type:id:{Id}")]
+    [RemoveCachingIntercept(typeof(GetDictionaryTypeOutput), "type:id:{Id}")]
     [Authorize(BasicDataPermissions.Dictionaries.Types.Update)]
     Task UpdateTypeAsync(UpdateDictionaryTypeInput input);
 
@@ -50,7 +50,7 @@ public interface IDictionaryAppService
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpDelete("type/{id:long}")]
-    [RemoveCachingIntercept(typeof(GetDictionaryTypeOutput),"type:id:{id}")]
+    [RemoveCachingIntercept(typeof(GetDictionaryTypeOutput), "type:id:{id}")]
     [Authorize(BasicDataPermissions.Dictionaries.Types.Delete)]
     Task DeleteTypeAsync(long id);
 
@@ -70,13 +70,13 @@ public interface IDictionaryAppService
     /// <returns></returns>
     [Authorize(BasicDataPermissions.Dictionaries.Items.Create)]
     Task CreateItemAsync(CreateDictionaryItemInput input);
-    
+
     /// <summary>
     /// 更新字典项
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    [RemoveCachingIntercept(typeof(GetDictionaryItemOutput),"item:id:{id}")]
+    [RemoveCachingIntercept(typeof(GetDictionaryItemOutput), "item:id:{id}")]
     [Authorize(BasicDataPermissions.Dictionaries.Items.Update)]
     Task UpdateItemAsync(UpdateDictionaryItemInput input);
 
@@ -96,7 +96,7 @@ public interface IDictionaryAppService
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpDelete("item/{id:long}")]
-    [RemoveCachingIntercept(typeof(GetDictionaryItemOutput),"item:id:{id}")]
+    [RemoveCachingIntercept(typeof(GetDictionaryItemOutput), "item:id:{id}")]
     [Authorize(BasicDataPermissions.Dictionaries.Items.Delete)]
     Task DeleteItemAsync(long id);
 
@@ -117,7 +117,7 @@ public interface IDictionaryAppService
     [HttpGet("{dictionaryId:long}/items")]
     [GetCachingIntercept("items:dictionaryId:{dictionaryId}")]
     Task<ICollection<GetDictionaryItemOutput>> GetAllItemsByIdAsync(long dictionaryId);
-    
+
     /// <summary>
     /// 根据Code获取所有字典项
     /// </summary>

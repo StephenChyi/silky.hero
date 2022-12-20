@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Silky.Core.DependencyInjection;
+﻿using Silky.Core.DependencyInjection;
 using Silky.Identity.Application.Contracts.Role;
 using Silky.Identity.Application.Contracts.User;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Silky.Permission.Domain;
 

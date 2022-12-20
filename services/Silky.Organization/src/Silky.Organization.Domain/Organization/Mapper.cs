@@ -8,6 +8,6 @@ public class Mapper : IRegister
     public void Register(TypeAdapterConfig config)
     {
         config.ForType<Organization, GetOrganizationTreeOutput>()
-            .Ignore(d=> d.Children);
+            .Ignore(d => d.Children);
     }
 }

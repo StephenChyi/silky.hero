@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Silky.Identity.Domain.Shared;
+﻿using Silky.Identity.Domain.Shared;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Identity.Application.Contracts.ClaimType.Dtos;
 

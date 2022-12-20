@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Linq;
-using System.Threading.Tasks;
-using Castle.Core.Internal;
+﻿using Castle.Core.Internal;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Silky.Core;
@@ -11,7 +8,8 @@ using Silky.Http.Identity.Authorization.Handlers;
 using Silky.Http.Identity.Authorization.Requirements;
 using Silky.Rpc.Extensions;
 using Silky.Rpc.Runtime.Client;
-using Silky.Rpc.Runtime.Server;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.GatewayHost.Authorization;
 

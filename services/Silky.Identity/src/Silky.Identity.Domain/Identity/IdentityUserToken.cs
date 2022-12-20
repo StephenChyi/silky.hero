@@ -1,20 +1,18 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Silky.Core;
 using Silky.EntityFrameworkCore.Extras.Entities;
-using Silky.Hero.Common.EntityFrameworkCore.Entities;
 
 namespace Silky.Identity.Domain;
 
 public class IdentityUserToken : AuditedEntity
 {
-    
+
     public virtual long UserId { get; protected set; }
-    
+
     public virtual string LoginProvider { get; protected set; }
-    
+
     public virtual string Name { get; protected set; }
-    
+
     public virtual string Value { get; set; }
 
     protected IdentityUserToken()

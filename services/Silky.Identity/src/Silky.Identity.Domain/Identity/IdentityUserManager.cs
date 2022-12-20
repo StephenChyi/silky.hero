@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -27,6 +22,11 @@ using Silky.Permission.Application.Contracts.Menu;
 using Silky.Position.Application.Contracts.Position;
 using Silky.Saas.Application.Contracts.Edition;
 using Silky.Saas.Domain.Shared.Feature;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Silky.Identity.Domain;
 

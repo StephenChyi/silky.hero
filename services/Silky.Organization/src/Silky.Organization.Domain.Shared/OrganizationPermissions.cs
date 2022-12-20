@@ -3,7 +3,7 @@
 public class OrganizationPermissions
 {
     private const string GroupName = "Organization";
-    
+
     public static class Organizations
     {
         public const string Default = GroupName + ".Default";

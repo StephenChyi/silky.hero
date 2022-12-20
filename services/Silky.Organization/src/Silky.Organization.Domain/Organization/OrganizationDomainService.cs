@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Silky.Core.DbContext.UnitOfWork;
 using Silky.Core.Exceptions;
@@ -12,6 +9,9 @@ using Silky.EntityFrameworkCore.Repositories;
 using Silky.Hero.Common.Session;
 using Silky.Identity.Application.Contracts.User;
 using Silky.Organization.Application.Contracts.Organization.Dtos;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Organization.Domain;
 

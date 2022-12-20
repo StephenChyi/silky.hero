@@ -13,31 +13,25 @@ namespace Silky.WorkFlow.Domain
             entityBuilder.ConfigureByConvention();
 
             entityBuilder
+               .Property(n => n.PrevFlowNodeId)
+               .IsRequired()
+               .HasColumnName(nameof(NodeActionResult.PrevFlowNodeId));
+
+            entityBuilder
+               .Property(f => f.BusinessCategoryCode)
+               .IsRequired()
+               .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
+               .HasColumnName(nameof(NodeActionResult.BusinessCategoryCode));
+
+            entityBuilder
                .Property(n => n.FlowNodeId)
                .IsRequired()
                .HasColumnName(nameof(NodeActionResult.FlowNodeId));
 
             entityBuilder
-               .Property(n => n.FlowNodeCode)
-               .IsRequired()
-               .HasMaxLength(FlowNodeConsts.MaxCodeLength)
-               .HasColumnName(nameof(NodeActionResult.FlowNodeCode));
-
-            entityBuilder
                .Property(n => n.NodeAction)
                .IsRequired()
                .HasColumnName(nameof(NodeActionResult.NodeAction));
-
-            entityBuilder
-               .Property(n => n.NextFlowNodeId)
-               .IsRequired()
-               .HasColumnName(nameof(NodeActionResult.NextFlowNodeId));
-
-            entityBuilder
-               .Property(n => n.NextFlowNodeCode)
-               .IsRequired()
-               .HasMaxLength(FlowNodeConsts.MaxCodeLength)
-               .HasColumnName(nameof(NodeActionResult.NextFlowNodeCode));
         }
     }
 }

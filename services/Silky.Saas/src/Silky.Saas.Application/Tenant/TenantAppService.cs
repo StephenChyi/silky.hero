@@ -1,10 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
-using Silky.Caching;
 using Silky.Core.Exceptions;
 using Silky.Core.Extensions;
 using Silky.EntityFrameworkCore.Extensions;
@@ -14,6 +9,9 @@ using Silky.Saas.Application.Contracts.Tenant.Dtos;
 using Silky.Saas.Domain;
 using Silky.Saas.Domain.Shared.Tenant;
 using Silky.Transaction.Tcc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Saas.Application.Tenant;
 

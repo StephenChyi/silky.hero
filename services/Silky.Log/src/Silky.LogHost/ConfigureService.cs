@@ -13,7 +13,7 @@ namespace Silky.LogHost
         {
             services.AddSilkySkyApm()
                 .AddObjectMapper();
-            
+
             services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq((context, configurator) =>

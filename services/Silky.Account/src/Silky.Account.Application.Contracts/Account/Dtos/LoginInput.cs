@@ -1,5 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 using Silky.Rpc.Auditing;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Account.Application.Contracts.Account.Dtos;
 

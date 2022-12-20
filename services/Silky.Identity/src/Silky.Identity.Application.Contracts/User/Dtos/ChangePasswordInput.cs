@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Silky.Hero.Common;
+﻿using Silky.Hero.Common;
 using Silky.Rpc.Auditing;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silky.Identity.Application.Contracts.User.Dtos;
 

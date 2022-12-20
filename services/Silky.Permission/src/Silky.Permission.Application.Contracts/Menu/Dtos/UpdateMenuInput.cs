@@ -7,5 +7,5 @@ public class UpdateMenuInput : MenuDtoBase
     /// </summary>
     public long Id { get; set; }
 
-   
+
 }

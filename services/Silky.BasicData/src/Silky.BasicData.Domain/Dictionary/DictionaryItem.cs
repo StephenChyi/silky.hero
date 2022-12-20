@@ -5,7 +5,7 @@ namespace Silky.BasicData.Domain.Dictionary;
 public class DictionaryItem : AuditedEntity
 {
     public long DictionaryId { get; set; }
-    
+
     public string Value { get; set; }
 
     public string Code { get; set; }

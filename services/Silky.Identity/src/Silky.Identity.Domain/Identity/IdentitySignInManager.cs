@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -13,6 +8,11 @@ using Silky.Core.Runtime.Session;
 using Silky.Hero.Common.Enums;
 using Silky.Jwt;
 using Silky.Saas.Application.Contracts.Tenant;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Silky.Identity.Domain;
 

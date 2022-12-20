@@ -18,26 +18,20 @@ namespace Silky.WorkFlow.Domain
                .HasColumnName(nameof(WorkFlowNodeActionResult.WorkFlowId));
 
             entityBuilder
-               .Property(wr => wr.FlowNodeCode)
+               .Property(wr => wr.ProofId)
                .IsRequired()
-               .HasMaxLength(FlowNodeConsts.MaxCodeLength)
-               .HasColumnName(nameof(WorkFlowNodeActionResult.FlowNodeCode));
+               .HasColumnName(nameof(WorkFlowNodeActionResult.ProofId));
+
+            entityBuilder
+              .Property(f => f.BusinessCategoryCode)
+              .IsRequired()
+              .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
+              .HasColumnName(nameof(WorkFlowNodeActionResult.BusinessCategoryCode));
 
             entityBuilder
                .Property(n => n.NodeAction)
                .IsRequired()
                .HasColumnName(nameof(WorkFlowNodeActionResult.NodeAction));
-
-            entityBuilder
-               .Property(n => n.NextFlowNodeId)
-               .IsRequired()
-               .HasColumnName(nameof(WorkFlowNodeActionResult.NextFlowNodeId));
-
-            entityBuilder
-               .Property(n => n.NextFlowNodeCode)
-               .IsRequired()
-               .HasMaxLength(FlowNodeConsts.MaxCodeLength)
-               .HasColumnName(nameof(WorkFlowNodeActionResult.NextFlowNodeCode));
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
 using System.Security.Claims;
-using JetBrains.Annotations;
 
 namespace Silky.Identity.Domain;
 

@@ -9,6 +9,6 @@ public class GetUserRolePageOutput
     public string Name { get; set; }
 
     public string RealName { get; set; }
-    
+
     public Status Status { get; set; }
 }

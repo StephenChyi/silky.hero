@@ -11,6 +11,8 @@ namespace Silky.WorkFlow.Domain
             config
                .ForType<NodeInPut, FlowNode>();
             config
+               .ForType<NodeActionResultOutput, NodeActionResult>();
+            config
                .ForType<FlowNode, FlowNodeOutPut>()
                .Map(dest => dest.NodeTypeName, src => src.NodeType.NodeTypeName);
 

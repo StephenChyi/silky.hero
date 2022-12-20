@@ -10,7 +10,7 @@ namespace Silky.PermissionHost
         {
             services.AddSilkySkyApm()
                 .AddObjectMapper();
-            
+
             services.AddDatabaseAccessor(
                 options => { options.AddDbPool<DefaultContext>(); },
                 "Silky.Permission.Database.Migrations");

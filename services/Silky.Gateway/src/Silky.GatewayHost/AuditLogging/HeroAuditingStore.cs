@@ -1,10 +1,10 @@
-using System;
-using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Silky.Core.Logging;
 using Silky.Http.Auditing;
 using Silky.Rpc.Auditing;
+using System;
+using System.Threading.Tasks;
 
 namespace Silky.GatewayHost.AuditLogging;
 

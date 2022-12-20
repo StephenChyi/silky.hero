@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Silky.BasicData.Domain.Shared;
 using Silky.EntityFrameworkCore.Entities.Configures;
 using Silky.Hero.Common.Enums;
@@ -11,6 +9,8 @@ using Silky.Permission.Domain.Shared;
 using Silky.Permission.Domain.Shared.Menu;
 using Silky.Position.Domain.Shared;
 using Silky.Saas.Domain.Shared;
+using System;
+using System.Collections.Generic;
 
 namespace Silky.Permission.Domain.Menu;
 
@@ -48,11 +48,11 @@ public class MenuSeedData : IEntitySeedData<Menu>
         CreateLogMenu(initList);
 
         CreateAboutMenu(initList);
-        
+
         CreateSaasMenu(initList);
-        
+
         CreateBasicDataMenu(initList);
-        
+
         CreateExternalLinkMenu(initList);
 
         return initList;
@@ -192,7 +192,7 @@ public class MenuSeedData : IEntitySeedData<Menu>
             Sort = 995,
             Status = Status.Valid,
         });
-        
+
         initList.Add(new Menu()
         {
             Id = 3006,
@@ -241,7 +241,7 @@ public class MenuSeedData : IEntitySeedData<Menu>
             Sort = 997,
             Status = Status.Valid,
         });
-        
+
         initList.Add(new Menu()
         {
             Id = 2401,
@@ -315,7 +315,7 @@ public class MenuSeedData : IEntitySeedData<Menu>
             Sort = 991,
             Status = Status.Valid,
         });
-        
+
         initList.Add(new Menu()
         {
             Id = 2501,
@@ -329,7 +329,7 @@ public class MenuSeedData : IEntitySeedData<Menu>
             Sort = 990,
             Status = Status.Valid,
         });
-        
+
         initList.Add(new Menu()
         {
             Id = 2502,
@@ -390,7 +390,7 @@ public class MenuSeedData : IEntitySeedData<Menu>
             Sort = 984,
             Status = Status.Valid,
         });
-     
+
     }
 
 
@@ -825,7 +825,7 @@ public class MenuSeedData : IEntitySeedData<Menu>
             Sort = 993,
             Status = Status.Valid,
         });
-        
+
         initList.Add(new Menu()
         {
             Id = 108,

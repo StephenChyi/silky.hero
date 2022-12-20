@@ -10,6 +10,6 @@ public class GetPositionOutput : PositionDtoBase
     public long Id { get; set; }
 
     public DateTimeOffset CreatedTime { get; set; }
-    
+
     public DateTimeOffset? UpdatedTime { get; set; }
 }

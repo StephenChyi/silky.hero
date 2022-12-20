@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mapster;
+﻿using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Silky.Core.Extensions;
 using Silky.EntityFrameworkCore.Extensions;
@@ -10,6 +7,9 @@ using Silky.EntityFrameworkCore.Repositories;
 using Silky.Log.Application.Contracts.AuditLogging;
 using Silky.Log.Application.Contracts.AuditLogging.Dtos;
 using Silky.Log.Domain.AuditLogging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Silky.Log.Application.AuditLogging;
 
