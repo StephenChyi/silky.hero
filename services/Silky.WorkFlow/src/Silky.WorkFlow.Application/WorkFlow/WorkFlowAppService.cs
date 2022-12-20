@@ -10,27 +10,30 @@ namespace Silky.WorkFlow.Application.WorkFlow
     {
         private readonly IWorkFlowNodeDomainService _workFlowDomainService;
         private readonly IFlowNodeDomainService _flowNodeDomainService;
-        public WorkFlowAppService(IWorkFlowNodeDomainService workFlowDomainService, IFlowNodeDomainService flowNodeDomainService)
+        private readonly INodeActionResultDomainService _nodeActionResultDomainService;
+        public WorkFlowAppService(IWorkFlowNodeDomainService workFlowDomainService, IFlowNodeDomainService flowNodeDomainService, INodeActionResultDomainService nodeActionResultDomainService)
         {
             _workFlowDomainService = workFlowDomainService;
             _flowNodeDomainService = flowNodeDomainService;
+            _nodeActionResultDomainService = nodeActionResultDomainService;
         }
 
         public async Task CreateAsync(long proofId, string businessCategoryCode)
         {
-            //获得业务所有流程
-            var flowNodes = await _flowNodeDomainService.GetFlowNodesAsync(businessCategoryCode);
             List<WorkFlowNode> workFlowNodes = new();
-            //拼装单据流
-            var startFlowNode = flowNodes.ElementAt(0);
-            var workFlowNode = startFlowNode.Adapt<WorkFlowNode>();
-            workFlowNodes.Add(workFlowNode);
-            workFlowNode.Id = 0;
-            workFlowNode.ProofId = proofId;
-            workFlowNode.PreviousId = 0;
-            workFlowNode.NodeStatus = WorkFlowNodeStatus.Doing;
-            //业务数据比对节点问题和答案 直接拼装下一步
+            List<WorkFlowNodeActionResult> workFlowNodeActionResults = new();
+            //获得业务开始节点
+            var startNode = await _flowNodeDomainService.GetStartFlowNodesAsync(businessCategoryCode);
+            //获取节点所有动作
+            var acts = await _nodeActionResultDomainService.GetPrevNodeActionResultsAsync(new long[] { startNode.Id }, businessCategoryCode);
+            
+            //拼装单据流            
+            var workFlowstartNode = startNode.Adapt<WorkFlowNode>();
+            workFlowNodes.Add(workFlowstartNode);
+            
 
+            //业务数据比对节点问题和答案 直接拼装下一步
+            workFlowNodes.ForEach(w => w.ProofId = proofId);
             await _workFlowDomainService.CreateAsync(workFlowNodes.ToArray());
         }
 

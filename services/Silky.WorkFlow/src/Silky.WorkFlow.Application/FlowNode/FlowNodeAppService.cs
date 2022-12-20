@@ -8,16 +8,17 @@ namespace Silky.WorkFlow.Application.FlowNode
     public class FlowNodeAppService : IFlowNodeAppService
     {
         private readonly IFlowNodeDomainService _flowNodeDomainService;
-        public FlowNodeAppService(IFlowNodeDomainService flowNodeDomainService)
+        private readonly INodeActionResultDomainService _nodeActionResultDomainService;
+        public FlowNodeAppService(IFlowNodeDomainService flowNodeDomainService, INodeActionResultDomainService nodeActionResultDomainService)
         {
             _flowNodeDomainService = flowNodeDomainService;
+            _nodeActionResultDomainService = nodeActionResultDomainService;
         }
 
         public Task CreateAsync(CreateFlowNodeInPut flowNode)
         {
             List<Domain.FlowNode> nodes = new();
             List<NodeActionResult> results = new();
-
             var startDto = flowNode.StartNode;
             var startNode = startDto.Adapt<Domain.FlowNode>();
             long id = 1;
@@ -27,7 +28,6 @@ namespace Silky.WorkFlow.Application.FlowNode
             nodes.Add(startNode);
             long actId = 0;
             BreakFlowNodeTree(actId, id, nodes, results, startNode, startDto.NextNodes);
-            //BuildFlowNodeTree(startNode, flowNode.BusinessCategoryCode, startDto.NextNodes);
             return _flowNodeDomainService.CreateAsync(nodes.ToArray(), results.ToArray());
         }
 
@@ -89,40 +89,61 @@ namespace Silky.WorkFlow.Application.FlowNode
 
         public async Task<GetFlowNodeOutPut> GetBusinessFlowAsync(string businessCategoryCode)
         {
-            var nodes = await _flowNodeDomainService.GetFlowNodesAsync(businessCategoryCode);
+            //业务开始节点
+            var startNode = await _flowNodeDomainService.GetStartFlowNodesAsync(businessCategoryCode);
+            //所有节点动作
+            var nodeIds = await _flowNodeDomainService.GetFlowNodeIdsAsync(businessCategoryCode);
+            var acts = await _nodeActionResultDomainService.GetPrevNodeActionResultsAsync(nodeIds.ToArray(), businessCategoryCode);
             GetFlowNodeOutPut dto = new();
-            if (nodes.Any())
+            if (startNode != null)
             {
-                var startNode = nodes.FirstOrDefault(n => n.StepNo == 0);
-                if (startNode != null)
-                {
-                    dto.BusinessCategoryCode = startNode.BusinessCategoryCode;
-                    dto.StartNode = BuildFlowNodeTreeDto(startNode, nodes);
-                }
+                //拼装节点
+                dto.BusinessCategoryCode = startNode.BusinessCategoryCode;
+                dto.StartNode = startNode.Adapt<FlowNodeOutPut>();
+                BuildFlowNodeTreeDto(startNode.Id, acts.ToList(), dto.StartNode);
             }
             return dto;
         }
-        private FlowNodeOutPut BuildFlowNodeTreeDto(Domain.FlowNode node, IEnumerable<Domain.FlowNode> nodes)
+
+        private void BuildFlowNodeTreeDto(long prevFlowNodeId, List<NodeActionResult> acts, FlowNodeOutPut prevFlowNodeDto)
         {
-            var nextNodes = node.NextNodes;
-            var nodeDto = node.Adapt<FlowNodeOutPut>();
-            if (nextNodes != null && nextNodes.Count > 0)
+            var currentActs = acts.Where(a => a.PrevFlowNodeId == prevFlowNodeId).ToList();
+            if (currentActs != null && currentActs.Any())
             {
-                List<NodeActionResultOutPut> nextNodeDtos = new();
-                foreach (var nextNode in nextNodes)
+                List<NodeActionResultOutPut> nextNodes = new();
+                foreach (var currentAct in currentActs)
                 {
-                    NodeActionResultOutPut nextNodeDto = new();
-                    nextNodeDtos.Add(nextNodeDto);
-                    nextNodeDto.NodeAction = nextNode.NodeAction;
-                    var nextChild = nodes.FirstOrDefault(n => n.Id == nextNode.FlowNodeId);
-                    if (nextChild != null)
-                    {
-                        BuildFlowNodeTreeDto(nextChild, nodes);
-                    }
+                    var currentActDto = currentAct.Adapt<NodeActionResultOutPut>();
+                    nextNodes.Add(currentActDto);
+                    BuildFlowNodeTreeDto(currentAct.FlowNodeId, acts, currentActDto.FlowNode);
                 }
-                nodeDto.NextNodes = nextNodeDtos.ToArray();
+                prevFlowNodeDto.NextNodes = nextNodes.ToArray();
             }
-            return nodeDto;
         }
+
+
+
+        //private FlowNodeOutPut BuildFlowNodeTreeDto(Domain.FlowNode node, IEnumerable<Domain.FlowNode> nodes)
+        //{
+        //    var nextNodes = node.NextNodes;
+        //    var nodeDto = node.Adapt<FlowNodeOutPut>();
+        //    if (nextNodes != null && nextNodes.Count > 0)
+        //    {
+        //        List<NodeActionResultOutPut> nextNodeDtos = new();
+        //        foreach (var nextNode in nextNodes)
+        //        {
+        //            NodeActionResultOutPut nextNodeDto = new();
+        //            nextNodeDtos.Add(nextNodeDto);
+        //            nextNodeDto.NodeAction = nextNode.NodeAction;
+        //            var nextChild = nodes.FirstOrDefault(n => n.Id == nextNode.FlowNodeId);
+        //            if (nextChild != null)
+        //            {
+        //                BuildFlowNodeTreeDto(nextChild, nodes);
+        //            }
+        //        }
+        //        nodeDto.NextNodes = nextNodeDtos.ToArray();
+        //    }
+        //    return nodeDto;
+        //}
     }
 }

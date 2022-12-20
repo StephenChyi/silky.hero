@@ -11,7 +11,7 @@ using Silky.WorkFlow.EntityFrameworkCore.DbContexts;
 namespace Silky.WorkFlow.Database.Migrations.Migrations
 {
     [DbContext(typeof(DefaultDbContext))]
-    [Migration("20221220085604_202212201655init")]
+    [Migration("20221220091246_202212201655init")]
     partial class _202212201655init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

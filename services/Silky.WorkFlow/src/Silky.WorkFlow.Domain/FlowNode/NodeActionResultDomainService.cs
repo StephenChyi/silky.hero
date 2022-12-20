@@ -1,4 +1,5 @@
-﻿using Silky.EntityFrameworkCore.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Silky.EntityFrameworkCore.Repositories;
 
 namespace Silky.WorkFlow.Domain
 {
@@ -9,6 +10,16 @@ namespace Silky.WorkFlow.Domain
         public NodeActionResultDomainService(IRepository<NodeActionResult> nodeActionResultRepository)
         {
             NodeActionResultRepository = nodeActionResultRepository;
+        }
+
+        public async Task<ICollection<NodeActionResult>> GetPrevNodeActionResultsAsync(long[] prevFlowNodeIds, string businessCategoryCode)
+        {
+            return await NodeActionResultRepository
+                 .AsQueryable(false)
+                 .AsNoTracking()
+                 .Include(r => r.FlowNode)
+                 .Where(r => r.BusinessCategoryCode == businessCategoryCode && prevFlowNodeIds.Contains(r.PrevFlowNodeId))
+                 .ToListAsync();
         }
     }
 }
