@@ -26,6 +26,7 @@ namespace Silky.WorkFlow.Domain
             entityBuilder
                .Property(n => n.FlowNodeId)
                .IsRequired()
+               .HasDefaultValue(1)
                .HasColumnName(nameof(NodeActionResult.FlowNodeId));
 
             entityBuilder

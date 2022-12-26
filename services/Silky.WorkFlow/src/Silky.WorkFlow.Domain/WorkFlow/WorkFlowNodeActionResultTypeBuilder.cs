@@ -13,9 +13,9 @@ namespace Silky.WorkFlow.Domain
             entityBuilder.ConfigureByConvention();
 
             entityBuilder
-               .Property(wr => wr.WorkFlowId)
+               .Property(wr => wr.WorkFlowNodeId)
                .IsRequired()
-               .HasColumnName(nameof(WorkFlowNodeActionResult.WorkFlowId));
+               .HasColumnName(nameof(WorkFlowNodeActionResult.WorkFlowNodeId));
 
             entityBuilder
                .Property(wr => wr.ProofId)

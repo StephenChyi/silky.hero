@@ -26,11 +26,31 @@ namespace Silky.WorkFlow.Application.WorkFlow
             var startNode = await _flowNodeDomainService.GetStartFlowNodesAsync(businessCategoryCode);
             //获取节点所有动作
             var acts = await _nodeActionResultDomainService.GetPrevNodeActionResultsAsync(new long[] { startNode.Id }, businessCategoryCode);
-            
+
             //拼装单据流            
             var workFlowstartNode = startNode.Adapt<WorkFlowNode>();
             workFlowNodes.Add(workFlowstartNode);
-            
+
+            //获取业务数据
+
+            Type type = workFlowstartNode.GetType();
+
+            var field = type.GetField("");
+            if (field != null)
+            {
+                var fType = field.GetType();
+
+                var s = fType.Name;
+
+                field.GetValue(workFlowstartNode);
+                //var s= field.PropertyType;
+            }
+
+            var prop = type.GetProperty("");
+            if (prop != null)
+            {
+                var s = prop.PropertyType.Name;
+            }
 
             //业务数据比对节点问题和答案 直接拼装下一步
             workFlowNodes.ForEach(w => w.ProofId = proofId);
@@ -64,7 +84,7 @@ namespace Silky.WorkFlow.Application.WorkFlow
                     WorkFlowNodeActionResultOutput nextNodeDto = new();
                     nextNodeDtos.Add(nextNodeDto);
                     nextNodeDto.NodeAction = nextNode.NodeAction;
-                    var nextChild = nodes.FirstOrDefault(n => n.Id == nextNode.WorkFlowId);
+                    var nextChild = nodes.FirstOrDefault(n => n.Id == nextNode.WorkFlowNodeId);
                     if (nextChild != null)
                     {
                         BuildWorkFlowNodeTree(nextChild, nodes);

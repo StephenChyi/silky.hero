@@ -15,8 +15,6 @@ namespace Silky.WorkFlow.Domain
                 FlowNodeCode = "0",
                 FlowNodeName = "终节点",
                 NodeTypeId = 1,
-                NodeVariable = string.Empty,
-                NodeValue = string.Empty,
                 StepNo = -1
             });
             return initFlowNodes;

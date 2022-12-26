@@ -6,11 +6,11 @@ using Silky.WorkFlow.Domain.Shared;
 
 namespace Silky.WorkFlow.Domain;
 
-public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
+public class WorkFlowNodeTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
 {
     public void Configure(EntityTypeBuilder<WorkFlowNode> entityBuilder, DbContext dbContext, Type dbContextLocator)
     {
-        entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "WorkFlow", WorkFlowNodeDbProperties.DbSchema);
+        entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "WorkFlowNode", WorkFlowNodeDbProperties.DbSchema);
         entityBuilder.ConfigureByConvention();
 
         entityBuilder
@@ -42,18 +42,6 @@ public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .HasColumnName(nameof(WorkFlowNode.NodeTypeId));
 
         entityBuilder
-           .Property(w => w.NodeVariable)
-           .IsRequired()
-           .HasMaxLength(FlowNodeConsts.MaxNameLength)
-           .HasColumnName(nameof(WorkFlowNode.NodeVariable));
-
-        entityBuilder
-          .Property(w => w.NodeValue)
-          .IsRequired()
-          .HasMaxLength(FlowNodeConsts.MaxNameLength)
-          .HasColumnName(nameof(WorkFlowNode.NodeValue));
-
-        entityBuilder
           .Property(w => w.StepNo)
           .IsRequired()
           .HasColumnName(nameof(WorkFlowNode.StepNo));
@@ -70,7 +58,11 @@ public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .HasColumnName(nameof(WorkFlowNode.PreviousId));
 
         entityBuilder.HasMany(w => w.NextFlowNodes)
-           .WithOne(w => w.WorkFlow)
-           .HasForeignKey(w => w.WorkFlowId);
+           .WithOne(w => w.WorkFlowNode)
+           .HasForeignKey(w => w.WorkFlowNodeId);
+
+        entityBuilder.HasMany(w => w.NodeCalculations)
+           .WithOne(w => w.WorkFlowNode)
+           .HasForeignKey(w => w.WorkFlowNodeId);
     }
 }

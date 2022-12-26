@@ -18,5 +18,7 @@ namespace Silky.WorkFlow.EntityFrameworkCore.DbContexts
         public DbSet<NodeActionResult> NodeActionResults { get; set; }
         public DbSet<WorkFlowNodeActionResult> WorkFlowNodeActionResults { get; set; }
         public DbSet<NodeType> NodeTypes { get; set; }
+        public DbSet<NodeCalculation> NodeCalculations { get; set; }
+
     }
 }

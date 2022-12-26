@@ -8,7 +8,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 上一节点
         /// </summary>
-        public long PrevWorkFlowId { get; set; }
+        public long PrevWorkFlowNodeId { get; set; }
 
         /// <summary>
         /// 
@@ -28,11 +28,11 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 
         /// </summary>
-        public long WorkFlowId { get; set; }
+        public long WorkFlowNodeId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual WorkFlowNode WorkFlow { get; set; }
+        public virtual WorkFlowNode WorkFlowNode { get; set; }
     }
 }

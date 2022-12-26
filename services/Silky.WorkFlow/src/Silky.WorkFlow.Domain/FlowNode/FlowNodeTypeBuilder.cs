@@ -36,18 +36,6 @@ public class FlowNodeTypeBuilder : IEntityTypeBuilder<FlowNode>
            .HasColumnName(nameof(FlowNode.NodeTypeId));
 
         entityBuilder
-           .Property(f => f.NodeVariable)
-           .IsRequired()
-           .HasMaxLength(FlowNodeConsts.MaxNameLength)
-           .HasColumnName(nameof(FlowNode.NodeVariable));
-
-        entityBuilder
-           .Property(f => f.NodeValue)
-           .IsRequired()
-           .HasMaxLength(FlowNodeConsts.MaxNameLength)
-           .HasColumnName(nameof(FlowNode.NodeValue));
-
-        entityBuilder
            .Property(f => f.StepNo)
            .IsRequired()
            .HasColumnName(nameof(FlowNode.StepNo));
@@ -55,5 +43,9 @@ public class FlowNodeTypeBuilder : IEntityTypeBuilder<FlowNode>
         entityBuilder.HasMany(f => f.NextNodes)
            .WithOne(f => f.FlowNode)
            .HasForeignKey(n => n.FlowNodeId);
+
+        entityBuilder.HasMany(f => f.NodeCalculations)
+            .WithOne(f => f.FlowNode)
+            .HasForeignKey(f => f.FlowNodeId);
     }
 }
