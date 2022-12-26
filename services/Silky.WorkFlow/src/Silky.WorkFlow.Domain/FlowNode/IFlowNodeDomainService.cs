@@ -7,8 +7,9 @@ namespace Silky.WorkFlow.Domain
     {
         IRepository<FlowNode> FlowNodeRepository { get; }
         Task CreateAsync(FlowNode[] flowNodes, NodeActionResult[] nodeActionResults);
-        Task<FlowNode> GetStartFlowNodesAsync(string businessCategoryCode);
+        Task<ICollection<FlowNode>> GetFlowNodeByIdAsync(long id);
+        Task<ICollection<FlowNode>> GetStartFlowNodeAsync(string businessCategoryCode);
         Task<ICollection<long>> GetFlowNodeIdsAsync(string businessCategoryCode);
-        Task<ICollection<FlowNode>> GetFlowNodeByIdsAsync(long[] ids, string businessCategoryCode);
+        Task<ICollection<FlowNode>> GetFlowNodesByIdsAsync(long[] ids, string businessCategoryCode);
     }
 }

@@ -22,9 +22,20 @@ namespace Silky.WorkFlow.Domain
             await NodeActionResults.InsertAsync(nodeActionResults);
         }
 
-        public async Task<FlowNode> GetStartFlowNodesAsync(string businessCategoryCode)
+        public async Task<ICollection<FlowNode>> GetFlowNodeByIdAsync(long id)
         {
-            return await FlowNodeRepository.FirstOrDefaultAsync(f => f.BusinessCategoryCode == businessCategoryCode && f.StepNo == 0);
+            return await FlowNodeRepository
+                 .Include(f => f.NodeCalculations)
+                 .Where(f => f.Id == id)
+                 .ToListAsync();
+        }
+
+        public async Task<ICollection<FlowNode>> GetStartFlowNodeAsync(string businessCategoryCode)
+        {
+            return await FlowNodeRepository
+                   .Include(f => f.NodeCalculations)
+                   .Where(f => f.BusinessCategoryCode == businessCategoryCode && f.StepNo == 0)
+                   .ToListAsync();
         }
 
         public async Task<ICollection<long>> GetFlowNodeIdsAsync(string businessCategoryCode)
@@ -32,7 +43,7 @@ namespace Silky.WorkFlow.Domain
             return await FlowNodeRepository.AsQueryable(false).Where(f => f.BusinessCategoryCode == businessCategoryCode).Select(f => f.Id).ToListAsync();
         }
 
-        public async Task<ICollection<FlowNode>> GetFlowNodeByIdsAsync(long[] ids, string businessCategoryCode)
+        public async Task<ICollection<FlowNode>> GetFlowNodesByIdsAsync(long[] ids, string businessCategoryCode)
         {
             return await FlowNodeRepository.AsQueryable(false).AsNoTracking().Where(f => ids.Contains(f.Id) && f.BusinessCategoryCode == businessCategoryCode).ToListAsync();
         }

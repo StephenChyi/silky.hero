@@ -40,28 +40,30 @@ public class WorkFlowNodeTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .Property(w => w.NodeTypeId)
           .IsRequired()
           .HasColumnName(nameof(WorkFlowNode.NodeTypeId));
-
+        entityBuilder
+          .Property(w => w.NodeVariable)
+          .IsRequired()
+          .HasMaxLength(WorkFlowNodeConsts.MaxNameLength)
+          .HasColumnName(nameof(WorkFlowNode.NodeVariable));
+        entityBuilder
+          .Property(w => w.NodeValue)
+          .IsRequired()
+          .HasMaxLength(WorkFlowNodeConsts.MaxCodeLength)
+          .HasColumnName(nameof(WorkFlowNode.NodeValue));
         entityBuilder
           .Property(w => w.StepNo)
           .IsRequired()
           .HasColumnName(nameof(WorkFlowNode.StepNo));
-
         entityBuilder
           .Property(w => w.NodeStatus)
           .IsRequired()
           .HasDefaultValue(WorkFlowNodeStatus.Incoming)
           .HasColumnName(nameof(WorkFlowNode.NodeStatus));
-
         entityBuilder
           .Property(w => w.PreviousId)
           .IsRequired()
           .HasColumnName(nameof(WorkFlowNode.PreviousId));
-
         entityBuilder.HasMany(w => w.NextFlowNodes)
-           .WithOne(w => w.WorkFlowNode)
-           .HasForeignKey(w => w.WorkFlowNodeId);
-
-        entityBuilder.HasMany(w => w.NodeCalculations)
            .WithOne(w => w.WorkFlowNode)
            .HasForeignKey(w => w.WorkFlowNodeId);
     }

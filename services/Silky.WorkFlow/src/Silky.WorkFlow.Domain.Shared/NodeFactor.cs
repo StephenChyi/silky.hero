@@ -2,11 +2,24 @@
 {
     public enum NodeFactor
     {
-        Less,//<小于
-        Greater,//>大于
-        Equal,//=等于
-        Notequal,//!=不等于
-        Even,//&&且
-        Or//||或
+        /// <summary>
+        /// 小于 <
+        /// </summary>
+        Less,
+
+        /// <summary>
+        /// 大于 >
+        /// </summary>
+        Greater,
+
+        /// <summary>
+        /// 等于 ==
+        /// </summary>
+        Equal,
+
+        /// <summary>
+        /// 不等于 !=
+        /// </summary>
+        Notequal
     }
 }

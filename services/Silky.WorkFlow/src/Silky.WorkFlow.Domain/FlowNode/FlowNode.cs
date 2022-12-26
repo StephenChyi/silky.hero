@@ -33,9 +33,9 @@ namespace Silky.WorkFlow.Domain
         public virtual NodeType NodeType { get; protected set; }
 
         /// <summary>
-        /// 流程计算节点
+        /// 节点计算集合
         /// </summary>
-        public virtual ICollection<NodeCalculation> NodeCalculations { get; protected set; }
+        public virtual ICollection<NodeCalculation> NodeCalculations { get; set; }
 
         /// <summary>
         /// 步骤编号

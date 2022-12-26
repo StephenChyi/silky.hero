@@ -44,24 +44,17 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         public long NodeTypeId { get; set; }
 
         /// <summary>
-        /// 节点问题
+        /// 节点计算集合
         /// </summary>
-        [Required(ErrorMessage = "节点问题不允许为空")]
-        public string NodeVariable { get; set; }
-
-        /// <summary>
-        /// 节点答案
-        /// </summary>
-        [Required(ErrorMessage = "节点答案不允许为空")]
-        public string NodeValue { get; set; }
+        public NodeCalculationInput[] NodeCalculations { get; set; }
 
         /// <summary>
         /// 下一节点
         /// </summary>        
-        public NodeActionResultOutput[] NextNodes { get; set; }
+        public NodeActionResultInput[] NextNodes { get; set; }
     }
 
-    public class NodeActionResultOutput
+    public class NodeActionResultInput
     {
         /// <summary>
         /// 节点动作
@@ -72,5 +65,33 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         /// 动作节点
         /// </summary>
         public NodeInPut NextNode { get; set; }
+    }
+
+    public class NodeCalculationInput
+    {
+        /// <summary>
+        /// 节点问题
+        /// </summary>
+        public string NodeVariable { get; set; }
+
+        /// <summary>
+        /// 节点条件
+        /// </summary>
+        public NodeFactor NodeFactor { get; set; }
+
+        /// <summary>
+        /// 节点答案
+        /// </summary>
+        public string NodeValue { get; set; }
+
+        /// <summary>
+        /// 节点串联
+        /// </summary>
+        public string NodeInseries { get; set; }
+
+        /// <summary>
+        /// 步骤编号
+        /// </summary>
+        public int NodeStepNo { get; set; }
     }
 }

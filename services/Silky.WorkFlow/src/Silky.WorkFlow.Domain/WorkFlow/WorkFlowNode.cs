@@ -39,9 +39,14 @@ namespace Silky.WorkFlow.Domain
         public virtual NodeType NodeType { get; protected set; }
 
         /// <summary>
-        /// 流程计算节点
+        /// 节点问题
         /// </summary>
-        public virtual ICollection<WorkFlowNodeCalculation> NodeCalculations { get; protected set; }
+        public string NodeVariable { get; set; }
+       
+        /// <summary>
+        /// 节点答案
+        /// </summary>
+        public string NodeValue { get; set; }
 
         /// <summary>
         /// 步骤编号
@@ -61,6 +66,6 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 下一节点
         /// </summary>
-        public virtual ICollection<WorkFlowNodeActionResult> NextFlowNodes { get; protected set; }
+        public virtual ICollection<WorkFlowNodeActionResult> NextFlowNodes { get; set; }
     }
 }

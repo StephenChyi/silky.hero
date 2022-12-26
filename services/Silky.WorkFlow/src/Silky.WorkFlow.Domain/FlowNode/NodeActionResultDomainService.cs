@@ -18,6 +18,7 @@ namespace Silky.WorkFlow.Domain
                  .AsQueryable(false)
                  .AsNoTracking()
                  .Include(r => r.FlowNode)
+                 .Include(r => r.FlowNode.NodeCalculations)
                  .Where(r => r.BusinessCategoryCode == businessCategoryCode && prevFlowNodeIds.Contains(r.PrevFlowNodeId))
                  .ToListAsync();
         }
