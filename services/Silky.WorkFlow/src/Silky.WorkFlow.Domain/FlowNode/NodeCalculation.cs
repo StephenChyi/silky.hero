@@ -27,7 +27,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 节点串联
         /// </summary>
-        public string NodeInseries { get; set; }
+        public NodeInseries NodeInseries { get; set; }
 
         /// <summary>
         /// 步骤编号

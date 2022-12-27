@@ -22,7 +22,7 @@ namespace Silky.WorkFlow.Application.FlowNode
             List<NodeCalculation> calculations = new();
             var startDto = flowNode.StartNode;
             var startNode = startDto.Adapt<Domain.FlowNode>();
-            long id = 1;
+            long id = 200;
             startNode.Id = id;
             startNode.BusinessCategoryCode = flowNode.BusinessCategoryCode;
             startNode.StepNo = 0;
@@ -30,12 +30,15 @@ namespace Silky.WorkFlow.Application.FlowNode
             if (startDto.NodeCalculations != null)
             {
                 calculations.AddRange(startDto.NodeCalculations.Adapt<NodeCalculation[]>());
-                calculations.ForEach(c => c.FlowNodeId = startNode.Id);
+                calculations.ForEach(c =>
+                {
+                    c.FlowNodeId = startNode.Id;
+                });
             }
             nodes.Add(startNode);
-            long actId = 0;
+            long actId = 300;
             BreakFlowNodeTree(actId, id, nodes, results, calculations, startNode, startDto.NextNodes);
-            return _flowNodeDomainService.CreateAsync(nodes.ToArray(), results.ToArray());
+            return _flowNodeDomainService.CreateAsync(nodes.ToArray(), results.ToArray(), calculations.ToArray());
         }
 
         //树状拆解为平表
@@ -103,8 +106,7 @@ namespace Silky.WorkFlow.Application.FlowNode
         {
             GetFlowNodeOutPut dto = new();
             //业务开始节点
-            var nodes = await _flowNodeDomainService.GetStartFlowNodeAsync(businessCategoryCode);
-            var startNode = nodes.ToList()[0];
+            var startNode = await _flowNodeDomainService.GetStartFlowNodeAsync(businessCategoryCode);
             if (startNode != null)
             {
                 //所有节点动作

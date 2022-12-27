@@ -8,34 +8,35 @@ namespace Silky.WorkFlow.Domain
     {
         public IRepository<FlowNode> FlowNodeRepository { get; }
         public IRepository<NodeActionResult> NodeActionResults { get; }
+        public IRepository<NodeCalculation> NodeCalculations { get; }
 
-        public FlowNodeDomainService(IRepository<FlowNode> flowNodeRepository, IRepository<NodeActionResult> nodeActionResults)
+        public FlowNodeDomainService(IRepository<FlowNode> flowNodeRepository, IRepository<NodeActionResult> nodeActionResults, IRepository<NodeCalculation> nodeCalculations)
         {
             FlowNodeRepository = flowNodeRepository;
             NodeActionResults = nodeActionResults;
+            NodeCalculations = nodeCalculations;
         }
 
         [UnitOfWork]
-        public async Task CreateAsync(FlowNode[] flowNodes, NodeActionResult[] nodeActionResults)
+        public async Task CreateAsync(FlowNode[] flowNodes, NodeActionResult[] nodeActionResults, NodeCalculation[] nodeCalculations)
         {
             await FlowNodeRepository.InsertAsync(flowNodes);
-            await NodeActionResults.InsertAsync(nodeActionResults);
+            await NodeActionResults.InsertAsync(nodeActionResults);            
+            await NodeCalculations.InsertAsync(nodeCalculations);
         }
 
-        public async Task<ICollection<FlowNode>> GetFlowNodeByIdAsync(long id)
+        public async Task<FlowNode> GetFlowNodeByIdAsync(long id)
         {
             return await FlowNodeRepository
                  .Include(f => f.NodeCalculations)
-                 .Where(f => f.Id == id)
-                 .ToListAsync();
+                 .FirstOrDefaultAsync(f => f.Id == id);
         }
 
-        public async Task<ICollection<FlowNode>> GetStartFlowNodeAsync(string businessCategoryCode)
+        public async Task<FlowNode> GetStartFlowNodeAsync(string businessCategoryCode)
         {
             return await FlowNodeRepository
                    .Include(f => f.NodeCalculations)
-                   .Where(f => f.BusinessCategoryCode == businessCategoryCode && f.StepNo == 0)
-                   .ToListAsync();
+                   .FirstOrDefaultAsync(f => f.BusinessCategoryCode == businessCategoryCode && f.StepNo == 0);
         }
 
         public async Task<ICollection<long>> GetFlowNodeIdsAsync(string businessCategoryCode)

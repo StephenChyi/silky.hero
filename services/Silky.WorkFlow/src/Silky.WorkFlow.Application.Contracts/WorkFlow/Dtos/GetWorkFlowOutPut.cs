@@ -43,9 +43,14 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
         public string NodeTypeName { get; set; }
 
         /// <summary>
-        /// 流程计算节点
-        /// </summary>      
-        public WorkFlowNodeCalculationOutput[] NodeCalculations { get; set; }
+        /// 节点问题
+        /// </summary>
+        public string NodeVariable { get; set; }
+
+        /// <summary>
+        /// 节点答案
+        /// </summary>
+        public string NodeValue { get; set; }
 
         /// <summary>
         /// 步骤编号
@@ -80,34 +85,5 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
         /// 下一节点
         /// </summary>
         public WorkFlowNodeOutput WorkFlowNode { get; set; }
-    }
-
-    public class WorkFlowNodeCalculationOutput
-    {
-        public long Id { get; set; }
-        /// <summary>
-        /// 节点问题
-        /// </summary>
-        public string NodeVariable { get; set; }
-
-        /// <summary>
-        /// 节点条件
-        /// </summary>
-        public NodeFactor NodeFactor { get; set; }
-
-        /// <summary>
-        /// 节点答案
-        /// </summary>
-        public string NodeValue { get; set; }
-
-        /// <summary>
-        /// 节点串联
-        /// </summary>
-        public string NodeInseries { get; set; }
-
-        /// <summary>
-        /// 步骤编号
-        /// </summary>
-        public int NodeStepNo { get; set; }
     }
 }
