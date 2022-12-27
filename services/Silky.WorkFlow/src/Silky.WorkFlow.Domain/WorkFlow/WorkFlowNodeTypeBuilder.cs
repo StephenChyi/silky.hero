@@ -14,17 +14,6 @@ public class WorkFlowNodeTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
         entityBuilder.ConfigureByConvention();
 
         entityBuilder
-          .Property(w => w.ProofId)
-          .IsRequired()
-          .HasColumnName(nameof(WorkFlowNode.ProofId));
-
-        entityBuilder
-          .Property(w => w.BusinessCategoryCode)
-          .IsRequired()
-          .HasMaxLength(BusinessCategoryConsts.MaxCodeLength)
-          .HasColumnName(nameof(WorkFlowNode.BusinessCategoryCode));
-
-        entityBuilder
           .Property(w => w.FlowNodeCode)
           .IsRequired()
           .HasMaxLength(FlowNodeConsts.MaxCodeLength)
@@ -37,19 +26,22 @@ public class WorkFlowNodeTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .HasColumnName(nameof(WorkFlowNode.FlowNodeName));
 
         entityBuilder
-          .Property(w => w.NodeTypeId)
+          .Property(w => w.NodeType)
           .IsRequired()
-          .HasColumnName(nameof(WorkFlowNode.NodeTypeId));
+          .HasColumnName(nameof(WorkFlowNode.NodeType));
+
         entityBuilder
           .Property(w => w.NodeVariable)
           .IsRequired()
           .HasMaxLength(WorkFlowNodeConsts.MaxNameLength)
           .HasColumnName(nameof(WorkFlowNode.NodeVariable));
+
         entityBuilder
           .Property(w => w.NodeValue)
           .IsRequired()
           .HasMaxLength(WorkFlowNodeConsts.MaxCodeLength)
           .HasColumnName(nameof(WorkFlowNode.NodeValue));
+
         entityBuilder
           .Property(w => w.StepNo)
           .IsRequired()
@@ -59,12 +51,5 @@ public class WorkFlowNodeTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .IsRequired()
           .HasDefaultValue(WorkFlowNodeStatus.Incoming)
           .HasColumnName(nameof(WorkFlowNode.NodeStatus));
-        entityBuilder
-          .Property(w => w.PreviousId)
-          .IsRequired()
-          .HasColumnName(nameof(WorkFlowNode.PreviousId));
-        entityBuilder.HasMany(w => w.NextFlowNodes)
-           .WithOne(w => w.WorkFlowNode)
-           .HasForeignKey(w => w.WorkFlowNodeId);
     }
 }

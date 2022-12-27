@@ -1,6 +1,6 @@
 ﻿namespace Silky.WorkFlow.Domain.Shared
 {
-    public enum NodeAction
+    public enum ActionType
     {
         /// <summary>
         /// 拒绝

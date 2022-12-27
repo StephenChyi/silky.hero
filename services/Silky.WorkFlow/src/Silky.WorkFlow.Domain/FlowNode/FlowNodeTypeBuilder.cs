@@ -31,18 +31,14 @@ public class FlowNodeTypeBuilder : IEntityTypeBuilder<FlowNode>
            .HasColumnName(nameof(FlowNode.FlowNodeName));
 
         entityBuilder
-           .Property(f => f.NodeTypeId)
+           .Property(f => f.NodeType)
            .IsRequired()
-           .HasColumnName(nameof(FlowNode.NodeTypeId));
+           .HasColumnName(nameof(FlowNode.NodeType));
 
         entityBuilder
            .Property(f => f.StepNo)
            .IsRequired()
            .HasColumnName(nameof(FlowNode.StepNo));
-
-        entityBuilder.HasMany(f => f.NextNodes)
-           .WithOne(f => f.FlowNode)
-           .HasForeignKey(n => n.FlowNodeId);
 
         entityBuilder.HasMany(f => f.NodeCalculations)
             .WithOne(f => f.FlowNode)

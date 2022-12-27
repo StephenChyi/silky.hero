@@ -3,10 +3,7 @@ using Silky.WorkFlow.Domain.Shared;
 
 namespace Silky.WorkFlow.Domain
 {
-    /// <summary>
-    /// 业务流程节点
-    /// </summary>
-    public class FlowNode : Entity<long>
+    public class FlowLine : Entity<long>
     {
         /// <summary>
         /// 业务代码
@@ -14,29 +11,24 @@ namespace Silky.WorkFlow.Domain
         public string BusinessCategoryCode { get; set; }
 
         /// <summary>
-        /// 代码
-        /// </summary>
-        public string FlowNodeCode { get; set; }
-
-        /// <summary>
         /// 名称
         /// </summary>
-        public string FlowNodeName { get; set; }
+        public string FlowLineName { get; set; }
 
         /// <summary>
-        /// 节点类型
+        /// 动作类型
         /// </summary>
-        public NodeType NodeType { get; protected set; }
+        public ActionType ActionType { get; set; }
 
         /// <summary>
-        /// 节点计算集合
+        /// 上一节点
         /// </summary>
-        public virtual ICollection<NodeCalculation> NodeCalculations { get; set; }
+        public long PrevFlowNodeId { get; set; }
 
         /// <summary>
-        /// 步骤编号
+        /// 下一节点
         /// </summary>
-        public int StepNo { get; set; }
+        public long FlowNodeId { get; set; }
 
         /// <summary>
         /// 所属流

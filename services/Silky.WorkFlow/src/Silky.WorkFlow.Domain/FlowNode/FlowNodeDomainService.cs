@@ -7,10 +7,10 @@ namespace Silky.WorkFlow.Domain
     public class FlowNodeDomainService : IFlowNodeDomainService
     {
         public IRepository<FlowNode> FlowNodeRepository { get; }
-        public IRepository<NodeActionResult> NodeActionResults { get; }
+        public IRepository<FlowLine> NodeActionResults { get; }
         public IRepository<NodeCalculation> NodeCalculations { get; }
 
-        public FlowNodeDomainService(IRepository<FlowNode> flowNodeRepository, IRepository<NodeActionResult> nodeActionResults, IRepository<NodeCalculation> nodeCalculations)
+        public FlowNodeDomainService(IRepository<FlowNode> flowNodeRepository, IRepository<FlowLine> nodeActionResults, IRepository<NodeCalculation> nodeCalculations)
         {
             FlowNodeRepository = flowNodeRepository;
             NodeActionResults = nodeActionResults;
@@ -18,7 +18,7 @@ namespace Silky.WorkFlow.Domain
         }
 
         [UnitOfWork]
-        public async Task CreateAsync(FlowNode[] flowNodes, NodeActionResult[] nodeActionResults, NodeCalculation[] nodeCalculations)
+        public async Task CreateAsync(FlowNode[] flowNodes, FlowLine[] nodeActionResults, NodeCalculation[] nodeCalculations)
         {
             await FlowNodeRepository.InsertAsync(flowNodes);
             await NodeActionResults.InsertAsync(nodeActionResults);            

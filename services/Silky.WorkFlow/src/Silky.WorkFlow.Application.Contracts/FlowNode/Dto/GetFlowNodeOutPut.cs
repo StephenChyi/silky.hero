@@ -53,7 +53,7 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         /// <summary>
         /// 节点动作
         /// </summary>
-        public NodeAction NodeAction { get; set; }
+        public ActionType NodeAction { get; set; }
 
         /// <summary>
         /// 下一节点

@@ -8,7 +8,5 @@ namespace Silky.WorkFlow.Domain
         IRepository<WorkFlowNode> WorkFlowNodeRepository { get; }
 
         Task CreateAsync(WorkFlowNode[] workFlowNodes);
-
-        Task<ICollection<WorkFlowNode>> GetWorkFlowNodesAsync(long proofId, string businessCategoryCode);
     }
 }

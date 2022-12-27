@@ -14,8 +14,8 @@ namespace Silky.WorkFlow.Application.WorkFlow
     {
         private readonly IWorkFlowNodeDomainService _workFlowDomainService;
         private readonly IFlowNodeDomainService _flowNodeDomainService;
-        private readonly INodeActionResultDomainService _nodeActionResultDomainService;
-        public WorkFlowAppService(IWorkFlowNodeDomainService workFlowDomainService, IFlowNodeDomainService flowNodeDomainService, INodeActionResultDomainService nodeActionResultDomainService)
+        private readonly IFlowLineDomainService _nodeActionResultDomainService;
+        public WorkFlowAppService(IWorkFlowNodeDomainService workFlowDomainService, IFlowNodeDomainService flowNodeDomainService, IFlowLineDomainService nodeActionResultDomainService)
         {
             _workFlowDomainService = workFlowDomainService;
             _flowNodeDomainService = flowNodeDomainService;
@@ -25,32 +25,32 @@ namespace Silky.WorkFlow.Application.WorkFlow
         public async Task CreateAsync(long proofId, string businessCategoryCode)
         {
             List<WorkFlowNode> workFlowNodes = new();
-            List<WorkFlowNodeActionResult> results = new();
-            //获得业务开始节点
-            var startNode = await _flowNodeDomainService.GetStartFlowNodeAsync(businessCategoryCode);
-            if (startNode != null)
-            {
-                //获取节点所有动作
-                var acts = await _nodeActionResultDomainService.GetPrevNodeActionResultsAsync(new long[] { startNode.Id }, businessCategoryCode);
+            //List<WorkFlowNodeActionResult> results = new();
+            ////获得业务开始节点
+            //var startNode = await _flowNodeDomainService.GetStartFlowNodeAsync(businessCategoryCode);
+            //if (startNode != null)
+            //{
+            //    //获取节点所有动作
+            //    var acts = await _nodeActionResultDomainService.GetPrevNodeActionResultsAsync(new long[] { startNode.Id }, businessCategoryCode);
 
-                //拼装单据流            
-                var workFlowstartNode = startNode.Adapt<WorkFlowNode>();
-                workFlowNodes.Add(workFlowstartNode);
-                var calculations = startNode.NodeCalculations.OrderBy(n => n.NodeStepNo).ToList();
-                //处理节点问题答案
-                Test test = new Test();//获取业务数据 proofId
-                Type type = test.GetType();
+            //    //拼装单据流            
+            //    var workFlowstartNode = startNode.Adapt<WorkFlowNode>();
+            //    workFlowNodes.Add(workFlowstartNode);
+            //    var calculations = startNode.NodeCalculations.OrderBy(n => n.NodeStepNo).ToList();
+            //    //处理节点问题答案
+            //    Test test = new Test();//获取业务数据 proofId
+            //    Type type = test.GetType();
 
-                var tuples = NodeProcess(startNode.NodeTypeId, type, test, calculations);
-                workFlowstartNode.NodeVariable = tuples.Item1;
-                workFlowstartNode.NodeValue = tuples.Item2.ToString();
-                //获取下一节点
+            //    var tuples = NodeProcess(startNode.NodeTypeId, type, test, calculations);
+            //    workFlowstartNode.NodeVariable = tuples.Item1;
+            //    workFlowstartNode.NodeValue = tuples.Item2.ToString();
+            //    //获取下一节点
 
 
 
-                workFlowNodes.ForEach(w => w.ProofId = proofId);
-                await _workFlowDomainService.CreateAsync(workFlowNodes.ToArray());
-            }
+            //    workFlowNodes.ForEach(w => w.ProofId = proofId);
+            //    await _workFlowDomainService.CreateAsync(workFlowNodes.ToArray());
+            //}
         }
 
         private Tuple<string, string> NodeProcess(long nodeType, Type type, object datum, List<NodeCalculation> calculations)
@@ -220,7 +220,7 @@ namespace Silky.WorkFlow.Application.WorkFlow
             return new Tuple<string, string>(nodeVariable, nodeValue);
         }
 
-        //private void BuildWorkFlowNodeTree(WorkFlowNode workFlowNode, List<NodeActionResult> nodeActionResults)
+        //private void BuildWorkFlowNodeTree(WorkFlowNode workFlowNode, List<ActionType> nodeActionResults)
         //{
         //    workFlowNode.NextFlowNodes = new List<WorkFlowNodeActionResult>();
 
@@ -229,39 +229,39 @@ namespace Silky.WorkFlow.Application.WorkFlow
 
         public async Task<GetWorkFlowOutPut> GetWorkFlowAsync(long proofId, string businessCategoryCode)
         {
-            var nodes = await _workFlowDomainService.GetWorkFlowNodesAsync(proofId, businessCategoryCode);
+            //var nodes = await _workFlowDomainService.GetWorkFlowNodesAsync(proofId, businessCategoryCode);
             GetWorkFlowOutPut dto = new();
-            if (nodes.Any())
-            {
-                //组装树结构            
-                var startNode = nodes.ElementAt(0);
-                dto.BusinessCategoryCode = startNode.BusinessCategoryCode;
-                dto.ProofId = startNode.ProofId;
-                dto.StartNode = BuildWorkFlowNodeTreeDto(startNode, nodes);
-            }
+            //if (nodes.Any())
+            //{
+            //    //组装树结构            
+            //    var startNode = nodes.ElementAt(0);
+            //    dto.BusinessCategoryCode = startNode.BusinessCategoryCode;
+            //    dto.ProofId = startNode.ProofId;
+            //    dto.StartNode = BuildWorkFlowNodeTreeDto(startNode, nodes);
+            //}
             return dto;
         }
 
         private WorkFlowNodeOutput BuildWorkFlowNodeTreeDto(WorkFlowNode node, IEnumerable<WorkFlowNode> nodes)
         {
-            var nextNodes = node.NextFlowNodes;
+            //var nextNodes = node.NextFlowNodes;
             var nodeDto = node.Adapt<WorkFlowNodeOutput>();
-            if (nextNodes != null && nextNodes.Count > 0)
-            {
-                List<WorkFlowNodeActionResultOutput> nextNodeDtos = new();
-                foreach (var nextNode in nextNodes)
-                {
-                    WorkFlowNodeActionResultOutput nextNodeDto = new();
-                    nextNodeDtos.Add(nextNodeDto);
-                    nextNodeDto.NodeAction = nextNode.NodeAction;
-                    var nextChild = nodes.FirstOrDefault(n => n.Id == nextNode.WorkFlowNodeId);
-                    if (nextChild != null)
-                    {
-                        BuildWorkFlowNodeTreeDto(nextChild, nodes);
-                    }
-                }
-                nodeDto.NextNodes = nextNodeDtos.ToArray();
-            }
+            //if (nextNodes != null && nextNodes.Count > 0)
+            //{
+            //    List<WorkFlowNodeActionResultOutput> nextNodeDtos = new();
+            //    foreach (var nextNode in nextNodes)
+            //    {
+            //        WorkFlowNodeActionResultOutput nextNodeDto = new();
+            //        nextNodeDtos.Add(nextNodeDto);
+            //        nextNodeDto.NodeAction = nextNode.NodeAction;
+            //        var nextChild = nodes.FirstOrDefault(n => n.Id == nextNode.WorkFlowNodeId);
+            //        if (nextChild != null)
+            //        {
+            //            BuildWorkFlowNodeTreeDto(nextChild, nodes);
+            //        }
+            //    }
+            //    nodeDto.NextNodes = nextNodeDtos.ToArray();
+            //}
             return nodeDto;
         }
     }
