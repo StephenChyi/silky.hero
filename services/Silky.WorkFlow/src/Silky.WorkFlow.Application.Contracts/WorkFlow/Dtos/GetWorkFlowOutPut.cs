@@ -4,6 +4,8 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
 {
     public class GetWorkFlowOutPut
     {
+        public long Id { get; set; }
+
         /// <summary>
         /// 单据主键
         /// </summary>
@@ -15,9 +17,48 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
         public string BusinessCategoryCode { get; set; }
 
         /// <summary>
-        /// 开始节点
+        /// 名称
         /// </summary>
-        public WorkFlowNodeOutput StartNode { get; set; }
+        public string WorkFlowName { get; set; }
+
+        /// <summary>
+        /// 上一节点
+        /// </summary>
+        public long PreviousId { get; set; }
+
+        /// <summary>
+        /// 当前节点
+        /// </summary>
+        public long CurrentId { get; set; }
+
+        /// <summary>
+        /// 下一节点
+        /// </summary>
+        public long NextId { get; set; }
+
+        /// <summary>
+        /// 当前处理人
+        /// </summary>
+        public long CurrentUserId { get; set; }
+        /// <summary>
+        /// 当前处理人
+        /// </summary>
+        public string CurrentUserName { get; set; }
+
+        /// <summary>
+        /// 工作流节点
+        /// </summary>
+        public WorkFlowNodeOutput[] WorkFlowNodes { get; set; }
+
+        /// <summary>
+        /// 工作流节点连线
+        /// </summary>
+        public WorkFlowLineOutput[] WorkFlowLines { get; set; }
+
+        /// <summary>
+        /// 工作流记录
+        /// </summary>
+        public WorkFlowLogOutput[] WorkFlowLogs { get; set; }
     }
 
     /// <summary>
@@ -38,9 +79,9 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
         public string FlowNodeName { get; set; }
 
         /// <summary>
-        ///  节点类型名称
+        /// 节点类型
         /// </summary>
-        public string NodeTypeName { get; set; }
+        public NodeType NodeType { get; set; }
 
         /// <summary>
         /// 节点问题
@@ -56,34 +97,67 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
         /// 步骤编号
         /// </summary>
         public int StepNo { get; set; }
+    }
+
+    /// <summary>
+    /// 工作流节点连线
+    /// </summary>
+    public class WorkFlowLineOutput
+    {
+        public long Id { get; set; }
 
         /// <summary>
-        /// 节点状态
+        /// 名称
         /// </summary>
-        public WorkFlowNodeStatus NodeStatus { get; set; }
+        public string WorkFlowLineName { get; set; }
 
         /// <summary>
-        /// 上一个节点ID
+        /// 上一节点
         /// </summary>
-        public long PreviousId { get; set; }
+        public long PrevWorkFlowNodeId { get; set; }
+
+        /// <summary>
+        /// 动作类型
+        /// </summary>
+        public ActionType ActionType { get; set; }
 
         /// <summary>
         /// 下一节点
-        /// </summary>        
-        public WorkFlowNodeActionResultOutput[] NextNodes { get; set; }
+        /// </summary>
+        public long WorkFlowNodeId { get; set; }
     }
 
-    public class WorkFlowNodeActionResultOutput
+    /// <summary>
+    /// 工作流记录
+    /// </summary>
+    public class WorkFlowLogOutput
     {
         public long Id { get; set; }
         /// <summary>
-        /// 节点动作
+        /// 单据主键
         /// </summary>
-        public ActionType NodeAction { get; set; }
+        public long ProofId { get; set; }
 
         /// <summary>
-        /// 下一节点
+        /// 业务代码
         /// </summary>
-        public WorkFlowNodeOutput WorkFlowNode { get; set; }
+        public string BusinessCategoryCode { get; set; }
+
+        /// <summary>
+        /// 节点Id
+        /// </summary>
+        public long WorkFlowNodeId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserName { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Memo { get; set; }
     }
 }

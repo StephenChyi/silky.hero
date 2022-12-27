@@ -26,7 +26,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 节点类型
         /// </summary>
-        public NodeType NodeType { get; protected set; }
+        public NodeType NodeType { get; set; }
 
         /// <summary>
         /// 节点计算集合

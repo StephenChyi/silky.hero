@@ -6,6 +6,16 @@ namespace Silky.WorkFlow.Domain
     public class WorkFlowLog : Entity<long>, IHasCreatedTime
     {
         /// <summary>
+        /// 单据主键
+        /// </summary>
+        public long ProofId { get; set; }
+
+        /// <summary>
+        /// 业务代码
+        /// </summary>
+        public string BusinessCategoryCode { get; set; }
+
+        /// <summary>
         /// 节点Id
         /// </summary>
         public long WorkFlowNodeId { get; set; }

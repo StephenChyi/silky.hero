@@ -1,21 +1,31 @@
 ﻿using Silky.WorkFlow.Domain.Shared;
+using System.ComponentModel.DataAnnotations;
 
-namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
+namespace Silky.WorkFlow.Application.Contracts.Flow.Dto
 {
-    public class GetFlowNodeOutPut
+    /// <summary>
+    /// 业务工作流
+    /// </summary>
+    public class CreateFlowInPut
     {
         /// <summary>
         /// 业务代码
         /// </summary>
+        [Required(ErrorMessage = "业务类型代码不允许为空")]
         public string BusinessCategoryCode { get; set; }
 
         /// <summary>
-        /// 开始节点
+        /// 流名称
         /// </summary>
-        public FlowNodeOutPut StartNode { get; set; }
+        [Required(ErrorMessage = "流名称不允许为空")]
+        public string FlowName { get; set; }
+
+        public FlowNodeInPut[] FlowNodes { get; set; }
+
+        public FlowLineInPut[] FlowLines { get; set; }
     }
 
-    public class FlowNodeOutPut
+    public class FlowNodeInPut
     {
         public long Id { get; set; }
 
@@ -30,40 +40,51 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         public string FlowNodeName { get; set; }
 
         /// <summary>
-        ///  节点类型名称
+        /// 节点类型
         /// </summary>
-        public string NodeTypeName { get; set; }
+        public NodeType NodeType { get; set; }
 
         /// <summary>
         /// 节点计算集合
         /// </summary>
-        public NodeCalculationOutPut[] NodeCalculations { get; set; }
+        public NodeCalculationInPut[] NodeCalculations { get; set; }
 
         /// <summary>
         /// 步骤编号
         /// </summary>
         public int StepNo { get; set; }
-
-        public NodeActionResultOutPut[] NextNodes { get; set; }
     }
 
-    public class NodeActionResultOutPut
+    public class FlowLineInPut
     {
-        public long Id { get; set; }
         /// <summary>
-        /// 节点动作
+        /// 业务代码
         /// </summary>
-        public ActionType NodeAction { get; set; }
+        public string BusinessCategoryCode { get; set; }
 
         /// <summary>
-        /// 下一节点
+        /// 名称
         /// </summary>
-        public FlowNodeOutPut FlowNode { get; set; }
+        public string FlowLineName { get; set; }
+
+        /// <summary>
+        /// 动作类型
+        /// </summary>
+        public ActionType ActionType { get; set; }
+
+        /// <summary>
+        /// 上一节点  
+        /// </summary>
+        public long PrevFlowNodeId { get; set; }
+
+        /// <summary>
+        /// 下一节点 
+        /// </summary>
+        public long FlowNodeId { get; set; }
     }
 
-    public class NodeCalculationOutPut
+    public class NodeCalculationInPut
     {
-        public long Id { get; set; }
         /// <summary>
         /// 节点问题
         /// </summary>
@@ -82,7 +103,7 @@ namespace Silky.WorkFlow.Application.Contracts.FlowNode.Dto
         /// <summary>
         /// 节点串联
         /// </summary>
-        public string NodeInseries { get; set; }
+        public NodeInseries NodeInseries { get; set; }
 
         /// <summary>
         /// 步骤编号
