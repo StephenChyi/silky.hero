@@ -31,12 +31,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 节点计算集合
         /// </summary>
-        public virtual ICollection<NodeCalculation> NodeCalculations { get; set; }
-
-        /// <summary>
-        /// 步骤编号
-        /// </summary>
-        public int StepNo { get; set; }
+        public virtual ICollection<NodeCalculation> NodeCalculations { get; set; } = new List<NodeCalculation>();
 
         /// <summary>
         /// 所属流

@@ -1,26 +1,21 @@
 ﻿using Mapster;
 using Silky.WorkFlow.Application.Contracts.Flow;
 using Silky.WorkFlow.Application.Contracts.Flow.Dto;
+using Silky.WorkFlow.Domain;
 
 namespace Silky.WorkFlow.Application.Flow
 {
     public class FlowAppService : IFlowAppService
     {
-
-        public FlowAppService()
+        private readonly IFlowDomainService _flowDomainService;
+        public FlowAppService(IFlowDomainService flowDomainService)
         {
-
+            _flowDomainService = flowDomainService;
         }
 
         public Task CreateAsync(CreateFlowInPut flow)
         {
-            var entity = flow.Adapt<Domain.Flow>();
-
-
-
-
-
-            return null;
+            return _flowDomainService.CreateAsync(flow.Adapt<Domain.Flow>());
         }
     }
 }

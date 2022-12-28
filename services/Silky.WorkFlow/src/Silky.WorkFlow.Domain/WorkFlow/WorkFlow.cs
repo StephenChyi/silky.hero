@@ -25,17 +25,12 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 上一节点
         /// </summary>
-        public long PreviousId { get; set; }
+        public string PreviousNodeCode { get; set; }
 
         /// <summary>
-        /// 当前节点
+        /// 当前节点代码
         /// </summary>
-        public long CurrentId { get; set; }
-
-        /// <summary>
-        /// 下一节点
-        /// </summary>
-        public long NextId { get; set; }
+        public string CurrentNodeCode { get; set; }
 
         /// <summary>
         /// 当前处理人
@@ -49,16 +44,21 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 工作流节点
         /// </summary>
-        public virtual ICollection<WorkFlowNode> WorkFlowNodes { get; protected set; }
+        public virtual ICollection<WorkFlowNode> WorkFlowNodes { get; set; }
 
         /// <summary>
         /// 工作流节点连线
         /// </summary>
-        public virtual ICollection<WorkFlowLine> WorkFlowLines { get; protected set; }     
-        
+        public virtual ICollection<WorkFlowLine> WorkFlowLines { get; set; }
+
         /// <summary>
         /// 工作流记录
         /// </summary>
-        public virtual ICollection<WorkFlowLog> WorkFlowLogs { get; protected set; }
+        public virtual ICollection<WorkFlowHistory> WorkFlowHistories { get; set; }
+
+        /// <summary>
+        /// 工作流操作日志
+        /// </summary>
+        public virtual ICollection<WorkFlowLog> WorkFlowLogs { get; set; }
     }
 }

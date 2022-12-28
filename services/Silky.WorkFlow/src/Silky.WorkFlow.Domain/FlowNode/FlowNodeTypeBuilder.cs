@@ -21,6 +21,7 @@ public class FlowNodeTypeBuilder : IEntityTypeBuilder<FlowNode>
         entityBuilder
            .Property(f => f.FlowNodeCode)
            .IsRequired()
+           .HasDefaultValue(default(Guid))
            .HasMaxLength(FlowNodeConsts.MaxCodeLength)
            .HasColumnName(nameof(FlowNode.FlowNodeCode));
 
@@ -34,11 +35,6 @@ public class FlowNodeTypeBuilder : IEntityTypeBuilder<FlowNode>
            .Property(f => f.NodeType)
            .IsRequired()
            .HasColumnName(nameof(FlowNode.NodeType));
-
-        entityBuilder
-           .Property(f => f.StepNo)
-           .IsRequired()
-           .HasColumnName(nameof(FlowNode.StepNo));
 
         entityBuilder.HasMany(f => f.NodeCalculations)
             .WithOne(f => f.FlowNode)

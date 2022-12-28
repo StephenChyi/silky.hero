@@ -1,12 +1,12 @@
 ﻿using Silky.EntityFrameworkCore.Entities;
-using Silky.EntityFrameworkCore.Extras.Entities;
+using Silky.WorkFlow.Domain.Shared;
 
 namespace Silky.WorkFlow.Domain
 {
-    public class WorkFlowLog : Entity<long>, IHasCreatedTime
+    public class WorkFlowLog : Entity<long>
     {
         /// <summary>
-        /// 单据主键
+        /// 单据主键 
         /// </summary>
         public long ProofId { get; set; }
 
@@ -18,7 +18,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 节点Id
         /// </summary>
-        public long WorkFlowNodeId { get; set; }
+        public string WorkFlowNodeCode { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -27,6 +27,12 @@ namespace Silky.WorkFlow.Domain
         /// 
         /// </summary>
         public string UserName { get; set; }
+
+        /// <summary>
+        /// 动作类型
+        /// </summary>
+        public ActionType ActionType { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

@@ -7,8 +7,8 @@ namespace Silky.WorkFlow.Domain
     {
         IRepository<Flow> FlowRepository { get; }
 
-        Task CreateFlowAsync(Flow flow);
+        Task CreateAsync(Flow flow);
 
-        Task<Flow> GetFlowAsync(string businessCategoryCode);
+        Task<Flow> GetAsync(string businessCategoryCode);
     }
 }

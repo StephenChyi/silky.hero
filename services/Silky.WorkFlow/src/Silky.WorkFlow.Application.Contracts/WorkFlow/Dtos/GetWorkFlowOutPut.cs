@@ -155,9 +155,19 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
         /// 
         /// </summary>
         public string UserName { get; set; }
+
+        /// <summary>
+        /// 动作类型
+        /// </summary>
+        public ActionType ActionType { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         public string Memo { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTimeOffset CreatedTime { get; set; }
     }
 }

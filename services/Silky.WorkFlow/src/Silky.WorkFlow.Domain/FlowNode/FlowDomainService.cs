@@ -1,4 +1,5 @@
-﻿using Silky.Core.DbContext.UnitOfWork;
+﻿using Microsoft.EntityFrameworkCore;
+using Silky.Core.DbContext.UnitOfWork;
 using Silky.EntityFrameworkCore.Repositories;
 
 namespace Silky.WorkFlow.Domain
@@ -19,14 +20,19 @@ namespace Silky.WorkFlow.Domain
         }
 
         [UnitOfWork]
-        public async Task CreateFlowAsync(Flow flow)
+        public async Task CreateAsync(Flow flow)
         {
             await FlowRepository.InsertAsync(flow);
         }
 
-        public Task<Flow> GetFlowAsync(string businessCategoryCode)
+        public async Task<Flow> GetAsync(string businessCategoryCode)
         {
-            throw new NotImplementedException();
+            return await FlowRepository
+                .Include(f => f.FlowNodes)
+                .ThenInclude(f => f.NodeCalculations)
+                .Include(f => f.FlowLines)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(f => f.BusinessCategoryCode == businessCategoryCode);
         }
     }
 }

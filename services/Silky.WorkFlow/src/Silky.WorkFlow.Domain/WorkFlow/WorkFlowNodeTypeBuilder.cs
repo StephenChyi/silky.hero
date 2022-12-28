@@ -41,11 +41,7 @@ public class WorkFlowNodeTypeBuilder : IEntityTypeBuilder<WorkFlowNode>
           .IsRequired()
           .HasMaxLength(WorkFlowNodeConsts.MaxCodeLength)
           .HasColumnName(nameof(WorkFlowNode.NodeValue));
-
-        entityBuilder
-          .Property(w => w.StepNo)
-          .IsRequired()
-          .HasColumnName(nameof(WorkFlowNode.StepNo));
+        
         entityBuilder
           .Property(w => w.NodeStatus)
           .IsRequired()

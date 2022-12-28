@@ -20,11 +20,11 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 流节点
         /// </summary>
-        public virtual ICollection<FlowNode> FlowNodes { get; protected set; }
+        public virtual ICollection<FlowNode> FlowNodes { get; protected set; } = new List<FlowNode>();
 
         /// <summary>
         /// 流节点连线
         /// </summary>
-        public virtual ICollection<FlowLine> FlowLines { get; protected set; }
+        public virtual ICollection<FlowLine> FlowLines { get; protected set; } = new List<FlowLine>();
     }
 }

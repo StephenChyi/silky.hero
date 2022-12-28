@@ -21,5 +21,6 @@ namespace Silky.WorkFlow.EntityFrameworkCore.DbContexts
         public DbSet<WorkFlowNode> WorkFlowNodes { get; set; }
         public DbSet<WorkFlowLine> WorkFlowLines { get; set; }
         public DbSet<WorkFlowLog> WorkFlowLogs { get; set; }
+        public DbSet<WorkFlowHistory> WorkFlowHistories { get; set; }
     }
 }

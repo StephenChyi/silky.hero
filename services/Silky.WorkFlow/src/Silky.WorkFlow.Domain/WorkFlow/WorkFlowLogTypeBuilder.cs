@@ -13,9 +13,9 @@ namespace Silky.WorkFlow.Domain
             entityBuilder.ConfigureByConvention();
 
             entityBuilder
-                .Property(w => w.WorkFlowNodeId)
+                .Property(w => w.WorkFlowNodeCode)
                 .IsRequired()
-                .HasColumnName(nameof(WorkFlowLog.WorkFlowNodeId));
+                .HasColumnName(nameof(WorkFlowLog.WorkFlowNodeCode));
 
             entityBuilder
                 .Property(w => w.UserId)
@@ -33,6 +33,12 @@ namespace Silky.WorkFlow.Domain
                 .IsRequired()
                 .HasMaxLength(WorkFlowLogConsts.MaxContentLength)
                 .HasColumnName(nameof(WorkFlowLog.Memo));
+
+            entityBuilder
+                .Property(w => w.CreatedTime)
+                .IsRequired()
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnName(nameof(WorkFlowLog.CreatedTime));
         }
     }
 }

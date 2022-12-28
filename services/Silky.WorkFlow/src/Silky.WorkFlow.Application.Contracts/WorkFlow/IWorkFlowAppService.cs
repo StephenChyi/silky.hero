@@ -14,9 +14,16 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow
         [Authorize]
         Task CreateAsync(long proofId, [FromQuery] string businessCategoryCode);
 
-
-        [HttpGet("workflow/{proofId:long}")]
+        [HttpGet("{id:long}/{proofId:long}")]
         [Authorize]
-        Task<GetWorkFlowOutPut> GetWorkFlowAsync(long proofId, [FromQuery] string businessCategoryCode);
+        Task<GetWorkFlowOutPut> GetWorkFlowAsync(long id, long proofId, [FromQuery] string businessCategoryCode);
+
+        [HttpGet("currentUser/{id:long}/{proofId:long}")]
+        [Authorize]
+        Task<GetWorkFlowCurrentOutPut> GetCurrentAsync(long id, long proofId, [FromQuery] string businessCategoryCode);
+
+        [HttpPut("audit")]
+        [Authorize]
+        Task AuditAsync(AuditWorkFlowInput audit);
     }
 }

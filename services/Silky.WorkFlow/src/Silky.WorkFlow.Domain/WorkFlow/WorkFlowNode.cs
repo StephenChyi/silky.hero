@@ -34,11 +34,6 @@ namespace Silky.WorkFlow.Domain
         public string NodeValue { get; set; }
 
         /// <summary>
-        /// 步骤编号
-        /// </summary>
-        public int StepNo { get; set; }
-
-        /// <summary>
         /// 节点状态
         /// </summary>
         public WorkFlowNodeStatus NodeStatus { get; set; }

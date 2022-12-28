@@ -1,66 +1,110 @@
 ﻿using Mapster;
-using MassTransit.Internals.GraphValidation;
+using Microsoft.AspNetCore.Mvc;
 using Silky.WorkFlow.Application.Contracts.WorkFlow;
 using Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos;
 using Silky.WorkFlow.Domain;
 using Silky.WorkFlow.Domain.Shared;
-using System.Reflection;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Silky.WorkFlow.Application.WorkFlow
 {
     public class WorkFlowAppService : IWorkFlowAppService
     {
-        private readonly IWorkFlowNodeDomainService _workFlowDomainService;
-        private readonly IFlowNodeDomainService _flowNodeDomainService;
-        private readonly IFlowLineDomainService _nodeActionResultDomainService;
-        public WorkFlowAppService(IWorkFlowNodeDomainService workFlowDomainService, IFlowNodeDomainService flowNodeDomainService, IFlowLineDomainService nodeActionResultDomainService)
+        private readonly IWorkFlowDomainService _workFlowDomainService;
+        private readonly IFlowDomainService _flowDomainService;
+        private readonly IWorkFlowNodeDomainService _workFlowNodeDomainService;
+        private readonly IWorkFlowLineDomainService _workFlowLineDomainService;
+        public WorkFlowAppService(IWorkFlowDomainService workFlowDomainService, IFlowDomainService flowDomainService, IWorkFlowNodeDomainService workFlowNodeDomainService, IWorkFlowLineDomainService workFlowLineDomainService)
         {
             _workFlowDomainService = workFlowDomainService;
-            _flowNodeDomainService = flowNodeDomainService;
-            _nodeActionResultDomainService = nodeActionResultDomainService;
+            _flowDomainService = flowDomainService;
+            _workFlowNodeDomainService = workFlowNodeDomainService;
+            _workFlowLineDomainService = workFlowLineDomainService;
         }
 
         public async Task CreateAsync(long proofId, string businessCategoryCode)
         {
-            List<WorkFlowNode> workFlowNodes = new();
-            //List<WorkFlowNodeActionResult> results = new();
-            ////获得业务开始节点
-            //var startNode = await _flowNodeDomainService.GetStartFlowNodeAsync(businessCategoryCode);
-            //if (startNode != null)
-            //{
-            //    //获取节点所有动作
-            //    var acts = await _nodeActionResultDomainService.GetPrevNodeActionResultsAsync(new long[] { startNode.Id }, businessCategoryCode);
+            var flow = await _flowDomainService.GetAsync(businessCategoryCode);
+            if (flow == null)
+            {
+                throw new Exception("该业务工作流不存在");
+            }
+            var startNode = flow.FlowNodes.FirstOrDefault(f => f.NodeType == NodeType.Start);
+            if (startNode == null)
+            {
+                throw new Exception("该节点不存在");
+            }
 
-            //    //拼装单据流            
-            //    var workFlowstartNode = startNode.Adapt<WorkFlowNode>();
-            //    workFlowNodes.Add(workFlowstartNode);
-            //    var calculations = startNode.NodeCalculations.OrderBy(n => n.NodeStepNo).ToList();
-            //    //处理节点问题答案
-            //    Test test = new Test();//获取业务数据 proofId
-            //    Type type = test.GetType();
+            //获取业务数据 proofId
+            Test test = new Test();
+            Type type = test.GetType();
 
-            //    var tuples = NodeProcess(startNode.NodeTypeId, type, test, calculations);
-            //    workFlowstartNode.NodeVariable = tuples.Item1;
-            //    workFlowstartNode.NodeValue = tuples.Item2.ToString();
-            //    //获取下一节点
-
-
-
-            //    workFlowNodes.ForEach(w => w.ProofId = proofId);
-            //    await _workFlowDomainService.CreateAsync(workFlowNodes.ToArray());
-            //}
+            Domain.WorkFlow workFlow = new();
+            workFlow.Id = 0;
+            workFlow.ProofId = proofId;
+            workFlow.BusinessCategoryCode = businessCategoryCode;
+            workFlow.WorkFlowName = "";
+            workFlow.CurrentNodeCode = startNode.FlowNodeCode;
+            workFlow.CurrentUserId = 0;
+            workFlow.CurrentUserName = "";
+            //开始节点
+            var workFlowStartNode = startNode.Adapt<WorkFlowNode>();
+            workFlowStartNode.Id = 0;
+            if (startNode.NodeCalculations.Any())
+            {
+                var tuples = NodeProcess(startNode.NodeType, type, test, startNode.NodeCalculations.ToList());
+                workFlowStartNode.NodeVariable = tuples.Item1;
+                workFlowStartNode.NodeValue = tuples.Item2;
+            }
+            workFlowStartNode.NodeStatus = WorkFlowNodeStatus.Doing;
+            workFlow.WorkFlowNodes = new List<WorkFlowNode> { workFlowStartNode };
+            workFlow.WorkFlowLines = new List<WorkFlowLine>();
+            foreach (var line in flow.FlowLines)
+            {
+                var workFlowLine = line.Adapt<WorkFlowLine>();
+                workFlow.WorkFlowLines.Add(workFlowLine);
+                workFlowLine.WorkFlowLineName = line.FlowLineName;
+                workFlowLine.WorkFlowId = workFlow.Id;
+                workFlow.WorkFlowLines.Add(workFlowLine);
+            }
+            foreach (var node in flow.FlowNodes)
+            {
+                var workFlowNode = node.Adapt<WorkFlowNode>();
+                if (node.NodeCalculations.Any())
+                {
+                    var tuples = NodeProcess(startNode.NodeType, type, test, node.NodeCalculations.ToList());
+                    workFlowNode.NodeVariable = tuples.Item1;
+                    workFlowNode.NodeValue = tuples.Item2;
+                }
+                workFlowNode.NodeStatus = WorkFlowNodeStatus.Incoming;
+                workFlow.WorkFlowNodes.Add(workFlowNode);
+            }
+            //日志
+            workFlow.WorkFlowLogs = new List<WorkFlowLog> { new WorkFlowLog {
+                ProofId= proofId,
+                BusinessCategoryCode= businessCategoryCode,
+                WorkFlowId=workFlow.Id,
+                WorkFlowNodeCode=workFlow.CurrentNodeCode,
+                UserId=0,
+                UserName="",
+                Memo="流程开始",
+                CreatedTime=DateTime.Now,
+            } };
+            await _workFlowDomainService.CreateAsync(workFlow);
         }
 
-        private Tuple<string, string> NodeProcess(long nodeType, Type type, object datum, List<NodeCalculation> calculations)
+        private Tuple<string, string> NodeProcess(NodeType nodeType, Type type, object datum, List<NodeCalculation> calculations)
         {
             string nodeVariable = string.Empty;//拼装一次性节点问题
             string nodeValue = string.Empty;//拼装一次性节点答案
             bool nodeResult = false;
             switch (nodeType)
             {
-                case 2://计算节点
+                case NodeType.Start:
+                case NodeType.End:
+                    nodeVariable = calculations[0].NodeVariable;
+                    nodeValue = true.ToString();
+                    break;
+                case NodeType.Calculate://计算节点 繁杂条件计算
                     for (int i = 0; i < calculations.Count; i++)
                     {
                         bool result = false;
@@ -71,22 +115,13 @@ namespace Silky.WorkFlow.Application.WorkFlow
                         if (property != null)
                         {
                             var propertyValue = property.GetValue(datum);
-                            switch (calculation.NodeFactor)
+                            if (propertyValue == null)//数据没有值，本节点不走
                             {
-                                case NodeFactor.Less:
-                                    break;
-                                case NodeFactor.Notless:
-                                    break;
-                                case NodeFactor.Greater:
-                                    break;
-                                case NodeFactor.Notgreater:
-                                    break;
-                                case NodeFactor.Equal:
-                                    break;
-                                case NodeFactor.Notequal:
-                                    break;
-                                default:
-                                    break;
+                                //清空问题
+                                nodeVariable = string.Empty;
+                                //清空结果
+                                nodeValue = string.Empty;
+                                continue;
                             }
                             switch (calculation.NodeFactor)
                             {
@@ -213,56 +248,79 @@ namespace Silky.WorkFlow.Application.WorkFlow
                     }
                     nodeValue = nodeResult.ToString();
                     break;
-                case 3://审核节点
+                case NodeType.Audit://审核节点
 
+                    nodeValue = true.ToString();
                     break;
             }
+
             return new Tuple<string, string>(nodeVariable, nodeValue);
         }
 
-        //private void BuildWorkFlowNodeTree(WorkFlowNode workFlowNode, List<ActionType> nodeActionResults)
-        //{
-        //    workFlowNode.NextFlowNodes = new List<WorkFlowNodeActionResult>();
-
-
-        //}
-
-        public async Task<GetWorkFlowOutPut> GetWorkFlowAsync(long proofId, string businessCategoryCode)
+        public async Task<GetWorkFlowOutPut> GetWorkFlowAsync(long id, long proofId, string businessCategoryCode)
         {
-            //var nodes = await _workFlowDomainService.GetWorkFlowNodesAsync(proofId, businessCategoryCode);
-            GetWorkFlowOutPut dto = new();
-            //if (nodes.Any())
-            //{
-            //    //组装树结构            
-            //    var startNode = nodes.ElementAt(0);
-            //    dto.BusinessCategoryCode = startNode.BusinessCategoryCode;
-            //    dto.ProofId = startNode.ProofId;
-            //    dto.StartNode = BuildWorkFlowNodeTreeDto(startNode, nodes);
-            //}
-            return dto;
+            var workFlow = await _workFlowDomainService.GetAsync(id, proofId, businessCategoryCode);
+            if (workFlow == null)
+            {
+                throw new Exception("");
+            }
+            return workFlow.Adapt<GetWorkFlowOutPut>();
         }
 
-        private WorkFlowNodeOutput BuildWorkFlowNodeTreeDto(WorkFlowNode node, IEnumerable<WorkFlowNode> nodes)
+        public async Task<GetWorkFlowCurrentOutPut> GetCurrentAsync(long id, long proofId, [FromQuery] string businessCategoryCode)
         {
-            //var nextNodes = node.NextFlowNodes;
-            var nodeDto = node.Adapt<WorkFlowNodeOutput>();
-            //if (nextNodes != null && nextNodes.Count > 0)
-            //{
-            //    List<WorkFlowNodeActionResultOutput> nextNodeDtos = new();
-            //    foreach (var nextNode in nextNodes)
-            //    {
-            //        WorkFlowNodeActionResultOutput nextNodeDto = new();
-            //        nextNodeDtos.Add(nextNodeDto);
-            //        nextNodeDto.NodeAction = nextNode.NodeAction;
-            //        var nextChild = nodes.FirstOrDefault(n => n.Id == nextNode.WorkFlowNodeId);
-            //        if (nextChild != null)
-            //        {
-            //            BuildWorkFlowNodeTreeDto(nextChild, nodes);
-            //        }
-            //    }
-            //    nodeDto.NextNodes = nextNodeDtos.ToArray();
-            //}
-            return nodeDto;
+            var workFlow = await _workFlowDomainService.GetCurrentAsync(id, proofId, businessCategoryCode);
+            if (workFlow == null)
+            {
+                throw new Exception("该工作流不存在");
+            }
+            var current = workFlow.Adapt<GetWorkFlowCurrentOutPut>();
+            //获取当前节点 IWorkFlowNodeDomainService
+            var currentNode = await _workFlowNodeDomainService.GetCurrentAsync(workFlow.Id, workFlow.CurrentNodeCode);
+            if (currentNode == null)
+            {
+                throw new Exception("该节点不存在");
+            }
+            current.CurrentWorkFlowNode = currentNode.Adapt<WorkFlowNodeOutput>();
+            var lines = await _workFlowLineDomainService.GetLinesByCurrentAsync(workFlow.Id, currentNode.FlowNodeCode);
+            if (lines.Any())
+            {
+                current.WorkFlowLines = lines.Adapt<WorkFlowLineOutput[]>();
+            }
+            return current;
+        }
+
+        public async Task AuditAsync(AuditWorkFlowInput audit)
+        {
+            var workFlow = await _workFlowDomainService.GetCurrentAsync(audit.WorkFlowId, audit.ProofId, audit.BusinessCategoryCode);
+            if (workFlow == null)
+            {
+                throw new Exception("该工作流不存在");
+            }
+            var line = await _workFlowLineDomainService.GetNextNodeCodeAsync(workFlow.Id, workFlow.CurrentNodeCode, audit.ActionType);
+            if (line == null)
+            {
+                throw new Exception("该流程不存在");
+            }
+            workFlow.PreviousNodeCode = workFlow.CurrentNodeCode;
+            workFlow.CurrentNodeCode = line.WorkFlowNodeCode;
+            //流转记录
+            WorkFlowHistory history = new();
+            history.WorkFlowId = workFlow.Id;
+            history.WorkFlowNodeCode = workFlow.PreviousNodeCode;
+            history.NextWorkFlowNodeCode = workFlow.CurrentNodeCode;
+            //操作日志
+            WorkFlowLog log = new();
+            log.WorkFlowId = workFlow.Id;
+            log.ProofId = audit.ProofId;
+            log.BusinessCategoryCode = audit.BusinessCategoryCode;
+            log.WorkFlowNodeCode = workFlow.CurrentNodeCode;
+            log.UserId = 0;
+            log.UserName = "";
+            log.ActionType = audit.ActionType;
+            log.Memo = audit.Memo;
+
+            await _workFlowDomainService.AuditAsync(workFlow, log, history);
         }
     }
     public class Test

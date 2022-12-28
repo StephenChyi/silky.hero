@@ -6,7 +6,6 @@ namespace Silky.WorkFlow.Domain
     public interface IWorkFlowNodeDomainService : IScopedDependency
     {
         IRepository<WorkFlowNode> WorkFlowNodeRepository { get; }
-
-        Task CreateAsync(WorkFlowNode[] workFlowNodes);
+        Task<WorkFlowNode> GetCurrentAsync(long workFlowId, string nodeCode);
     }
 }

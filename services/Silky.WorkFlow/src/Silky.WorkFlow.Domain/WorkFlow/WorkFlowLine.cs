@@ -16,7 +16,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 上一节点
         /// </summary>
-        public long PrevWorkFlowNodeId { get; set; }
+        public string PrevWorkFlowNodeCode { get; set; }
 
         /// <summary>
         /// 动作类型
@@ -26,7 +26,7 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 下一节点
         /// </summary>
-        public long WorkFlowNodeId { get; set; }
+        public string WorkFlowNodeCode { get; set; }
 
         /// <summary>
         /// 

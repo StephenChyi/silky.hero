@@ -23,12 +23,12 @@ namespace Silky.WorkFlow.Domain
         /// <summary>
         /// 上一节点
         /// </summary>
-        public long PrevFlowNodeId { get; set; }
+        public string PrevFlowNodeCode { get; set; }
 
         /// <summary>
         /// 下一节点
         /// </summary>
-        public long FlowNodeId { get; set; }
+        public string FlowNodeCode { get; set; }
 
         /// <summary>
         /// 所属流

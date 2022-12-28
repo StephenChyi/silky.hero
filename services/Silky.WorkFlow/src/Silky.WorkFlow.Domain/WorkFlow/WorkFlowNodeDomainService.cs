@@ -1,21 +1,18 @@
-﻿using Silky.Core.DbContext.UnitOfWork;
-using Silky.EntityFrameworkCore.Repositories;
+﻿using Silky.EntityFrameworkCore.Repositories;
 
 namespace Silky.WorkFlow.Domain
 {
     public class WorkFlowNodeDomainService : IWorkFlowNodeDomainService
     {
         public IRepository<WorkFlowNode> WorkFlowNodeRepository { get; }
-
-        public WorkFlowNodeDomainService(IRepository<WorkFlowNode> workFlowRepository)
+        public WorkFlowNodeDomainService(IRepository<WorkFlowNode> workFlowNodeRepository)
         {
-            WorkFlowNodeRepository = workFlowRepository;
+            WorkFlowNodeRepository = workFlowNodeRepository;
         }
 
-        [UnitOfWork]
-        public async Task CreateAsync(WorkFlowNode[] workFlowNodes)
+        public async Task<WorkFlowNode> GetCurrentAsync(long workFlowId, string nodeCode)
         {
-            await WorkFlowNodeRepository.InsertAsync(workFlowNodes);
+            return await WorkFlowNodeRepository.FirstOrDefaultAsync(n => n.WorkFlowId==workFlowId&&n.FlowNodeCode==nodeCode);
         }
     }
 }

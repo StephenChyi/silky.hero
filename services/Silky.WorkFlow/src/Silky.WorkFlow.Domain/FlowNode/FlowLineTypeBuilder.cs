@@ -25,15 +25,16 @@ namespace Silky.WorkFlow.Domain
               .HasColumnName(nameof(FlowLine.FlowLineName));
 
             entityBuilder
-               .Property(n => n.PrevFlowNodeId)
+               .Property(n => n.PrevFlowNodeCode)
                .IsRequired()
-               .HasColumnName(nameof(FlowLine.PrevFlowNodeId));
+               .HasMaxLength(FlowNodeConsts.MaxCodeLength)
+               .HasColumnName(nameof(FlowLine.PrevFlowNodeCode));
 
             entityBuilder
-               .Property(n => n.FlowNodeId)
+               .Property(n => n.FlowNodeCode)
                .IsRequired()
-               .HasDefaultValue(1)
-               .HasColumnName(nameof(FlowLine.FlowNodeId));
+               .HasMaxLength(FlowNodeConsts.MaxCodeLength)
+               .HasColumnName(nameof(FlowLine.FlowNodeCode));
         }
     }
 }
