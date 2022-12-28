@@ -6,7 +6,7 @@ namespace Silky.WorkFlow.Domain
     {
         public void Register(TypeAdapterConfig config)
         {
-            //config.ForType<WorkFlow, GetWorkFlowCurrentOutPut>();                
+            //config.ForType<WorkFlow, GetWorkFlowCurrentOutput>();                
             //config.ForType<WorkFlowNode, WorkFlowNodeOutput>();
             //config.ForType<WorkFlowLine, WorkFlowLineOutput>();
             //config.ForType<WorkFlowLog, WorkFlowLogOutput>();

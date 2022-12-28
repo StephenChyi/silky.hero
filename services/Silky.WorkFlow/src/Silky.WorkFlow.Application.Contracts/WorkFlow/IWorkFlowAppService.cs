@@ -10,20 +10,24 @@ namespace Silky.WorkFlow.Application.Contracts.WorkFlow
     public interface IWorkFlowAppService
     {
 
-        [HttpPost("{proofId:long}")]
+        [HttpPost]
         [Authorize]
-        Task CreateAsync(long proofId, [FromQuery] string businessCategoryCode);
+        Task CreateAsync(CreateWorkFlowInput input);
 
         [HttpGet("{id:long}/{proofId:long}")]
         [Authorize]
-        Task<GetWorkFlowOutPut> GetWorkFlowAsync(long id, long proofId, [FromQuery] string businessCategoryCode);
+        Task<GetWorkFlowOutput> GetWorkFlowAsync(long id, long proofId, [FromQuery] string businessCategoryCode);
 
         [HttpGet("currentUser/{id:long}/{proofId:long}")]
         [Authorize]
-        Task<GetWorkFlowCurrentOutPut> GetCurrentAsync(long id, long proofId, [FromQuery] string businessCategoryCode);
+        Task<GetWorkFlowCurrentOutput> GetCurrentAsync(long id, long proofId, [FromQuery] string businessCategoryCode);
 
         [HttpPut("audit")]
         [Authorize]
         Task AuditAsync(AuditWorkFlowInput audit);
+
+        [HttpGet("logs/{workFlowId:long}")]
+        [Authorize]
+        Task<GetWorkFlowLogsOutput[]> GetWorkFlowLogsAsync(long workFlowId);
     }
 }

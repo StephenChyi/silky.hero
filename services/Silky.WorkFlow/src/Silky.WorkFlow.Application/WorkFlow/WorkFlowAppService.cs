@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Silky.Core.Exceptions;
 using Silky.WorkFlow.Application.Contracts.WorkFlow;
 using Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos;
 using Silky.WorkFlow.Domain;
@@ -13,35 +14,32 @@ namespace Silky.WorkFlow.Application.WorkFlow
         private readonly IFlowDomainService _flowDomainService;
         private readonly IWorkFlowNodeDomainService _workFlowNodeDomainService;
         private readonly IWorkFlowLineDomainService _workFlowLineDomainService;
-        public WorkFlowAppService(IWorkFlowDomainService workFlowDomainService, IFlowDomainService flowDomainService, IWorkFlowNodeDomainService workFlowNodeDomainService, IWorkFlowLineDomainService workFlowLineDomainService)
+        private readonly IWorkFlowLogDomainService _workFlowLogDomainService;
+        public WorkFlowAppService(IWorkFlowDomainService workFlowDomainService, IFlowDomainService flowDomainService, IWorkFlowNodeDomainService workFlowNodeDomainService, IWorkFlowLineDomainService workFlowLineDomainService, IWorkFlowLogDomainService workFlowLogDomainService)
         {
             _workFlowDomainService = workFlowDomainService;
             _flowDomainService = flowDomainService;
             _workFlowNodeDomainService = workFlowNodeDomainService;
             _workFlowLineDomainService = workFlowLineDomainService;
+            _workFlowLogDomainService = workFlowLogDomainService;
         }
 
-        public async Task CreateAsync(long proofId, string businessCategoryCode)
+        public async Task CreateAsync(CreateWorkFlowInput input)
         {
-            var flow = await _flowDomainService.GetAsync(businessCategoryCode);
+            var flow = await _flowDomainService.GetAsync(input.BusinessCategoryCode);
             if (flow == null)
             {
-                throw new Exception("该业务工作流不存在");
+                throw new UserFriendlyException("该业务工作流不存在");
             }
             var startNode = flow.FlowNodes.FirstOrDefault(f => f.NodeType == NodeType.Start);
             if (startNode == null)
             {
-                throw new Exception("该节点不存在");
+                throw new UserFriendlyException("该节点不存在");
             }
-
-            //获取业务数据 proofId
-            Test test = new Test();
-            Type type = test.GetType();
-
             Domain.WorkFlow workFlow = new();
             workFlow.Id = 0;
-            workFlow.ProofId = proofId;
-            workFlow.BusinessCategoryCode = businessCategoryCode;
+            workFlow.ProofId = input.ProofId;
+            workFlow.BusinessCategoryCode = input.BusinessCategoryCode;
             workFlow.WorkFlowName = "";
             workFlow.CurrentNodeCode = startNode.FlowNodeCode;
             workFlow.CurrentUserId = 0;
@@ -49,9 +47,10 @@ namespace Silky.WorkFlow.Application.WorkFlow
             //开始节点
             var workFlowStartNode = startNode.Adapt<WorkFlowNode>();
             workFlowStartNode.Id = 0;
+            Type type = input.Datum.GetType();
             if (startNode.NodeCalculations.Any())
             {
-                var tuples = NodeProcess(startNode.NodeType, type, test, startNode.NodeCalculations.ToList());
+                var tuples = NodeProcess(startNode.NodeType, type, input.Datum, startNode.NodeCalculations.ToList());
                 workFlowStartNode.NodeVariable = tuples.Item1;
                 workFlowStartNode.NodeValue = tuples.Item2;
             }
@@ -71,7 +70,7 @@ namespace Silky.WorkFlow.Application.WorkFlow
                 var workFlowNode = node.Adapt<WorkFlowNode>();
                 if (node.NodeCalculations.Any())
                 {
-                    var tuples = NodeProcess(startNode.NodeType, type, test, node.NodeCalculations.ToList());
+                    var tuples = NodeProcess(startNode.NodeType, type, input.Datum, node.NodeCalculations.ToList());
                     workFlowNode.NodeVariable = tuples.Item1;
                     workFlowNode.NodeValue = tuples.Item2;
                 }
@@ -80,8 +79,8 @@ namespace Silky.WorkFlow.Application.WorkFlow
             }
             //日志
             workFlow.WorkFlowLogs = new List<WorkFlowLog> { new WorkFlowLog {
-                ProofId= proofId,
-                BusinessCategoryCode= businessCategoryCode,
+                ProofId= input.ProofId,
+                BusinessCategoryCode= input.BusinessCategoryCode,
                 WorkFlowId=workFlow.Id,
                 WorkFlowNodeCode=workFlow.CurrentNodeCode,
                 UserId=0,
@@ -249,37 +248,46 @@ namespace Silky.WorkFlow.Application.WorkFlow
                     nodeValue = nodeResult.ToString();
                     break;
                 case NodeType.Audit://审核节点
-
-                    nodeValue = true.ToString();
+                    switch (calculations[0].NodeVariable)//结算审核类型
+                    {
+                        case "Organization"://具体到组织第一负责人
+                            //根据编码查询第一负责人
+                            nodeValue = true.ToString();
+                            break;
+                        case "Person"://人
+                            //查询人员信息
+                            nodeValue = true.ToString();
+                            break;
+                    }
                     break;
             }
 
             return new Tuple<string, string>(nodeVariable, nodeValue);
         }
 
-        public async Task<GetWorkFlowOutPut> GetWorkFlowAsync(long id, long proofId, string businessCategoryCode)
+        public async Task<GetWorkFlowOutput> GetWorkFlowAsync(long id, long proofId, string businessCategoryCode)
         {
             var workFlow = await _workFlowDomainService.GetAsync(id, proofId, businessCategoryCode);
             if (workFlow == null)
             {
-                throw new Exception("");
+                throw new UserFriendlyException("该工作流不存在");
             }
-            return workFlow.Adapt<GetWorkFlowOutPut>();
+            return workFlow.Adapt<GetWorkFlowOutput>();
         }
 
-        public async Task<GetWorkFlowCurrentOutPut> GetCurrentAsync(long id, long proofId, [FromQuery] string businessCategoryCode)
+        public async Task<GetWorkFlowCurrentOutput> GetCurrentAsync(long id, long proofId, [FromQuery] string businessCategoryCode)
         {
             var workFlow = await _workFlowDomainService.GetCurrentAsync(id, proofId, businessCategoryCode);
             if (workFlow == null)
             {
-                throw new Exception("该工作流不存在");
+                throw new UserFriendlyException("该工作流不存在");
             }
-            var current = workFlow.Adapt<GetWorkFlowCurrentOutPut>();
+            var current = workFlow.Adapt<GetWorkFlowCurrentOutput>();
             //获取当前节点 IWorkFlowNodeDomainService
             var currentNode = await _workFlowNodeDomainService.GetCurrentAsync(workFlow.Id, workFlow.CurrentNodeCode);
             if (currentNode == null)
             {
-                throw new Exception("该节点不存在");
+                throw new UserFriendlyException("该节点不存在");
             }
             current.CurrentWorkFlowNode = currentNode.Adapt<WorkFlowNodeOutput>();
             var lines = await _workFlowLineDomainService.GetLinesByCurrentAsync(workFlow.Id, currentNode.FlowNodeCode);
@@ -295,12 +303,12 @@ namespace Silky.WorkFlow.Application.WorkFlow
             var workFlow = await _workFlowDomainService.GetCurrentAsync(audit.WorkFlowId, audit.ProofId, audit.BusinessCategoryCode);
             if (workFlow == null)
             {
-                throw new Exception("该工作流不存在");
+                throw new UserFriendlyException("该工作流不存在");
             }
             var line = await _workFlowLineDomainService.GetNextNodeCodeAsync(workFlow.Id, workFlow.CurrentNodeCode, audit.ActionType);
             if (line == null)
             {
-                throw new Exception("该流程不存在");
+                throw new UserFriendlyException("该流程不存在");
             }
             workFlow.PreviousNodeCode = workFlow.CurrentNodeCode;
             workFlow.CurrentNodeCode = line.WorkFlowNodeCode;
@@ -321,6 +329,12 @@ namespace Silky.WorkFlow.Application.WorkFlow
             log.Memo = audit.Memo;
 
             await _workFlowDomainService.AuditAsync(workFlow, log, history);
+        }
+
+        public async Task<GetWorkFlowLogsOutput[]> GetWorkFlowLogsAsync(long workFlowId)
+        {
+            var logs = await _workFlowLogDomainService.GetWorkFlowLogsAsync(workFlowId);
+            return logs.Adapt<GetWorkFlowLogsOutput[]>();
         }
     }
     public class Test

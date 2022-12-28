@@ -1,6 +1,6 @@
 ﻿namespace Silky.WorkFlow.Application.Contracts.WorkFlow.Dtos
 {
-    public class GetWorkFlowCurrentOutPut
+    public class GetWorkFlowCurrentOutput
     {
         public long Id { get; set; }
 
