@@ -1,5 +1,6 @@
 ﻿using Silky.Core.DependencyInjection;
 using Silky.EntityFrameworkCore.Repositories;
+using Silky.WorkFlow.Application.Contracts.Flow.Dto;
 
 namespace Silky.WorkFlow.Domain
 {
@@ -7,7 +8,7 @@ namespace Silky.WorkFlow.Domain
     {
         IRepository<Flow> FlowRepository { get; }
 
-        Task CreateAsync(Flow flow);
+        Task CreateAsync(CreateFlowInPut flow);
 
         Task<Flow> GetAsync(string businessCategoryCode);
     }

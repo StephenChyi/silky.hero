@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using Silky.Core.DbContext.UnitOfWork;
 using Silky.EntityFrameworkCore.Repositories;
+using Silky.WorkFlow.Application.Contracts.Flow.Dto;
 
 namespace Silky.WorkFlow.Domain
 {
@@ -20,9 +22,9 @@ namespace Silky.WorkFlow.Domain
         }
 
         [UnitOfWork]
-        public async Task CreateAsync(Flow flow)
+        public async Task CreateAsync(CreateFlowInPut flow)
         {
-            await FlowRepository.InsertAsync(flow);
+            await FlowRepository.InsertAsync(flow.Adapt<Flow>());
         }
 
         public async Task<Flow> GetAsync(string businessCategoryCode)

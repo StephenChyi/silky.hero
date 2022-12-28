@@ -9,7 +9,7 @@ namespace Silky.WorkFlow.Domain
     {
         public void Configure(EntityTypeBuilder<WorkFlowLog> entityBuilder, DbContext dbContext, Type dbContextLocator)
         {
-            entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "WorkFlowLog", WorkFlowNodeDbProperties.DbSchema);
+            entityBuilder.ToTable(WorkFlowDbProperties.DbTablePrefix + "WorkFlowLog", WorkFlowDbProperties.DbSchema);
             entityBuilder.ConfigureByConvention();
 
             entityBuilder

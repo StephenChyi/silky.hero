@@ -9,7 +9,7 @@ namespace Silky.WorkFlow.Domain
     {
         public void Configure(EntityTypeBuilder<NodeCalculation> entityBuilder, DbContext dbContext, Type dbContextLocator)
         {
-            entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "NodeCalculation", WorkFlowNodeDbProperties.DbSchema);
+            entityBuilder.ToTable(WorkFlowDbProperties.DbTablePrefix + "NodeCalculation", WorkFlowDbProperties.DbSchema);
             entityBuilder.ConfigureByConvention();
 
             entityBuilder

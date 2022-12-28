@@ -1,6 +1,6 @@
 namespace Silky.WorkFlow.Domain;
 
-public class WorkFlowNodeDbProperties
+public class WorkFlowDbProperties
 {
     public static string DbTablePrefix { get; set; } = "";
 

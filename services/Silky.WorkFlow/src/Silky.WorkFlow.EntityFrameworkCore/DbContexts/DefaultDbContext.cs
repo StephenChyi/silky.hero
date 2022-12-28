@@ -5,7 +5,7 @@ using Silky.WorkFlow.Domain;
 
 namespace Silky.WorkFlow.EntityFrameworkCore.DbContexts
 {
-    [AppDbContext(WorkFlowNodeDbProperties.ConnectionStringName, DbProvider.MySql)]
+    [AppDbContext(WorkFlowDbProperties.ConnectionStringName, DbProvider.MySql)]
     public class DefaultDbContext : SilkyDbContext<DefaultDbContext>
     {
         public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)

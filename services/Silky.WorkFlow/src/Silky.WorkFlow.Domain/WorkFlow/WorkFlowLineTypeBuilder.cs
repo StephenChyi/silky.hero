@@ -9,7 +9,7 @@ public class WorkFlowLineTypeBuilder : IEntityTypeBuilder<WorkFlowLine>
 {
     public void Configure(EntityTypeBuilder<WorkFlowLine> entityBuilder, DbContext dbContext, Type dbContextLocator)
     {
-        entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "WorkFlowLine", WorkFlowNodeDbProperties.DbSchema);
+        entityBuilder.ToTable(WorkFlowDbProperties.DbTablePrefix + "WorkFlowLine", WorkFlowDbProperties.DbSchema);
         entityBuilder.ConfigureByConvention();
 
         entityBuilder

@@ -1,5 +1,4 @@
-﻿using Mapster;
-using Silky.WorkFlow.Application.Contracts.Flow;
+﻿using Silky.WorkFlow.Application.Contracts.Flow;
 using Silky.WorkFlow.Application.Contracts.Flow.Dto;
 using Silky.WorkFlow.Domain;
 
@@ -15,7 +14,7 @@ namespace Silky.WorkFlow.Application.Flow
 
         public Task CreateAsync(CreateFlowInPut flow)
         {
-            return _flowDomainService.CreateAsync(flow.Adapt<Domain.Flow>());
+            return _flowDomainService.CreateAsync(flow);
         }
     }
 }

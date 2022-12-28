@@ -12,7 +12,7 @@ namespace Silky.WorkFlow.Domain
     {
         public void Configure(EntityTypeBuilder<Flow> entityBuilder, DbContext dbContext, Type dbContextLocator)
         {
-            entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "Flow", WorkFlowNodeDbProperties.DbSchema);
+            entityBuilder.ToTable(WorkFlowDbProperties.DbTablePrefix + "Flow", WorkFlowDbProperties.DbSchema);
             entityBuilder.ConfigureByConvention();
 
             entityBuilder

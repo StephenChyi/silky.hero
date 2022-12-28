@@ -9,7 +9,7 @@ public class WorkFlowTypeBuilder : IEntityTypeBuilder<WorkFlow>
 {
     public void Configure(EntityTypeBuilder<WorkFlow> entityBuilder, DbContext dbContext, Type dbContextLocator)
     {
-        entityBuilder.ToTable(WorkFlowNodeDbProperties.DbTablePrefix + "WorkFlow", WorkFlowNodeDbProperties.DbSchema);
+        entityBuilder.ToTable(WorkFlowDbProperties.DbTablePrefix + "WorkFlow", WorkFlowDbProperties.DbSchema);
         entityBuilder.ConfigureByConvention();
 
         entityBuilder
