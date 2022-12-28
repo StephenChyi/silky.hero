@@ -1,4 +1,4 @@
-﻿namespace Silky.Product.Domain.Product
+﻿namespace Silky.Product.Domain
 {
     public class ProductDbProperties
     {

@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Silky.EntityFrameworkCore.Contexts.Attributes;
 using Silky.EntityFrameworkCore.Extras.Contexts;
+using Silky.Product.Domain;
 using Silky.Product.Domain.Category;
-using Silky.Product.Domain.Product;
+using Silky.Product.Domain.Depict;
 
 namespace Silky.Product.EntityFrameworkCore.DbContexts
 {
@@ -13,6 +14,7 @@ namespace Silky.Product.EntityFrameworkCore.DbContexts
         {
 
         }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Category> ProductCategories { get; set; }
+        public DbSet<Unit> Units { get; set; }
     }
 }

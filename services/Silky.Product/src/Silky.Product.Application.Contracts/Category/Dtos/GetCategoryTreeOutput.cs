@@ -1,18 +1,18 @@
 ﻿namespace Silky.Product.Application.Contracts.Category.Dtos
 {
-    public class GetProductCategoryTreeOutput
+    public class GetCategoryTreeOutput
     {
         public long Id { get; set; }
-        public string CategoryCode { get; set; }
-        public string CategoryName { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
         public int Sort { get; set; }
         public long? ParentId { get; set; }
-        public virtual ICollection<GetProductCategoryTreeOutput> Children { get; set; }
+        public GetCategoryTreeOutput[] Children { get; set; }
     }
 
     public static class GetProductTreeOutputExtension
     {
-        private static ICollection<GetProductCategoryTreeOutput> GetTreeChildren(GetProductCategoryTreeOutput node, IEnumerable<GetProductCategoryTreeOutput> treeData)
+        private static GetCategoryTreeOutput[] GetTreeChildren(GetCategoryTreeOutput node, IEnumerable<GetCategoryTreeOutput> treeData)
         {
             var children = treeData.Where(p => p.ParentId == node.Id);
             if (children.Any())
@@ -22,12 +22,12 @@
                     child.Children = GetTreeChildren(child, treeData);
                 }
             }
-            return children.ToList();
+            return children.ToArray();
         }
 
-        public static ICollection<GetProductCategoryTreeOutput> BuildTree(this IEnumerable<GetProductCategoryTreeOutput> treeData)
+        public static ICollection<GetCategoryTreeOutput> BuildTree(this IEnumerable<GetCategoryTreeOutput> treeData)
         {
-            var treeResult = new List<GetProductCategoryTreeOutput>();
+            var treeResult = new List<GetCategoryTreeOutput>();
             var topNodes = treeData.Where(p => p.ParentId == null);
             foreach (var topNode in topNodes)
             {

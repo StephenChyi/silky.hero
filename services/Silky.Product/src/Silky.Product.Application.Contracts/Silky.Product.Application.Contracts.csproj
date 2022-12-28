@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Silky.Rpc" Version="3.5.4" />
+    <PackageReference Include="Silky.Rpc.CachingInterceptor" Version="3.5.4" />
+    <PackageReference Include="Silky.Transaction.Tcc" Version="3.5.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Silky.Product.Domain.Shared\Silky.Product.Domain.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

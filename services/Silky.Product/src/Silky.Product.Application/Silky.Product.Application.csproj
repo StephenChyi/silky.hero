@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Silky.Product.Application.Contracts\Silky.Product.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Silky.Product.Domain\Silky.Product.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
