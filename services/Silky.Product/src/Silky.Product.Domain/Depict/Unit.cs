@@ -2,9 +2,12 @@
 
 namespace Silky.Product.Domain.Depict
 {
+    /// <summary>
+    /// 单位
+    /// </summary>
     public class Unit : Entity<long>
     {
-        public string UnitName { get; set; }
-        public string UnitEnName { get; set; }
+        public string Name { get; set; }
+        public string EnName { get; set; }
     }    
 }

@@ -12,8 +12,8 @@ namespace Silky.Product.Domain.Depict
             builder.ToTable(ProductDbProperties.DbTablePrefix + "Unit", ProductDbProperties.DbSchema);
             builder.ConfigureByConvention();
 
-            builder.Property(c => c.UnitName).IsRequired().HasMaxLength(UnitConsts.MaxNameLength).HasColumnName(nameof(Unit.UnitName));
-            builder.Property(c => c.UnitEnName).IsRequired().HasMaxLength(UnitConsts.MaxNameLength).HasColumnName(nameof(Unit.UnitEnName));
+            builder.Property(c => c.Name).IsRequired().HasMaxLength(UnitConsts.MaxNameLength).HasColumnName(nameof(Unit.Name));
+            builder.Property(c => c.EnName).IsRequired().HasMaxLength(UnitConsts.MaxNameLength).HasColumnName(nameof(Unit.EnName));
         }
     }
 }

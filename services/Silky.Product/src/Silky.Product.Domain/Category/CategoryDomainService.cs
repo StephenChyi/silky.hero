@@ -31,6 +31,7 @@ namespace Silky.Product.Domain.Category
                     throw new UserFriendlyException($"所选上级类目不存在");
                 }
                 productCategory.LevelCode = $"{parent.LevelCode},{parent.Code}";
+                productCategory.Level = parent.Level + 1;
             }
             await CategoryRepository.InsertAsync(productCategory);
         }

@@ -29,8 +29,8 @@ namespace Silky.Product.Application.Depict
             return _unitDomainService
                 .UnitRepository
                 .AsQueryable(false)
-                .WhereIf(!string.IsNullOrWhiteSpace(name), c => c.UnitName.Contains(name) || c.UnitEnName.Contains(name))
-                .Select(u => $"{u.UnitName}({u.UnitEnName})").ToArray();
+                .WhereIf(!string.IsNullOrWhiteSpace(name), c => c.Name.Contains(name) || c.EnName.Contains(name))
+                .Select(u => $"{u.Name}({u.EnName})").ToArray();
         }
     }
 }

@@ -17,7 +17,12 @@ namespace Silky.Product.Domain.Category
             builder.Property(c => c.Name).IsRequired().HasMaxLength(CategoryConsts.MaxNameLength).HasColumnName(nameof(Category.Name));
             builder.Property(c => c.Sort).HasColumnName(nameof(Category.Sort));
             builder.Property(c => c.LevelCode).IsRequired().HasMaxLength(CategoryConsts.MaxCodeLength).HasColumnName(nameof(Category.LevelCode));
-            builder.HasMany(o => o.Children).WithOne(o => o.Parent).HasForeignKey(o => o.ParentId);
+            builder.Property(c => c.Level).IsRequired().HasColumnName(nameof(Category.Level));
+            builder.Property(c => c.Status).IsRequired().HasColumnName(nameof(Category.Status));
+            builder.HasMany(c => c.Children).WithOne(c => c.Parent).HasForeignKey(c => c.ParentId);
+
+            builder.HasMany(c => c.AttributeKeys).WithOne(k => k.Category).HasForeignKey(k => k.CategoryId);
+            builder.HasMany(c => c.Products).WithOne(p => p.Category).HasForeignKey(p => p.CategoryId);
         }
     }
 }

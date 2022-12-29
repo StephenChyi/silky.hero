@@ -17,11 +17,11 @@ namespace Silky.Product.Domain.Depict
 
         public async Task CreateAsync(CreateUnitInput input)
         {
-            if (await UnitRepository.AnyAsync(u => u.UnitName == input.UnitName && u.UnitEnName.Equals(input.UnitEnName, StringComparison.OrdinalIgnoreCase)))
+            if (await UnitRepository.AnyAsync(u => u.Name == input.Name && u.EnName.Equals(input.EnName, StringComparison.OrdinalIgnoreCase)))
             {
-                throw new UserFriendlyException($"已经存在名称为{input.UnitName}的单位");
+                throw new UserFriendlyException($"已经存在名称为{input.Name}的单位");
             }
-            UnitRepository.InsertAsync(input.Adapt<Unit>());
+            await UnitRepository.InsertAsync(input.Adapt<Unit>());
         }
 
         public async Task ClearAsync()
